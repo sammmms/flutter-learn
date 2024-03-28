@@ -163,7 +163,7 @@ class _SetupState extends State<Setup> {
                       hintText: widget.email,
                       fillColor: const Color(0xFFF6F8FB),
                     ),
-                style: TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1)
+                style: const TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1)
                 ),
               const SizedBox(height: 20,),
               const Text("CONFIRM EMAIL", style: TextStyle(
@@ -217,7 +217,7 @@ class _SetupState extends State<Setup> {
                       filled: true,
                       fillColor: const Color(0xFFF6F8FB),
                     ),
-                style: TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1)
+                style: const TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1)
                 ),
               const SizedBox(height: 20,),
               const Text("PHONE NUMBER", style: TextStyle(
@@ -337,7 +337,7 @@ class _SetupState extends State<Setup> {
                         hintText: currentBirthday,
                         enabled: false
                       ),
-                      style: TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1, fontWeight: FontWeight.bold)
+                      style: const TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1, fontWeight: FontWeight.bold)
                                       ),
                     ),
                 InkWell(
@@ -417,12 +417,18 @@ class _SetupState extends State<Setup> {
                         isObstructed = !isObstructed;
                       });
                     },
-                    overlayColor: MaterialStatePropertyAll(Colors.transparent),
-                    child: isObstructed ? Icon(Icons.visibility, color: Color(0xFFF5D161)) : Icon(Icons.visibility_off, color: Color(0xFFF5D161))
+                    overlayColor: const MaterialStatePropertyAll(Colors.transparent),
+                    child: isObstructed ? const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Icon(Icons.visibility, color: Color(0xFFF5D161)),
+                    ) : const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: Icon(Icons.visibility_off, color: Color(0xFFF5D161)),
+                    )
                     )
                 ),
               obscureText: isObstructed,
-              style: TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1)
+              style: const TextStyle(color:const Color(0xFF1B1446), letterSpacing: 1.1)
               ),
               const SizedBox(height: 20,),
               Row(
@@ -439,8 +445,8 @@ class _SetupState extends State<Setup> {
                       }
                     });},
                     shape: const CircleBorder(),
-                    fillColor: MaterialStatePropertyAll(Colors.transparent),
-                    checkColor: Color(0xFFF5D161),
+                    fillColor: const MaterialStatePropertyAll(Colors.transparent),
+                    checkColor:  const Color(0xFFF5D161),
                     side: MaterialStateBorderSide.resolveWith((states) => const BorderSide(width: 2.0, color: Color.fromARGB(255, 245, 209, 97)))
                     ),
                     Column(
@@ -478,9 +484,9 @@ class _SetupState extends State<Setup> {
                       });
                       if(errorCode.isEmpty){
                         if(!(firstName.text == "" || lastName.text == "" || confirmEmail.text == "" || currentNumber.text == "" || password.text == ""))
-                        Navigator.of(context).pushReplacement(
+                        {Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (context)=>SignIn())
-                        );
+                        );}
                       }
                     }, 
                     child: const Text("CONTINUE", style:TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 12, letterSpacing: 1.1), textScaler: TextScaler.linear(1.1))),
