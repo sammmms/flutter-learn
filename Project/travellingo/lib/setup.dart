@@ -178,7 +178,7 @@ class _SetupState extends State<Setup> {
                 controller:confirmEmail,
                 keyboardType: TextInputType.emailAddress,
                 inputFormatters: [
-                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z@.]'))
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z@.0-9]'))
                 ],
                 onChanged: (value){
                   setState(() {
@@ -323,11 +323,7 @@ class _SetupState extends State<Setup> {
                   children:[
                     Expanded(
                       child: TextField(
-                                      inputFormatters: [
-                                        FilteringTextInputFormatter.allow(RegExp('[0-9/]')),
-                                        LengthLimitingTextInputFormatter(10)
-                                      ],
-                                      decoration: InputDecoration(
+                        decoration: InputDecoration(
                         disabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20),
                           borderSide: const BorderSide(color: Colors.transparent)
@@ -346,7 +342,15 @@ class _SetupState extends State<Setup> {
                     ),
                 InkWell(
                         onTap:(){
-                          showDatePicker(context: context, firstDate: DateTime(2000), lastDate: DateTime.now()).then((selectedDate){setState(() {
+                          showDatePicker(
+                            context: context, 
+                            firstDate: DateTime(2000), 
+                            lastDate: DateTime.now(),
+                            confirmText: "SUBMIT",
+                            cancelText: "CANCEL",
+                            fieldLabelText: "ENTER DATE",
+                            helpText: "SELECT DATE"
+                          ).then((selectedDate){setState(() {
                             if(selectedDate?.day != null){
                               currentBirthday = selectedDate.toString().split(' ')[0];
                             }

@@ -52,7 +52,7 @@ class _RegisterState extends State<Register> {
             TextField(
               controller: email,
               inputFormatters: [
-                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z@.]'))
+                FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z@.0-9]'))
               ],
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
