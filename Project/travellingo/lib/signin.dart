@@ -25,7 +25,7 @@ class _SignInState extends State<SignIn> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,  
           children: [
-            const Image(image: AssetImage('Signin.png'), width: 200,),
+            const Image(image: AssetImage('assets/Signin.png'), width: 200,),
             const SizedBox(height: 40,),
             Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -112,7 +112,6 @@ class _SignInState extends State<SignIn> {
                             });
                           },),
                         ),
-                        const SizedBox(width: 15,),
                         InkWell(
                           onTap: (){
                             setState(
@@ -121,7 +120,7 @@ class _SignInState extends State<SignIn> {
                               }
                             );
                           },
-                          child: const Text("Remember Me", style: TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 245, 209, 97))))
+                          child: const Text("Remember me", style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold, color: Color.fromARGB(255, 245, 209, 97)), textScaler: TextScaler.linear(1.1),))
                       ],
                     ),
                   ),
@@ -141,8 +140,13 @@ class _SignInState extends State<SignIn> {
                       minimumSize: const Size.fromHeight(52),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
                       ),
-                    child: const Text("Sign In", style: TextStyle(fontSize: 18),),
-                  ),),
+                    child: const Text("SIGN IN", style: TextStyle(
+                      color: Colors.white, 
+                      fontSize: 11.5,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.1),textScaler: TextScaler.linear(1.1),)
+                    ),
+                  ),
                   
                   const SizedBox(width: 10,),
                   OutlinedButton(
@@ -154,7 +158,7 @@ class _SignInState extends State<SignIn> {
                       side: BorderSide(color: Colors.grey.shade300, width: 1), 
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15),),
                     ),
-                    child: Image.asset("Faceid.png")
+                    child: Image.asset("assets/Faceid.png")
                   ),
                 ],
               ),
@@ -165,13 +169,15 @@ class _SignInState extends State<SignIn> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Expanded(child: Container(height:2, color: const Color(0xFFF6F8FB),)),
-              const Text("OR SIGNUP WITH", style: TextStyle(
-                    fontSize: 10, 
+              const Padding(
+                padding:EdgeInsets.all(10),
+                child:Text("OR SIGN IN WITH", style: TextStyle(
+                    fontSize: 9, 
                     letterSpacing: 1.1, 
                     fontWeight: FontWeight.bold, 
-                    color: Color(0xFF1B1446)), 
+                    color: Color(0xAA1B1446)), 
                     textScaler: TextScaler.linear(1.1)
-                    ),
+                    )),
               Expanded(child: Container(height:2, color: const Color(0xFFF6F8FB),)),
                 ],
               ),
@@ -186,11 +192,11 @@ class _SignInState extends State<SignIn> {
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.white, 
                       backgroundColor: Colors.white, 
-                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30), 
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20), 
                       side: BorderSide(color: Colors.grey.shade200, width: 1), 
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                     ),
-                    child: const Image(image: AssetImage("Facebook.png"), width: 40,), 
+                    child: const Image(image: AssetImage("assets/Facebook.png"), width: 20,), 
                     ),
                   const SizedBox(width: 30,),
                   OutlinedButton(
@@ -198,21 +204,21 @@ class _SignInState extends State<SignIn> {
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.white, 
                       backgroundColor: Colors.white, 
-                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30), 
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20), 
                       side: BorderSide(color: Colors.grey.shade200, width: 1), 
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),),
-                    child: const Image(image: AssetImage("Google.png"), width: 35,),),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),),
+                    child: const Image(image: AssetImage("assets/Google.png"), width: 20,),),
                   const SizedBox(width: 30,),
                   OutlinedButton(
                     onPressed: (){},
                     style: OutlinedButton.styleFrom(
                       foregroundColor: Colors.white, 
                       backgroundColor: Colors.white, 
-                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30), 
+                      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20), 
                       side: BorderSide(color: Colors.grey.shade200, width: 1), 
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))
                       ),
-                    child: const Image(image: AssetImage("Apple.png"), width: 35,), ),
+                    child: const Image(image: AssetImage("assets/Apple.png"), width: 20,), ),
                 ],
               ),
             ),
