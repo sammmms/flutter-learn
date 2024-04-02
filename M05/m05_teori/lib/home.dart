@@ -19,7 +19,7 @@ class _HomeState extends State<Home> {
   };
   final tipeLelaki = {"Standar indo": 0.30, "Standar kpop": 0.50};
   Set<String> selectedJenis = {};
-  Set<String> selectedTipe = {};
+  String selectedTipe = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
                   Text(
-                      '\$${Provider.of<PriceProvider>(context).currentPrice.toString()}',
+                      '\$${Provider.of<PriceProvider>(context).currentPrice.toStringAsPrecision(3)}',
                       style: const TextStyle(
                           fontWeight: FontWeight.bold, fontSize: 30))
                 ]),
@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
               )),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Container(
+              child: SizedBox(
                 height: 50,
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   ChoiceChip(
@@ -175,22 +175,27 @@ class _HomeState extends State<Home> {
               )),
           Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: Container(
+              child: SizedBox(
                 height: 50,
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   ChoiceChip(
                     label: const Text("Standar indo"),
-                    selected: selectedJenis.contains("Standar indo"),
+                    selected: selectedTipe == "Standar indo",
                     onSelected: (value) {
                       setState(() {
-                        value
-                            ? selectedJenis.add("Standar indo")
-                            : selectedJenis.remove("Standar indo");
-                        value
-                            ? Provider.of<PriceProvider>(context, listen: false)
-                                .addPrice(tipeLelaki["Standar indo"])
-                            : Provider.of<PriceProvider>(context, listen: false)
-                                .removePrice(tipeLelaki["Standar indo"]);
+                        if (selectedTipe == "Standar kpop") {
+                          Provider.of<PriceProvider>(context, listen: false)
+                              .removePrice(tipeLelaki["Standar kpop"]);
+                        }
+                        if (selectedTipe == "Standar indo") {
+                          Provider.of<PriceProvider>(context, listen: false)
+                              .removePrice(tipeLelaki["Standar indo"]);
+                          selectedTipe = "";
+                          return;
+                        }
+                        Provider.of<PriceProvider>(context, listen: false)
+                            .addPrice(tipeLelaki["Standar indo"]);
+                        selectedTipe = "Standar indo";
                       });
                     },
                   ),
@@ -199,17 +204,22 @@ class _HomeState extends State<Home> {
                   ),
                   ChoiceChip(
                     label: const Text("Standar kpop"),
-                    selected: selectedJenis.contains("Standar kpop"),
+                    selected: selectedTipe == "Standar kpop",
                     onSelected: (value) {
                       setState(() {
-                        value
-                            ? selectedJenis.add("Standar kpop")
-                            : selectedJenis.remove("Standar kpop");
-                        value
-                            ? Provider.of<PriceProvider>(context, listen: false)
-                                .addPrice(tipeLelaki["Standar kpop"])
-                            : Provider.of<PriceProvider>(context, listen: false)
-                                .removePrice(tipeLelaki["Standar kpop"]);
+                        if (selectedTipe == "Standar indo") {
+                          Provider.of<PriceProvider>(context, listen: false)
+                              .removePrice(tipeLelaki["Standar indo"]);
+                        }
+                        if (selectedTipe == "Standar kpop") {
+                          Provider.of<PriceProvider>(context, listen: false)
+                              .removePrice(tipeLelaki["Standar kpop"]);
+                          selectedTipe = "";
+                          return;
+                        }
+                        Provider.of<PriceProvider>(context, listen: false)
+                            .addPrice(tipeLelaki["Standar kpop"]);
+                        selectedTipe = "Standar kpop";
                       });
                     },
                   ),
