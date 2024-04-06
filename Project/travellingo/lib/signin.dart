@@ -44,10 +44,10 @@ class _SignInState extends State<SignIn> {
           Padding(
             padding: const EdgeInsets.only(right: 40.0),
             child: Switch(
-              inactiveThumbImage: const AssetImage('Indonesia.png'),
+              inactiveThumbImage: const AssetImage('assets/Indonesia.png'),
               inactiveTrackColor: Colors.red[100],
               inactiveThumbColor: Colors.red[100],
-              activeThumbImage: const AssetImage('US.png'),
+              activeThumbImage: const AssetImage('assets/US.png'),
               activeTrackColor: Colors.blue[100],
               trackOutlineColor: MaterialStateProperty.resolveWith((states) {
                 if (states.contains(MaterialState.selected)) {
