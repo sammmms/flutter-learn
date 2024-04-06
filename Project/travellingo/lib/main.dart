@@ -1,42 +1,82 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:travellingo/locale.dart';
 import 'package:travellingo/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:travellingo/signin.dart';
 
 void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final FlutterLocalization localization = FlutterLocalization.instance;
+
+  @override
+  void initState() {
+    localization.init(
+      mapLocales: [
+        const MapLocale('en', AppLocale.en),
+        const MapLocale('id', AppLocale.id),
+      ],
+      initLanguageCode: 'en',
+    );
+    localization.onTranslatedLanguage = (locale) {
+      setState(() {});
+    };
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => UserProvider(listUser: [user1])),
+        ChangeNotifierProvider(
+            create: (context) => UserProvider(listUser: [user1])),
         ChangeNotifierProvider(create: (context) => CurrentUser())
       ],
       child: MaterialApp(
+        supportedLocales: localization.supportedLocales,
+        localizationsDelegates: localization.localizationsDelegates,
         title: 'Travellingo',
         theme: ThemeData(
-          // This is the theme of your application.
-          //
-          // TRY THIS: Try running your application with "flutter run". You'll see
-          // the application has a purple toolbar. Then, without quitting the app,
-          // try changing the seedColor in the colorScheme below to Colors.green
-          // and then invoke "hot reload" (save your changes or press the "hot
-          // reload" button in a Flutter-supported IDE, or press "r" if you used
-          // the command line to start the app).
-          //
-          // Notice that the counter didn't reset back to zero; the application
-          // state is not lost during the reload. To reset the state, use hot
-          // restart instead.
-          //
-          // This works for code too, not just values: Most code changes can be
-          // tested with just a hot reload.
+          textTheme: GoogleFonts.poppinsTextTheme(),
+          inputDecorationTheme: InputDecorationTheme(
+            filled: true,
+            fillColor: const Color(0xFFF6F8FB),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.transparent)),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.transparent)),
+            errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.redAccent)),
+            focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.redAccent)),
+            disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: const BorderSide(color: Colors.transparent)),
+          ),
+          outlinedButtonTheme: const OutlinedButtonThemeData(
+              style: ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Color(0xFFF5D161)),
+                  side: MaterialStatePropertyAll(
+                      BorderSide(color: Colors.transparent)),
+                  foregroundColor: MaterialStatePropertyAll(Colors.white))),
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFF5D161)),
+          iconTheme: const IconThemeData(color: Color(0xFFF5D161)),
+          primaryIconTheme: const IconThemeData(color: Color(0xFFF5D161)),
           useMaterial3: true,
         ),
         home: const SignIn(),

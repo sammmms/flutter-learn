@@ -1,7 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:travellingo/data.dart';
 import 'package:travellingo/provider.dart';
@@ -21,612 +21,396 @@ class _SetupState extends State<Setup> {
   TextEditingController confirmEmail = TextEditingController();
   TextEditingController currentNumber = TextEditingController();
   TextEditingController password = TextEditingController();
+  TextEditingController birthday = TextEditingController(text: "2001-01-01");
   String currentCountry = "62";
-  String currentBirthday = "2001-01-01";
   bool isObstructed = true;
   bool isAgreeing = false;
-
-  var errorCode =
-      <String>{}; //F = FirstName || L = LastName || C = ConfirmEmail || E = Email || N = Number || P = Password || B = Birthday || A = Aggreement || S = ShortPassword
+  final globalKey = GlobalKey<FormState>();
+  final emailregex = RegExp(r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
+      r'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-'
+      r'\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*'
+      r'[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4]'
+      r'[0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9]'
+      r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
+      r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(
-            "SET UP YOUR ACCOUNT",
-            style: TextStyle(
+          title: Text(
+            "setupyouraccount".getString(context).toUpperCase(),
+            style: const TextStyle(
                 fontSize: 13.5,
                 letterSpacing: 1.1,
                 fontWeight: FontWeight.bold),
-            textScaler: TextScaler.linear(1.1),
+            textScaler: const TextScaler.linear(1.1),
           ),
+          scrolledUnderElevation: 0,
           centerTitle: true,
           iconTheme: const IconThemeData(color: Color(0xFFF5D161)),
-          backgroundColor: Colors.white,
           foregroundColor: const Color(0xFF1B1446),
         ),
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text("FIRST NAME",
-                    style: TextStyle(
-                        fontSize: 10,
-                        letterSpacing: 1.1,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1B1446)),
-                    textScaler: TextScaler.linear(1.1)),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                    controller: firstName,
-                    onChanged: (value) {
-                      setState(() {
-                        if (value == "") {
-                          errorCode.add("F");
-                        } else {
-                          errorCode.remove("F");
+            child: Form(
+              key: globalKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("firstName".getString(context),
+                      style: const TextStyle(
+                          fontSize: 10,
+                          letterSpacing: 1.1,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1B1446)),
+                      textScaler: const TextScaler.linear(1.1)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "fieldmustbefilled".getString(context);
                         }
-                      });
-                    },
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
-                    ],
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.redAccent)),
-                      focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.redAccent)),
-                      error: errorCode.contains("F")
-                          ? const Text("First name must be filled.",
-                              style: TextStyle(color: Colors.redAccent))
-                          : null,
-                      filled: true,
-                      fillColor: const Color(0xFFF6F8FB),
-                    ),
+                        return null;
+                      },
+                      controller: firstName,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
+                      ],
+                      style: const TextStyle(
+                          color: Color(0xFF1B1446), letterSpacing: 1.1)),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text(
+                    "lastName".getString(context),
                     style: const TextStyle(
-                        color: const Color(0xFF1B1446), letterSpacing: 1.1)),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text("LAST NAME",
-                    style: TextStyle(
-                        fontSize: 10,
-                        letterSpacing: 1.1,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1B1446)),
-                    textScaler: TextScaler.linear(1.1)),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                    controller: lastName,
-                    onChanged: (value) {
-                      setState(() {
-                        if (value == "") {
-                          errorCode.add("L");
-                        } else {
-                          errorCode.remove("L");
+                      fontSize: 10,
+                      letterSpacing: 1.1,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1B1446),
+                    ),
+                    textScaler: const TextScaler.linear(1.1),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                      controller: lastName,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "fieldmustbefilled".getString(context);
                         }
-                      });
-                    },
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
-                    ],
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.redAccent)),
-                      focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.redAccent)),
-                      error: errorCode.contains("L")
-                          ? const Text("Last name must be filled.",
-                              style: TextStyle(color: Colors.redAccent))
-                          : null,
-                      filled: true,
-                      fillColor: const Color(0xFFF6F8FB),
-                    ),
-                    style: const TextStyle(
-                        color: const Color(0xFF1B1446), letterSpacing: 1.1)),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text("EMAIL",
-                    style: TextStyle(
-                        fontSize: 10,
-                        letterSpacing: 1.1,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1B1446)),
-                    textScaler: TextScaler.linear(1.1)),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                    decoration: InputDecoration(
-                      disabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.redAccent)),
-                      filled: true,
-                      error: errorCode.contains("C")
-                          ? const Text("Email and Confirm Email doesn't match.",
-                              style: TextStyle(color: Colors.redAccent))
-                          : null,
-                      enabled: false,
-                      hintText: widget.email,
-                      fillColor: const Color(0xFFF6F8FB),
-                    ),
-                    style: const TextStyle(
-                        color: const Color(0xFF1B1446), letterSpacing: 1.1)),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text("CONFIRM EMAIL",
-                    style: TextStyle(
-                        fontSize: 10,
-                        letterSpacing: 1.1,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1B1446)),
-                    textScaler: TextScaler.linear(1.1)),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                    controller: confirmEmail,
-                    keyboardType: TextInputType.emailAddress,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.allow(
-                          RegExp(r'[a-zA-Z@.0-9]'))
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        if (value == "") {
-                          errorCode.add("E");
-                          errorCode.remove("C");
-                          return;
-                        } else {
-                          errorCode.remove("E");
+                        return null;
+                      },
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z ]')),
+                      ],
+                      style: const TextStyle(
+                          color: Color(0xFF1B1446), letterSpacing: 1.1)),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text("email".getString(context),
+                      style: const TextStyle(
+                          fontSize: 10,
+                          letterSpacing: 1.1,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1B1446)),
+                      textScaler: const TextScaler.linear(1.1)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                      decoration: InputDecoration(
+                        enabled: false,
+                        hintText: widget.email,
+                        fillColor: const Color(0xFFF6F8FB),
+                      ),
+                      style: const TextStyle(
+                          color: Color(0xFF1B1446), letterSpacing: 1.1)),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text("confirmEmail".getString(context),
+                      style: const TextStyle(
+                          fontSize: 10,
+                          letterSpacing: 1.1,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1B1446)),
+                      textScaler: const TextScaler.linear(1.1)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                      controller: confirmEmail,
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value == "") {
+                          return "fieldmustbefilled".getString(context);
+                        }
+                        if (!emailregex.hasMatch(value)) {
+                          return "emailformatwrong".getString(context);
                         }
                         if (value != widget.email) {
-                          errorCode.add("C");
-                        } else {
-                          errorCode.remove("C");
+                          return "emailisdifferent".getString(context);
                         }
-                      });
-                    },
-                    decoration: InputDecoration(
-                      enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.transparent)),
-                      errorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.redAccent)),
-                      focusedErrorBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide:
-                              const BorderSide(color: Colors.redAccent)),
-                      error: errorCode.contains("C")
-                          ? const Text("Email and confirm email doesn't match.",
-                              style: TextStyle(color: Colors.redAccent))
-                          : errorCode.contains("E")
-                              ? const Text("Confirm email must be filled.",
-                                  style: TextStyle(color: Colors.redAccent))
-                              : null,
-                      filled: true,
-                      fillColor: const Color(0xFFF6F8FB),
-                    ),
-                    style: const TextStyle(
-                        color: const Color(0xFF1B1446), letterSpacing: 1.1)),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text("PHONE NUMBER",
-                    style: TextStyle(
-                        fontSize: 10,
-                        letterSpacing: 1.1,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1B1446)),
-                    textScaler: TextScaler.linear(1.1)),
-                const SizedBox(
-                  height: 10,
-                ),
-                Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Theme(
-                    data: Theme.of(context).copyWith(
-                        canvasColor: Color.fromRGBO(246, 248, 251, 1)),
-                    child: Container(
-                      height: 56,
-                      width: 115,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: const Color(0xFFF6F8FB)),
-                      child: Center(
-                        child: DropdownButton(
-                            value: currentCountry,
-                            isExpanded: true,
-                            padding: EdgeInsets.only(left: 20, right: 10),
-                            alignment: Alignment.center,
-                            iconEnabledColor: const Color(0xFF0768FD),
+                        return null;
+                      },
+                      keyboardType: TextInputType.emailAddress,
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(
+                            RegExp(r'[a-zA-Z@.0-9]'))
+                      ],
+                      style: const TextStyle(
+                          color: Color(0xFF1B1446), letterSpacing: 1.1)),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text("phoneNumber".getString(context),
+                      style: const TextStyle(
+                          fontSize: 10,
+                          letterSpacing: 1.1,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1B1446)),
+                      textScaler: const TextScaler.linear(1.1)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Theme(
+                      data: Theme.of(context).copyWith(
+                          canvasColor: const Color.fromRGBO(246, 248, 251, 1)),
+                      child: SizedBox(
+                        height: 56,
+                        width: 100,
+                        child: Container(
+                          decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            underline: Container(color: Colors.transparent),
-                            items: listCountry.keys
-                                .map<DropdownMenuItem<String>>((items) {
-                              return DropdownMenuItem(
-                                  value: listCountry[items].toString(),
-                                  child: Row(
-                                    children: [
-                                      Text(listCountry[items].toString()),
-                                      SizedBox(
-                                        width: 10,
-                                      ),
-                                      Image.asset("assets/${items}.png")
-                                    ],
-                                  ));
-                            }).toList(),
-                            onChanged: (value) {
-                              setState(() {
-                                currentCountry = value.toString();
-                              });
-                            }),
+                            color: const Color(0xFFF6F8FB),
+                          ),
+                          child: DropdownButton(
+                              isExpanded: true,
+                              padding: const EdgeInsets.only(left: 20),
+                              value: currentCountry,
+                              alignment: Alignment.center,
+                              iconEnabledColor: const Color(0xFF0768FD),
+                              dropdownColor: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              underline: Container(color: Colors.transparent),
+                              items: listCountry.keys
+                                  .map<DropdownMenuItem<String>>((items) {
+                                return DropdownMenuItem(
+                                    alignment: const Alignment(0, 0.4),
+                                    value: listCountry[items].toString(),
+                                    child: Row(
+                                      children: [
+                                        Text(listCountry[items].toString()),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Image.asset("assets/$items.png")
+                                      ],
+                                    ));
+                              }).toList(),
+                              onChanged: (value) {
+                                setState(() {
+                                  currentCountry = value.toString();
+                                });
+                              }),
+                        ),
                       ),
                     ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                      child: TextFormField(
+                        controller: currentNumber,
+                        autovalidateMode: AutovalidateMode.onUserInteraction,
+                        validator: (value) {
+                          if (value == null || value == "") {
+                            return "fieldmustbefilled".getString(context);
+                          }
+                          if (value.length < 6) {
+                            return "phoneformatwrong".getString(context);
+                          }
+                          return null;
+                        },
+                        inputFormatters: [
+                          FilteringTextInputFormatter.digitsOnly,
+                          LengthLimitingTextInputFormatter(11),
+                        ],
+                        decoration: InputDecoration(
+                            filled: true,
+                            fillColor: const Color(0xFFF6F8FB),
+                            prefix: Text(
+                              "$currentCountry - ",
+                            )),
+                      ),
+                    ),
+                  ]),
+                  const SizedBox(
+                    height: 20,
                   ),
-                  SizedBox(
-                    width: 5,
+                  Text("birthday".getString(context),
+                      style: const TextStyle(
+                          fontSize: 10,
+                          letterSpacing: 1.1,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1B1446)),
+                      textScaler: const TextScaler.linear(1.1)),
+                  const SizedBox(
+                    height: 10,
                   ),
-                  Expanded(
-                      child: TextField(
-                    controller: currentNumber,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(11),
-                    ],
-                    onChanged: (value) {
-                      setState(() {
-                        if (value == "") {
-                          errorCode.add("N");
-                        } else {
-                          errorCode.remove("N");
+                  GestureDetector(
+                    onTap: () {
+                      showDatePicker(
+                              context: context,
+                              firstDate: DateTime(1950),
+                              lastDate: DateTime.now())
+                          .then((value) {
+                        if (value == null || value.toString() == "") {
+                          return;
                         }
+                        birthday.text = value.toString().split(' ')[0];
                       });
                     },
-                    decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.redAccent)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.redAccent)),
-                        error: errorCode.contains("N")
-                            ? const Text("Phone number must be filled.",
-                                style: TextStyle(color: Colors.redAccent))
-                            : null,
-                        filled: true,
-                        fillColor: const Color(0xFFF6F8FB),
-                        prefix: Text(
-                          "${currentCountry} - ",
-                        )),
-                  )),
-                ]),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text("BIRTHDAY",
-                    style: TextStyle(
-                        fontSize: 10,
-                        letterSpacing: 1.1,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1B1446)),
-                    textScaler: TextScaler.linear(1.1)),
-                const SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: const Color(0xFFF6F8FB)),
-                  child: Row(children: [
-                    Expanded(
-                      child: TextField(
-                          decoration: InputDecoration(
-                              disabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent)),
-                              focusedBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(20),
-                                  borderSide: const BorderSide(
-                                      color: Colors.transparent)),
-                              filled: true,
-                              fillColor: const Color(0xFFF6F8FB),
-                              hintText: currentBirthday,
-                              enabled: false),
-                          style: const TextStyle(
-                              color: const Color(0xFF1B1446),
-                              letterSpacing: 1.1,
-                              fontWeight: FontWeight.bold)),
+                    child: TextFormField(
+                      enabled: false,
+                      controller: birthday,
+                      style: const TextStyle(color: Colors.black),
+                      decoration: const InputDecoration(
+                          suffixIcon: Padding(
+                            padding: EdgeInsets.only(right: 20),
+                            child: Icon(Icons.calendar_month),
+                          ),
+                          suffixIconColor: Color(0xFFF5D161)),
                     ),
-                    InkWell(
-                        overlayColor:
-                            MaterialStatePropertyAll(Colors.transparent),
-                        onTap: () {
-                          showDatePicker(
-                                  context: context,
-                                  firstDate: DateTime(2000),
-                                  lastDate: DateTime.now(),
-                                  confirmText: "SUBMIT",
-                                  cancelText: "CANCEL",
-                                  fieldLabelText: "ENTER DATE",
-                                  helpText: "SELECT DATE")
-                              .then((selectedDate) {
-                            setState(() {
-                              if (selectedDate?.day != null) {
-                                currentBirthday =
-                                    selectedDate.toString().split(' ')[0];
-                              }
-                            });
-                          });
-                        },
-                        child: const Padding(
-                          padding: EdgeInsets.all(15),
-                          child: Icon(Icons.calendar_month_outlined,
-                              color: Color(0xFFF5D161)),
-                        )),
-                  ]),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                const Text("ACCOUNT PASSWORD",
-                    style: TextStyle(
-                        fontSize: 10,
-                        letterSpacing: 1.1,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF1B1446)),
-                    textScaler: TextScaler.linear(1.1)),
-                const SizedBox(
-                  height: 10,
-                ),
-                TextField(
-                    controller: password,
-                    onChanged: (value) {
-                      setState(() {
-                        if (value == "") {
-                          errorCode.add("P");
-                        } else {
-                          errorCode.remove("P");
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  Text("password".getString(context),
+                      style: const TextStyle(
+                          fontSize: 10,
+                          letterSpacing: 1.1,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF1B1446)),
+                      textScaler: const TextScaler.linear(1.1)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                      autovalidateMode: AutovalidateMode.onUserInteraction,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "fieldmustbefilled".getString(context);
                         }
                         if (value.length < 8) {
-                          errorCode.remove("P");
-                          errorCode.add("S");
-                        } else {
-                          errorCode.remove("S");
+                          return "passwordformatwrong".getString(context);
                         }
-                      });
-                    },
-                    decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent)),
-                        focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.transparent)),
-                        errorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.redAccent)),
-                        focusedErrorBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20),
-                            borderSide:
-                                const BorderSide(color: Colors.redAccent)),
-                        error: errorCode.contains("P")
-                            ? const Text("Password shouldn't be empty.",
-                                style: TextStyle(color: Colors.redAccent))
-                            : errorCode.contains("S")
-                                ? const Text(
-                                    "Password should contain at least 8 letters.",
-                                    style: TextStyle(color: Colors.redAccent))
-                                : null,
-                        filled: true,
-                        fillColor: const Color(0xFFF6F8FB),
-                        suffixIcon: InkWell(
-                            onTap: () {
-                              setState(() {
-                                isObstructed = !isObstructed;
-                              });
-                            },
-                            overlayColor: const MaterialStatePropertyAll(
-                                Colors.transparent),
-                            child: isObstructed
-                                ? const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 15),
-                                    child: Icon(Icons.visibility,
-                                        color: Color(0xFFF5D161)),
-                                  )
-                                : const Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 15),
-                                    child: Icon(Icons.visibility_off,
-                                        color: Color(0xFFF5D161)),
-                                  ))),
-                    obscureText: isObstructed,
-                    style: const TextStyle(
-                        color: const Color(0xFF1B1446), letterSpacing: 1.1)),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                  Checkbox(
-                      value: isAgreeing,
-                      onChanged: (value) {
-                        setState(() {
-                          isAgreeing = !isAgreeing;
-                          if (isAgreeing) {
-                            errorCode.remove("A");
-                          } else {
-                            errorCode.add("A");
-                          }
-                        });
+                        return null;
                       },
-                      shape: const CircleBorder(),
-                      fillColor:
-                          const MaterialStatePropertyAll(Colors.transparent),
-                      checkColor: const Color(0xFFF5D161),
-                      side: MaterialStateBorderSide.resolveWith((states) =>
-                          const BorderSide(
-                              width: 2.0,
-                              color: Color.fromARGB(255, 245, 209, 97)))),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Row(
-                        children: [
-                          Text(
-                            "I agree to Travellingo's ",
-                            style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF1B1446)),
-                            textScaler: TextScaler.linear(1.1),
-                          ),
-                          Text(
-                            "Terms of Service",
-                            style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFFF5D161)),
-                            textScaler: TextScaler.linear(1.1),
-                          )
-                        ],
-                      ),
-                      errorCode.contains("A")
-                          ? const Text(
-                              "You must agree to our terms and condition to proceed.",
-                              style: TextStyle(
-                                  color: Colors.redAccent, fontSize: 10))
-                          : const SizedBox(
-                              height: 0,
-                            ),
-                    ],
-                  )
-                ]),
-                const SizedBox(
-                  height: 40,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 48,
-                  child: Expanded(
-                    child: OutlinedButton(
-                        style: const ButtonStyle(
-                            backgroundColor:
-                                MaterialStatePropertyAll(Color(0xFFF5D161)),
-                            side: MaterialStatePropertyAll(
-                                BorderSide(color: Colors.transparent)),
-                            foregroundColor:
-                                MaterialStatePropertyAll(Colors.white)),
-                        onPressed: () {
-                          setState(() {
-                            if (firstName.text == "") {
-                              errorCode.add("F");
-                            }
-                            if (lastName.text == "") {
-                              errorCode.add("L");
-                            }
-                            if (confirmEmail.text == "") {
-                              errorCode.add("E");
-                            }
-                            if (currentNumber.text == "") {
-                              errorCode.add("N");
-                            }
-                            if (password.text == "") {
-                              errorCode.add("P");
-                            }
-                            if (!isAgreeing) {
-                              errorCode.add("A");
-                            }
-                          });
-                          if (errorCode.isEmpty) {
-                            if (!(firstName.text == "" ||
-                                lastName.text == "" ||
-                                confirmEmail.text == "" ||
-                                currentNumber.text == "" ||
-                                password.text == "")) {
-                              Provider.of<UserProvider>(context, listen:false).addUser(User(
-                                  email: widget.email,
-                                  name: "${firstName.text} ${lastName.text}",
-                                  phone: currentCountry + currentNumber.text,
-                                  birthday: currentBirthday,
-                                  password: password.text));
-                              Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => SignIn()));
-                            }
-                          }
-                        },
-                        child: const Text("CONTINUE",
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                                letterSpacing: 1.1),
-                            textScaler: TextScaler.linear(1.1))),
+                      controller: password,
+                      decoration: InputDecoration(
+                          filled: true,
+                          fillColor: const Color(0xFFF6F8FB),
+                          suffixIcon: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  isObstructed = !isObstructed;
+                                });
+                              },
+                              overlayColor: const MaterialStatePropertyAll(
+                                  Colors.transparent),
+                              child: Padding(
+                                padding: const EdgeInsets.only(right: 20),
+                                child: isObstructed
+                                    ? const Icon(Icons.visibility,
+                                        color: Color(0xFFF5D161))
+                                    : const Icon(Icons.visibility_off,
+                                        color: Color(0xFFF5D161)),
+                              ))),
+                      obscureText: isObstructed,
+                      style: const TextStyle(
+                          color: Color(0xFF1B1446), letterSpacing: 1.1)),
+                  const SizedBox(
+                    height: 20,
                   ),
-                )
-              ],
+                  Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+                    Checkbox(
+                        value: isAgreeing,
+                        onChanged: (value) {
+                          setState(() {
+                            isAgreeing = !isAgreeing;
+                          });
+                        },
+                        shape: const CircleBorder(),
+                        fillColor:
+                            const MaterialStatePropertyAll(Colors.transparent),
+                        checkColor: const Color(0xFFF5D161),
+                        side: MaterialStateBorderSide.resolveWith((states) =>
+                            const BorderSide(
+                                width: 2.0,
+                                color: Color.fromARGB(255, 245, 209, 97)))),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "travellingoterms".getString(context),
+                          style: const TextStyle(
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF1B1446)),
+                          textScaler: const TextScaler.linear(1.1),
+                        ),
+                        !isAgreeing
+                            ? Text("termsagree".getString(context),
+                                style: const TextStyle(
+                                    color: Colors.redAccent, fontSize: 10))
+                            : const SizedBox(),
+                      ],
+                    )
+                  ]),
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  OutlinedButton(
+                      onPressed: () {
+                        setState(
+                          () {
+                            if (globalKey.currentState!.validate()) {
+                              Provider.of<UserProvider>(context, listen: false)
+                                  .addUser(User(
+                                      email: confirmEmail.text,
+                                      name:
+                                          "${firstName.text} ${lastName.text}",
+                                      phone:
+                                          currentCountry + currentNumber.text,
+                                      birthday: birthday.text,
+                                      password: password.text));
+                              Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const SignIn()),
+                                (route) => false,
+                              );
+                            }
+                          },
+                        );
+                      },
+                      child: Text("continue".getString(context),
+                          style: const TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12,
+                              letterSpacing: 1.1),
+                          textScaler: const TextScaler.linear(1.1)))
+                ],
+              ),
             ),
           ),
         ));
