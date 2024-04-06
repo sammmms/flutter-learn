@@ -1,5 +1,8 @@
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
+import "package:provider/provider.dart";
+import "package:travellingo/home.dart";
+import "package:travellingo/provider.dart";
 import "package:travellingo/register.dart";
 
 class SignIn extends StatefulWidget {
@@ -10,10 +13,11 @@ class SignIn extends StatefulWidget {
 }
 
 class _SignInState extends State<SignIn> {
-
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
   bool _isObscure = true;
   bool _isTicked = true;
-
+  Set<String> errorCode = {}; // W = Wrong, E = Empty Email, F = Format, P = Empty Password
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,6 +46,23 @@ class _SignInState extends State<SignIn> {
                     SizedBox(
                       width: double.infinity,
                       child: TextField(
+                        onChanged: (value){
+                          setState(() {
+                            if(!(value.contains("@") && value.contains("."))){
+                              errorCode.add("F");
+                            }
+                            else{
+                              errorCode.remove("F");
+                            }
+                            if(value != ""){
+                              errorCode.remove("E");
+                              errorCode.remove("W");
+                              return;
+                            }
+                          errorCode.add("E");
+                          });
+                        },
+                        controller: email,
                         inputFormatters: [
                           FilteringTextInputFormatter.allow(RegExp(r'[a-zA-Z@.0-9]'))
                         ],
@@ -57,6 +78,9 @@ class _SignInState extends State<SignIn> {
                           fillColor: const Color.fromARGB(255, 245, 248, 251),
                           enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Color.fromARGB(255, 245, 248, 251))),
                           focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Color.fromARGB(255, 245, 248, 251))),
+                          errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Colors.redAccent)),
+                          focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Colors.redAccent)),
+                          // errorText: errorCode.contains("E") ? "Email/password shouldn't be empty." : errorCode.contains("W") ? "Email/password is wrong." : errorCode.contains("F") ? "Email should be in usual email formats." : null,
                           prefixIcon: const Icon(Icons.account_circle, color: Color.fromARGB(255, 62, 132, 168),),
                         ),
                       ),
@@ -72,6 +96,17 @@ class _SignInState extends State<SignIn> {
                     const SizedBox(height: 10,),
                     SizedBox(
                       child: TextField(
+                        onChanged: (value){
+                          setState(() {
+                            if(value != ""){
+                              errorCode.remove("P");
+                              errorCode.remove("W");
+                              return;
+                            }
+                            errorCode.add("P");
+                          });
+                        },
+                        controller: password,
                       style: const TextStyle(
                           color: Color(0xFF1B1446),
                           fontSize: 14,
@@ -83,6 +118,9 @@ class _SignInState extends State<SignIn> {
                         fillColor: const Color.fromARGB(255, 245, 248, 251),
                         enabledBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Color.fromARGB(255, 245, 248, 251))),
                         focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Color.fromARGB(255, 245, 248, 251))),
+                        errorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Colors.redAccent)),
+                        focusedErrorBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: const BorderSide(color: Colors.redAccent)),
+                        errorText: errorCode.contains("P") ? "Email/password shouldn't be empty." : errorCode.contains("W") ? "Email/password is wrong." : null,
                         prefixIcon: const Icon(Icons.lock, color: Color.fromARGB(255, 62, 132, 168),),
                         suffixIcon: InkWell(
                           borderRadius: BorderRadius.circular(100),
@@ -138,7 +176,23 @@ class _SignInState extends State<SignIn> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Expanded(child: OutlinedButton(
-                      onPressed: (){},   
+                      onPressed: (){
+                        Provider.of<UserProvider>(context, listen:false).listUser.forEach((items){
+                          if(items.email == email.text){
+                            if(items.password == password.text){
+                              Provider.of<CurrentUser>(context, listen:false).changeUser(items);
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(builder: (context) => const Home())
+                              );
+                            }
+                          }
+                        });
+                        setState(() {
+                          if(email.text == ""){errorCode.add("E");}
+                          if(password.text == ""){errorCode.add("P");}
+                          errorCode.add("W");
+                        });
+                      },   
                       style: OutlinedButton.styleFrom(
                         foregroundColor: Colors.white, 
                         backgroundColor: const Color.fromARGB(255, 245, 209, 97), 

@@ -605,13 +605,12 @@ class _SetupState extends State<Setup> {
                                 confirmEmail.text == "" ||
                                 currentNumber.text == "" ||
                                 password.text == "")) {
-                              Provider.of<UserProvider>(context).addUser(User(
+                              Provider.of<UserProvider>(context, listen:false).addUser(User(
                                   email: widget.email,
                                   name: "${firstName.text} ${lastName.text}",
                                   phone: currentCountry + currentNumber.text,
-                                  birthday: currentBirthday));
-                              print(
-                                  Provider.of<UserProvider>(context).listUser);
+                                  birthday: currentBirthday,
+                                  password: password.text));
                               Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) => SignIn()));

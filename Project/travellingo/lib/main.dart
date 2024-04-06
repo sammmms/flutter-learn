@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travellingo/provider.dart';
-import 'package:travellingo/register.dart';
-import 'package:travellingo/setup.dart';
 import 'package:travellingo/signin.dart';
 
 void main() {
@@ -17,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => UserProvider(listUser: [])),
+        ChangeNotifierProvider(create: (context) => UserProvider(listUser: [user1])),
         ChangeNotifierProvider(create: (context) => CurrentUser())
       ],
       child: MaterialApp(
@@ -41,7 +39,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFF5D161)),
           useMaterial3: true,
         ),
-        home: Setup(email: "@a."),
+        home: const SignIn(),
       ),
     );
   }

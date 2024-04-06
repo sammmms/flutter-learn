@@ -6,6 +6,7 @@ class User {
   String email;
   String phone;
   String birthday;
+  String password;
   String id;
   String url;
 
@@ -14,10 +15,19 @@ class User {
       required this.email,
       required this.phone,
       required this.birthday,
+      required this.password,
       this.id = "",
       this.url = "",
       this.gender = ""});
 }
+
+var user1 = User(
+  name: "Samuel Onasis",
+  email: "221110680@students.mikroskil.ac.id",
+  phone: "+62082168285077",
+  birthday: "23-07-2004",
+  password: "123"
+);
 
 class UserProvider extends ChangeNotifier {
   List<User> listUser;
