@@ -35,5 +35,6 @@ const Map<String, String> idLanguage = {
   "purchaseHistory": "Riwayat Pembelian",
   "appearance": "Tampilan",
   "review": "Penilaian",
-  "logout": "Keluar"
+  "logout": "Keluar",
+  "authenticateToLogin": "Autentikasi untuk login."
 };

@@ -20,6 +20,7 @@ Route _createRoute(String userEmail) {
   );
 }
 
+
 class Register extends StatefulWidget {
   const Register({super.key});
 
@@ -54,12 +55,13 @@ class _RegisterState extends State<Register> {
           centerTitle: true,
           actions: [
             Padding(
-              padding: const EdgeInsets.only(right: 40.0),
+              padding: const EdgeInsets.only(right: 30.0),
               child: Switch(
                 inactiveThumbImage: const AssetImage('assets/Indonesia.png'),
                 inactiveTrackColor: Colors.red[100],
                 inactiveThumbColor: Colors.red[100],
-                activeThumbImage: const AssetImage('assets/US.png'),
+                activeThumbImage: ResizeImage(AssetImage('assets/US.png'),
+                    height: 16, width: 22),
                 activeTrackColor: Colors.blue[100],
                 trackOutlineColor: MaterialStateProperty.resolveWith((states) {
                   if (states.contains(MaterialState.selected)) {

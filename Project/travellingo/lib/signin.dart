@@ -1,7 +1,12 @@
+import "dart:async";
+
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_localization/flutter_localization.dart";
+import "package:local_auth/local_auth.dart";
 import "package:provider/provider.dart";
+import "package:shared_preferences/shared_preferences.dart";
+import "package:travellingo/component.dart/MySnackBar.dart";
 import "package:travellingo/home.dart";
 import "package:travellingo/provider.dart";
 import "package:travellingo/register.dart";
@@ -15,8 +20,8 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final FlutterLocalization localization = FlutterLocalization.instance;
-  TextEditingController email =
-      TextEditingController(text: "221110680@students.mikroskil.ac.id");
+  final auth = LocalAuthentication();
+  TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController(text: "123");
   final globalKey = GlobalKey<FormState>();
   final emailregex = RegExp(r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
@@ -27,7 +32,25 @@ class _SignInState extends State<SignIn> {
       r'[0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\'
       r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])');
   bool _isObscure = true;
-  bool _isTicked = true;
+  bool _isTicked = false;
+  bool _biometrics = false;
+
+  @override
+  void initState() {
+    SharedPreferences.getInstance().then((value) {
+      email.text = value.getString('email') ?? "";
+    });
+    auth.getAvailableBiometrics().then((value) {
+      if (value.contains(BiometricType.strong) ||
+          value.contains(BiometricType.face) ||
+          value.contains(BiometricType.fingerprint)) {
+        _biometrics = true;
+        setState(() {});
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isEnglish =
@@ -42,12 +65,13 @@ class _SignInState extends State<SignIn> {
         centerTitle: true,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 40.0),
+            padding: const EdgeInsets.only(right: 30.0),
             child: Switch(
               inactiveThumbImage: const AssetImage('assets/Indonesia.png'),
               inactiveTrackColor: Colors.red[100],
               inactiveThumbColor: Colors.red[100],
-              activeThumbImage: const AssetImage('assets/US.png'),
+              activeThumbImage: const ResizeImage(AssetImage('assets/US.png'),
+                  height: 16, width: 22),
               activeTrackColor: Colors.blue[100],
               trackOutlineColor: MaterialStateProperty.resolveWith((states) {
                 if (states.contains(MaterialState.selected)) {
@@ -238,12 +262,23 @@ class _SignInState extends State<SignIn> {
                             onPressed: () {
                               Provider.of<UserProvider>(context, listen: false)
                                   .listUser
-                                  .forEach((items) {
+                                  .forEach((items) async {
                                 if (items.email == email.text) {
                                   if (items.password == password.text) {
                                     Provider.of<CurrentUser>(context,
                                             listen: false)
                                         .changeUser(items);
+                                    switch (_isTicked) {
+                                      case true:
+                                        final prefs = await SharedPreferences
+                                            .getInstance();
+                                        prefs.setString('email', email.text);
+                                      default:
+                                        final prefs = await SharedPreferences
+                                            .getInstance();
+                                        prefs.remove('email');
+                                    }
+                                    if (!context.mounted) return;
                                     Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
                                             builder: (context) =>
@@ -274,19 +309,41 @@ class _SignInState extends State<SignIn> {
                       const SizedBox(
                         width: 10,
                       ),
-                      OutlinedButton(
-                          onPressed: () {},
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.white,
-                            minimumSize: const Size(40, 52),
-                            side: BorderSide(
-                                color: Colors.grey.shade300, width: 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(15),
+                      if (_biometrics == true)
+                        OutlinedButton(
+                            onPressed: () async {
+                              try {
+                                final bool didAuthenticate =
+                                    await auth.authenticate(
+                                        localizedReason: "authenticateToLogin"
+                                            .getString(context));
+                                if (didAuthenticate) {
+                                  if (!context.mounted) return;
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      MaterialPageRoute(
+                                          builder: (context) => const Home()),
+                                      (route) => false);
+                                }
+                              } on PlatformException {
+                                if (!context.mounted) return;
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    const MySnackBar(
+                                        content: Text(
+                                            "Terjadi kesalahan, harap login menggunakan email & password.")));
+                                return;
+                              }
+                            },
+                            style: OutlinedButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              backgroundColor: Colors.white,
+                              minimumSize: const Size(40, 52),
+                              side: BorderSide(
+                                  color: Colors.grey.shade300, width: 1),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(15),
+                              ),
                             ),
-                          ),
-                          child: Image.asset("assets/Faceid.png")),
+                            child: Image.asset("assets/Faceid.png")),
                     ],
                   ),
                   const SizedBox(

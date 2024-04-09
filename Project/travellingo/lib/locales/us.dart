@@ -35,5 +35,6 @@ const Map<String, String> usLanguage = {
   "purchaseHistory": "Purchase History",
   "appearance": "Appearance",
   "review": "Review",
-  "logout": "Logout"
+  "logout": "Logout",
+  "authenticateToLogin": "Authenticate to login."
 };
