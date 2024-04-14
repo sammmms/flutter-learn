@@ -9,19 +9,23 @@ const Map<String, String> idLanguage = {
   "orsignupwith": "Atau daftar dengan",
   "donthaveaccount": "Belum mempunyai akun?",
   "alreadyhaveaccount": "Sudah mempunyai akun?",
+  "authenticateToLogin": "Autentikasi untuk login.",
+  //Setup stuff
   "firstName": "Nama depan",
   "lastName": "Nama belakang",
   "confirmEmail": "Konfirmasi email",
   "phoneNumber": "Nomor telepon",
   "birthday": "Tanggal lahir",
   "continue": "Lanjut",
+  "travellingoterms": "Saya menyetujui syarat dan ketentuan Travellingo's",
+  //Error setup
   "fieldmustbefilled": "Field ini harus diisi.",
   "emailformatwrong": "Format email tidak sesuai.",
   "phoneformatwrong": "Nomor telepon harus terdiri dari setidaknya 5 digit.",
   "passwordformatwrong": "Password harus terdiri dari 8 huruf",
   "emailisdifferent": "Email dan konfirmasi email tidak sama.",
   "termsagree": "Kamu harus menyetujui syarat dan ketentuan untuk lanjut.",
-  "travellingoterms": "Saya menyetujui syarat dan ketentuan Travellingo's",
+
   "changeLanguage": "Ganti bahasa",
   "profile": "Profil",
   "favorite": "Favorit",
@@ -35,5 +39,11 @@ const Map<String, String> idLanguage = {
   "purchaseHistory": "Riwayat Pembelian",
   "appearance": "Tampilan",
   "review": "Penilaian",
-  "logout": "Keluar"
+  "logout": "Keluar",
+
+  // Backend Stuff
+  "somethingWrong": "Terjadi kesalahan.",
+  "accountIsInvalid": "Email atau password salah.",
+  "userRegistered": "Email sudah terdaftar.",
+  "succesfullyRegistered": "Email berhasil didaftarkan."
 };

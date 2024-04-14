@@ -212,7 +212,11 @@ class _SetupState extends State<Setup> {
                                         const SizedBox(
                                           width: 10,
                                         ),
-                                        Image.asset("assets/$items.png")
+                                        Image.asset(
+                                          "assets/$items.png",
+                                          height: 23,
+                                          width: 18,
+                                        )
                                       ],
                                     ));
                               }).toList(),
