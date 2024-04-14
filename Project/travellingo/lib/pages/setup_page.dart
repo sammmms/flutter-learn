@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:travellingo/data.dart';
-import 'package:travellingo/provider.dart';
-import 'package:travellingo/signin.dart';
+import 'package:travellingo/utils/country_code_list.dart';
 
-class Setup extends StatefulWidget {
+class SetUpPage extends StatefulWidget {
   final String email;
-  const Setup({super.key, required this.email});
+  const SetUpPage({super.key, required this.email});
 
   @override
-  State<Setup> createState() => _SetupState();
+  State<SetUpPage> createState() => _SetUpPageState();
 }
 
-class _SetupState extends State<Setup> {
+class _SetUpPageState extends State<SetUpPage> {
   TextEditingController firstName = TextEditingController();
   TextEditingController lastName = TextEditingController();
   TextEditingController confirmEmail = TextEditingController();
@@ -385,26 +382,17 @@ class _SetupState extends State<Setup> {
                   ),
                   OutlinedButton(
                       onPressed: () {
-                        setState(
-                          () {
-                            if (globalKey.currentState!.validate()) {
-                              Provider.of<UserProvider>(context, listen: false)
-                                  .addUser(User(
-                                      email: confirmEmail.text,
-                                      name:
-                                          "${firstName.text} ${lastName.text}",
-                                      phone:
-                                          currentCountry + currentNumber.text,
-                                      birthday: birthday.text,
-                                      password: password.text));
-                              Navigator.of(context).pushAndRemoveUntil(
-                                MaterialPageRoute(
-                                    builder: (context) => const SignIn()),
-                                (route) => false,
-                              );
-                            }
-                          },
-                        );
+                        // setState(
+                        //   () {
+                        //     if (globalKey.currentState!.validate()) {
+                        //       Navigator.of(context).pushAndRemoveUntil(
+                        //         MaterialPageRoute(
+                        //             builder: (context) => const SignIn()),
+                        //         (route) => false,
+                        //       );
+                        //     }
+                        //   },
+                        // );
                       },
                       child: Text("continue".getString(context),
                           style: const TextStyle(

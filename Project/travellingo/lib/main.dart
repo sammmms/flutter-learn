@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travellingo/locale.dart';
-import 'package:travellingo/provider.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:travellingo/locales/locale.dart';
+import 'package:travellingo/pages/signin_page.dart';
+import 'package:travellingo/provider/user_detail_provider.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:travellingo/signin.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,16 +38,14 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-            create: (context) => UserProvider(listUser: [user1])),
-        ChangeNotifierProvider(create: (context) => CurrentUser())
+        ChangeNotifierProvider(create: (context) => UserDetailProvider())
       ],
       child: MaterialApp(
         supportedLocales: localization.supportedLocales,
         localizationsDelegates: localization.localizationsDelegates,
         title: 'Travellingo',
         theme: ThemeData(
-          textTheme: GoogleFonts.poppinsTextTheme(),
+          fontFamily: "Poppins",
           inputDecorationTheme: InputDecorationTheme(
             filled: true,
             fillColor: const Color(0xFFF6F8FB),
@@ -79,7 +76,7 @@ class _MyAppState extends State<MyApp> {
           primaryIconTheme: const IconThemeData(color: Color(0xFFF5D161)),
           useMaterial3: true,
         ),
-        home: const SignIn(),
+        home: const SignInPage(),
       ),
     );
   }

@@ -10,6 +10,8 @@ const Map<String, String> usLanguage = {
   "donthaveaccount": "Don't have an account yet?",
   "alreadyhaveaccount": "Already have an account?",
   "authenticateToLogin": "Authenticate to login.",
+  "somethingWrongWithAuthentication":
+      "Something wrong with authentication, please log-in using email & password.",
   // Setup stuff
   "firstName": "First name",
   "lastName": "Last name",
@@ -41,9 +43,18 @@ const Map<String, String> usLanguage = {
   "review": "Review",
   "logout": "Logout",
 
+  // Personal info
+  "edit": "Edit",
+  "male": "Male",
+  "female": "Female",
+  "name": "Name",
+  "gender": "Jenis kelamin",
+  "govId": "Nomor tanda pengenal",
+
   // Backend Stuff
   "somethingWrong": "Something is wrong.",
   "accountIsInvalid": "Email or password is wrong.",
   "userRegistered": "Email is registered.",
-  "succesfullyRegistered": "Succesfully registered."
+  "succesfullyRegistered": "Succesfully registered.",
+  "tokenExpired": "Token has expired, please sign-in again."
 };

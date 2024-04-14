@@ -1,5 +1,5 @@
-import "locales/id.dart";
-import "locales/us.dart";
+import "id.dart";
+import "us.dart";
 
 mixin AppLocale {
   static const Map<String, dynamic> en = usLanguage;

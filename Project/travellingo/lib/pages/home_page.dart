@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:travellingo/profile.dart';
+import 'package:travellingo/pages/profile_page.dart';
 
-class Home extends StatefulWidget {
-  const Home({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<Home> createState() => _HomeState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
   @override
   Widget build(BuildContext context) {
@@ -21,14 +21,14 @@ class _HomeState extends State<Home> {
     };
     return Scaffold(
         body: _currentPage == 0
-            ? Text("Home")
+            ? const Text("Home")
             : _currentPage == 1
-                ? Text("Transaction")
+                ? const Text("Transaction")
                 : _currentPage == 2
-                    ? Text("Favorite")
+                    ? const Text("Favorite")
                     : _currentPage == 3
-                        ? Profile()
-                        : SizedBox(),
+                        ? const ProfilePage()
+                        : const SizedBox(),
         bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,
             selectedItemColor: Colors.teal,

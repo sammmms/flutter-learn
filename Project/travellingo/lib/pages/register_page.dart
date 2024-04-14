@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:travellingo/setup.dart';
-import 'package:travellingo/signin.dart';
+import 'package:travellingo/pages/setup_page.dart';
+import 'package:travellingo/pages/signin_page.dart';
 
 Route _createRoute(String userEmail) {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) =>
-        Setup(email: userEmail),
+        SetUpPage(email: userEmail),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
       const begin = Offset(1.0, 0);
       const end = Offset.zero;
@@ -20,15 +20,14 @@ Route _createRoute(String userEmail) {
   );
 }
 
-
-class Register extends StatefulWidget {
-  const Register({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterPageState extends State<RegisterPage> {
   final FlutterLocalization localization = FlutterLocalization.instance;
   var isError = false;
   final emailregex = RegExp(r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
@@ -60,7 +59,7 @@ class _RegisterState extends State<Register> {
                 inactiveThumbImage: const AssetImage('assets/Indonesia.png'),
                 inactiveTrackColor: Colors.red[100],
                 inactiveThumbColor: Colors.red[100],
-                activeThumbImage: ResizeImage(AssetImage('assets/US.png'),
+                activeThumbImage: const ResizeImage(AssetImage('assets/US.png'),
                     height: 16, width: 22),
                 activeTrackColor: Colors.blue[100],
                 trackOutlineColor: MaterialStateProperty.resolveWith((states) {
@@ -281,7 +280,7 @@ class _RegisterState extends State<Register> {
                                     Navigator.of(context).pushReplacement(
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                const SignIn()));
+                                                const SignInPage()));
                                   },
                                   child: Text("signin".getString(context),
                                       style: const TextStyle(

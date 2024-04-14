@@ -10,6 +10,8 @@ const Map<String, String> idLanguage = {
   "donthaveaccount": "Belum mempunyai akun?",
   "alreadyhaveaccount": "Sudah mempunyai akun?",
   "authenticateToLogin": "Autentikasi untuk login.",
+  "somethingWrongWithAuthentication":
+      "Terjadi kesalahan, harap login menggunakan email & password.",
   //Setup stuff
   "firstName": "Nama depan",
   "lastName": "Nama belakang",
@@ -41,9 +43,18 @@ const Map<String, String> idLanguage = {
   "review": "Penilaian",
   "logout": "Keluar",
 
+  // Personal info
+  "edit": "Ubah",
+  "male": "Laki-laki",
+  "female": "Perempuan",
+  "name": "Nama",
+  "gender": "Jenis kelamin",
+  "govId": "Nomor tanda pengenal",
+
   // Backend Stuff
   "somethingWrong": "Terjadi kesalahan.",
   "accountIsInvalid": "Email atau password salah.",
   "userRegistered": "Email sudah terdaftar.",
-  "succesfullyRegistered": "Email berhasil didaftarkan."
+  "succesfullyRegistered": "Email berhasil didaftarkan.",
+  "tokenExpired": "Token sudah berakhir, harap login kembali."
 };
