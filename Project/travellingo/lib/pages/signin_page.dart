@@ -315,7 +315,8 @@ class _SignInPageState extends State<SignInPage> {
                                     if (_biometrics == true &&
                                         _haveLoggedIn == true)
                                       OutlinedButton(
-                                          onPressed: () => handleBiometrics,
+                                          onPressed: () =>
+                                              handleBiometrics(context),
                                           style: OutlinedButton.styleFrom(
                                             foregroundColor: Colors.white,
                                             backgroundColor: Colors.white,
