@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:travellingo/bloc/user.dart';
+import 'package:Travellingo/models/user.dart';
 
 class UserDetailProvider extends ChangeNotifier {
   User? user;

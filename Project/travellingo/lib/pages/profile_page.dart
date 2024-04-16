@@ -6,12 +6,12 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:travellingo/bloc/user.dart';
-import 'package:travellingo/bloc/user_bloc.dart';
-import 'package:travellingo/pages/personal_info_page.dart';
-import 'package:travellingo/preferences/reset_preferences.dart';
-import 'package:travellingo/provider/user_detail_provider.dart';
-import 'package:travellingo/pages/signin_page.dart';
+import 'package:Travellingo/models/user.dart';
+import 'package:Travellingo/bloc/user_bloc.dart';
+import 'package:Travellingo/pages/personal_info_page.dart';
+import 'package:Travellingo/bloc/preferences/reset_preferences.dart';
+import 'package:Travellingo/provider/user_detail_provider.dart';
+import 'package:Travellingo/pages/signin_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});

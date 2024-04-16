@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:travellingo/pages/setup_page.dart';
-import 'package:travellingo/pages/signin_page.dart';
+import 'package:Travellingo/component/oauth_button_component.dart';
+import 'package:Travellingo/pages/setup_page.dart';
+import 'package:Travellingo/pages/signin_page.dart';
 
 Route _createRoute(String userEmail) {
   return PageRouteBuilder(
@@ -207,60 +208,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            InkWell(
-                              onTap: () {},
-                              overlayColor: const MaterialStatePropertyAll(
-                                  Colors.transparent),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: Colors.grey.shade200,
-                                          style: BorderStyle.solid)),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Image.asset("assets/Facebook.png",
-                                      width: 20)),
+                            OAuthButtonComponent(content: "Facebook"),
+                            SizedBox(
+                              width: 30,
                             ),
-                            InkWell(
-                              onTap: () {},
-                              overlayColor: const MaterialStatePropertyAll(
-                                  Colors.transparent),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: Colors.grey.shade200,
-                                          style: BorderStyle.solid)),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Image.asset("assets/Google.png",
-                                      width: 20)),
+                            OAuthButtonComponent(content: "Google"),
+                            SizedBox(
+                              width: 30,
                             ),
-                            InkWell(
-                              onTap: () {},
-                              overlayColor: const MaterialStatePropertyAll(
-                                  Colors.transparent),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: Colors.grey.shade200,
-                                          style: BorderStyle.solid)),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Image.asset("assets/Apple.png",
-                                      width: 20)),
-                            ),
+                            OAuthButtonComponent(content: "Apple")
                           ],
                         ),
                         const SizedBox(

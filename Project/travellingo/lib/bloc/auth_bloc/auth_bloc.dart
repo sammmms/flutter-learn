@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:travellingo/bloc/auth_bloc/auth_state.dart';
-import 'package:travellingo/component/snackbar_component.dart';
-import 'package:travellingo/preferences/save_preferences.dart';
+import 'package:Travellingo/bloc/auth_bloc/auth_state.dart';
+import 'package:Travellingo/component/snackbar_component.dart';
+import 'package:Travellingo/bloc/preferences/save_preferences.dart';
 
 class AuthBloc {
   final StreamController<AuthState> controller = StreamController();
@@ -21,10 +21,9 @@ class AuthBloc {
       controller.add(AuthState(receivedToken: token));
       SavePreferences.saveToken(token);
       return true;
-    } on DioException {
+    } on DioException catch (err) {
       if (!context.mounted) return;
-      showMySnackBar(
-          context, "somethingWrongWithAuthentication".getString(context));
+      showMySnackBar(context, err.response.toString().getString(context));
       controller.add(AuthState());
     } catch (err) {
       if (!context.mounted) return;
@@ -49,9 +48,9 @@ class AuthBloc {
         controller.add(AuthState());
       }
       return true;
-    } on DioException {
+    } on DioException catch (err) {
       if (!context.mounted) return;
-      showMySnackBar(context, "somethingWrong".getString(context));
+      showMySnackBar(context, err.response.toString().getString(context));
       controller.add(AuthState());
     } catch (err) {
       if (!context.mounted) return;

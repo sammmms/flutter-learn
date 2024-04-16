@@ -49,7 +49,7 @@ const Map<String, String> usLanguage = {
   "female": "Female",
   "name": "Name",
   "gender": "Jenis kelamin",
-  "govId": "Nomor tanda pengenal",
+  "govId": "Government ID",
 
   // Backend Stuff
   "somethingWrong": "Something is wrong.",

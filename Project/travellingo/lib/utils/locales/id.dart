@@ -49,7 +49,7 @@ const Map<String, String> idLanguage = {
   "female": "Perempuan",
   "name": "Nama",
   "gender": "Jenis kelamin",
-  "govId": "Nomor tanda pengenal",
+  "govId": "NIK",
 
   // Backend Stuff
   "somethingWrong": "Terjadi kesalahan.",
