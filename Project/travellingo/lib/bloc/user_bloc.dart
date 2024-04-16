@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:Travellingo/models/user.dart';
+import 'package:travellingo/models/user.dart';
 
 class UserBloc {
   StreamController<User> controller = StreamController();

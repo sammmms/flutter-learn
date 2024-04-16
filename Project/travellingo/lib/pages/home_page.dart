@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:Travellingo/pages/profile_page.dart';
+import 'package:travellingo/pages/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

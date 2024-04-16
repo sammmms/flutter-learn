@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
-import 'package:Travellingo/utils/locales/locale.dart';
-import 'package:Travellingo/pages/signin_page.dart';
-import 'package:Travellingo/provider/user_detail_provider.dart';
+import 'package:travellingo/utils/locales/locale.dart';
+import 'package:travellingo/pages/signin_page.dart';
+import 'package:travellingo/provider/user_detail_provider.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 
 void main() {

@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:Travellingo/bloc/auth_bloc/auth_state.dart';
-import 'package:Travellingo/component/snackbar_component.dart';
-import 'package:Travellingo/bloc/preferences/save_preferences.dart';
+import 'package:travellingo/bloc/auth_bloc/auth_state.dart';
+import 'package:travellingo/component/snackbar_component.dart';
+import 'package:travellingo/bloc/preferences/save_preferences.dart';
 
 class AuthBloc {
   final StreamController<AuthState> controller = StreamController();

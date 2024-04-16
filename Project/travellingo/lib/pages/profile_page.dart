@@ -1,17 +1,16 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:Travellingo/models/user.dart';
-import 'package:Travellingo/bloc/user_bloc.dart';
-import 'package:Travellingo/pages/personal_info_page.dart';
-import 'package:Travellingo/bloc/preferences/reset_preferences.dart';
-import 'package:Travellingo/provider/user_detail_provider.dart';
-import 'package:Travellingo/pages/signin_page.dart';
+import 'package:travellingo/models/user.dart';
+import 'package:travellingo/bloc/user_bloc.dart';
+import 'package:travellingo/pages/personal_info_page.dart';
+import 'package:travellingo/bloc/preferences/reset_preferences.dart';
+import 'package:travellingo/provider/user_detail_provider.dart';
+import 'package:travellingo/pages/signin_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -73,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     child: DottedBorder(
                                       strokeWidth: 3,
                                       color: const Color(0xFFF6F8FB),
-                                      dashPattern: [9, 7],
+                                      dashPattern: const [9, 7],
                                       borderType: BorderType.Circle,
                                       child: Padding(
                                         padding: const EdgeInsets.all(4.0),

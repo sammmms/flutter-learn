@@ -1,4 +1,5 @@
-import "package:Travellingo/component/check_component.dart";
+import "package:travellingo/component/change_language_component.dart";
+import "package:travellingo/component/check_component.dart";
 import "package:flutter/material.dart";
 import "package:flutter/services.dart";
 import "package:flutter_localization/flutter_localization.dart";
@@ -7,13 +8,13 @@ import "package:provider/provider.dart";
 import "package:rxdart/rxdart.dart";
 import "package:rxdart/subjects.dart";
 import "package:shared_preferences/shared_preferences.dart";
-import "package:Travellingo/bloc/auth_bloc/auth_bloc.dart";
-import "package:Travellingo/bloc/auth_bloc/auth_state.dart";
-import "package:Travellingo/component/oauth_button_component.dart";
-import "package:Travellingo/component/snackbar_component.dart";
-import "package:Travellingo/pages/home_page.dart";
-import "package:Travellingo/bloc/preferences/save_preferences.dart";
-import "package:Travellingo/pages/register_page.dart";
+import "package:travellingo/bloc/auth_bloc/auth_bloc.dart";
+import "package:travellingo/bloc/auth_bloc/auth_state.dart";
+import "package:travellingo/component/oauth_button_component.dart";
+import "package:travellingo/component/snackbar_component.dart";
+import "package:travellingo/pages/home_page.dart";
+import "package:travellingo/bloc/preferences/save_preferences.dart";
+import "package:travellingo/pages/register_page.dart";
 import "package:dio/dio.dart";
 
 class SignInPage extends StatefulWidget {
@@ -69,6 +70,7 @@ class _SignInPageState extends State<SignInPage> {
         setState(() {});
       }
     });
+
     super.initState();
   }
 
@@ -82,13 +84,11 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
-    bool isEnglish =
-        localization.currentLocale.localeIdentifier == "en" ? true : false;
     return MultiProvider(
       providers: [
         StreamProvider<bool>.value(
             value: _isTicked,
-            initialData: _isTicked.hasValue ? _isTicked.value : false)
+            initialData: _isTicked.hasValue ? _isTicked.value : false),
       ],
       child: Builder(builder: (context) {
         return Scaffold(
@@ -99,42 +99,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
             scrolledUnderElevation: 0,
             centerTitle: true,
-            actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 30.0),
-                child: Switch(
-                  inactiveThumbImage: const AssetImage('assets/Indonesia.png'),
-                  inactiveTrackColor: Colors.red[100],
-                  inactiveThumbColor: Colors.red[100],
-                  activeThumbImage: const ResizeImage(
-                      AssetImage('assets/US.png'),
-                      height: 16,
-                      width: 22),
-                  activeTrackColor: Colors.blue[100],
-                  trackOutlineColor:
-                      MaterialStateProperty.resolveWith((states) {
-                    if (states.contains(MaterialState.selected)) {
-                      return const Color.fromARGB(255, 62, 132, 168);
-                    }
-                    return Colors.red[300];
-                  }),
-                  overlayColor:
-                      const MaterialStatePropertyAll(Colors.transparent),
-                  activeColor: Colors.blue[100],
-                  value: isEnglish,
-                  onChanged: (value) {
-                    setState(() {
-                      isEnglish = value;
-                      if (isEnglish) {
-                        localization.translate('en');
-                      } else {
-                        localization.translate('id');
-                      }
-                    });
-                  },
-                ),
-              )
-            ],
+            actions: const [ChangeLanguageComponent()],
           ),
           body: SingleChildScrollView(
             child: Center(
@@ -350,37 +315,7 @@ class _SignInPageState extends State<SignInPage> {
                                     if (_biometrics == true &&
                                         _haveLoggedIn == true)
                                       OutlinedButton(
-                                          onPressed: () async {
-                                            try {
-                                              final prefs =
-                                                  await SharedPreferences
-                                                      .getInstance();
-                                              if (!context.mounted) return;
-                                              final bool didAuthenticate =
-                                                  await auth.authenticate(
-                                                      localizedReason:
-                                                          "authenticateToLogin"
-                                                              .getString(
-                                                                  context));
-                                              if (didAuthenticate) {
-                                                if (context.mounted) {
-                                                  await bloc.signIn(
-                                                      context,
-                                                      prefs.getString(
-                                                          'email_authenticate')!,
-                                                      prefs.getString(
-                                                          'password_authenticate')!);
-                                                }
-                                              }
-                                            } on PlatformException {
-                                              if (!context.mounted) return;
-                                              showMySnackBar(
-                                                  context,
-                                                  "somethingWrongWithAuthentication"
-                                                      .getString(context));
-                                              return;
-                                            }
-                                          },
+                                          onPressed: () => handleBiometrics,
                                           style: OutlinedButton.styleFrom(
                                             foregroundColor: Colors.white,
                                             backgroundColor: Colors.white,
@@ -425,15 +360,14 @@ class _SignInPageState extends State<SignInPage> {
                           Padding(
                               padding: const EdgeInsets.all(10),
                               child: Text(
-                                  "orsigninwith"
-                                      .getString(context)
-                                      .toUpperCase(),
-                                  style: const TextStyle(
-                                      fontSize: 9,
-                                      letterSpacing: 1.1,
-                                      fontWeight: FontWeight.bold,
-                                      color: Color(0xAA1B1446)),
-                                  textScaler: const TextScaler.linear(1.1))),
+                                "orsigninwith".getString(context).toUpperCase(),
+                                style: const TextStyle(
+                                    fontSize: 9,
+                                    letterSpacing: 1.1,
+                                    fontWeight: FontWeight.bold,
+                                    color: Color(0xAA1B1446)),
+                                textScaler: const TextScaler.linear(1.1),
+                              )),
                           Expanded(
                               child: Container(
                             height: 2,
@@ -474,14 +408,16 @@ class _SignInPageState extends State<SignInPage> {
                             InkWell(
                                 onTap: () {
                                   Navigator.of(context).pushReplacement(
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const RegisterPage()));
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const RegisterPage()),
+                                  );
                                 },
                                 child: Text(
                                   "signup".getString(context),
                                   style: const TextStyle(
-                                      color: Color.fromARGB(255, 245, 209, 97)),
+                                    color: Color.fromARGB(255, 245, 209, 97),
+                                  ),
                                 ))
                           ])
                     ],
@@ -497,5 +433,25 @@ class _SignInPageState extends State<SignInPage> {
 
   void changeRememberMeState() {
     _isTicked.add(!_isTicked.value);
+  }
+
+  void handleBiometrics(context) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      if (!context.mounted) return;
+      final bool didAuthenticate = await auth.authenticate(
+          localizedReason: "authenticateToLogin".getString(context));
+      if (didAuthenticate) {
+        if (context.mounted) {
+          await bloc.signIn(context, prefs.getString('email_authenticate')!,
+              prefs.getString('password_authenticate')!);
+        }
+      }
+    } on PlatformException {
+      if (!context.mounted) return;
+      showMySnackBar(
+          context, "somethingWrongWithAuthentication".getString(context));
+      return;
+    }
   }
 }
