@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:m02_praktek/component/profile_post.dart';
 import 'package:m02_praktek/page/add_post_page.dart';
-import 'package:m02_praktek/page/post_detail_page.dart';
 import 'package:m02_praktek/providers/provider.dart';
 import 'package:m02_praktek/page/settings_page.dart';
 import 'package:provider/provider.dart';
@@ -9,6 +9,7 @@ class ProfileDetail extends StatelessWidget {
   const ProfileDetail({super.key});
   @override
   Widget build(BuildContext context) {
+    final profile = context.watch<CurrentUser>().profile;
     return Scaffold(
         appBar: AppBar(
           actions: [
@@ -25,7 +26,7 @@ class ProfileDetail extends StatelessWidget {
                 ))
           ],
           title: Text(
-              "@${Provider.of<CurrentUser>(context).profile!.username.toString()}"),
+              "@${Provider.of<CurrentUser>(context).profile?.username.toString() ?? ""}"),
         ),
         body: Container(
             padding: const EdgeInsets.all(30),
@@ -36,19 +37,18 @@ class ProfileDetail extends StatelessWidget {
                   children: [
                     CircleAvatar(
                         foregroundImage: AssetImage(
-                            "assets/${Provider.of<CurrentUser>(context).profile!.pictureLink}"),
+                            "assets/${Provider.of<CurrentUser>(context).profile?.pictureLink ?? ""}"),
                         radius: 40),
                     Expanded(
                         child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        const SizedBox(
+                          width: 1,
+                        ),
                         Column(
                           children: [
-                            Text(
-                                Provider.of<CurrentUser>(context)
-                                    .profile!
-                                    .post
-                                    .toString(),
+                            Text(profile?.post.toString() ?? "",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
                             const Text("Post")
@@ -56,11 +56,7 @@ class ProfileDetail extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text(
-                                Provider.of<CurrentUser>(context)
-                                    .profile!
-                                    .following
-                                    .toString(),
+                            Text(profile?.following.toString() ?? "",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
                             const Text("Following")
@@ -68,11 +64,7 @@ class ProfileDetail extends StatelessWidget {
                         ),
                         Column(
                           children: [
-                            Text(
-                                Provider.of<CurrentUser>(context)
-                                    .profile!
-                                    .follower
-                                    .toString(),
+                            Text(profile?.follower.toString() ?? "",
                                 style: const TextStyle(
                                     fontWeight: FontWeight.bold)),
                             const Text("Follower")
@@ -86,13 +78,13 @@ class ProfileDetail extends StatelessWidget {
                   height: 10,
                 ),
                 Text(
-                  Provider.of<CurrentUser>(context).profile!.nama,
+                  profile?.nama ?? "",
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(
                   height: 5,
                 ),
-                Text(Provider.of<CurrentUser>(context).profile!.description),
+                Text(profile?.description ?? ""),
                 const SizedBox(
                   height: 10,
                 ),
@@ -100,41 +92,7 @@ class ProfileDetail extends StatelessWidget {
                   "Posts",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-                Flexible(
-                    child: GridView.builder(
-                        shrinkWrap: true,
-                        padding: const EdgeInsets.only(top: 10),
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 3,
-                                crossAxisSpacing: 10,
-                                mainAxisSpacing: 10),
-                        itemCount:
-                            Provider.of<CurrentUser>(context).profile!.post,
-                        itemBuilder: (BuildContext context, int i) {
-                          return InkWell(
-                              onTap: () => {
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                const PostDetail()))
-                                  },
-                              child: Hero(
-                                  tag: Provider.of<CurrentUser>(context)
-                                      .profile!
-                                      .postList[i]
-                                      .title,
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                      image: DecorationImage(
-                                          image: AssetImage(
-                                              "assets/${Provider.of<CurrentUser>(context).profile!.postList[i].link}"),
-                                          fit: BoxFit.cover),
-                                    ),
-                                    width: 100,
-                                    height: 100,
-                                  )));
-                        }))
+                const ProfilePost()
               ],
             )),
         floatingActionButton: FloatingActionButton(

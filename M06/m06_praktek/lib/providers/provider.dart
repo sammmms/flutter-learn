@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:m02_praktek/models/post_model.dart';
 import 'package:m02_praktek/models/user_model.dart';
+import 'package:m02_praktek/utils/theme_utils.dart';
 
 class UserProvider extends ChangeNotifier {
   List<User> listProfile;
@@ -42,6 +43,21 @@ class CurrentUser extends ChangeNotifier {
 
   void logoutUser() {
     profile = null;
+    notifyListeners();
+  }
+}
+
+class DarkModeProvider extends ChangeNotifier {
+  ThemeSelection theme;
+
+  DarkModeProvider({this.theme = ThemeSelection.light});
+
+  void changeTheme() async {
+    if (theme == ThemeSelection.dark) {
+      theme = ThemeSelection.light;
+    } else {
+      theme = ThemeSelection.dark;
+    }
     notifyListeners();
   }
 }

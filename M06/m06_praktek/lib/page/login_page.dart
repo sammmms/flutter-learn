@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:m02_praktek/page/home_page.dart';
 import 'package:m02_praktek/providers/provider.dart';
 import 'package:m02_praktek/page/register_page.dart';
+import 'package:m02_praktek/utils/theme_utils.dart';
 import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,12 +22,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
+      physics: NeverScrollableScrollPhysics(),
       child: Center(
           child: Padding(
               padding: EdgeInsets.all(20),
               child: Column(children: [
                 Image.asset(
                   'assets/logo.png',
+                  color: context.watch<DarkModeProvider>().theme ==
+                          ThemeSelection.light
+                      ? Colors.redAccent
+                      : Colors.purpleAccent,
                   width: 200,
                 ),
                 SizedBox(
@@ -42,25 +48,10 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     controller: nama,
                     decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        label: Text("Username"),
-                        errorText:
-                            isError ? "Incorrect username or password" : null,
-                        labelStyle: TextStyle(color: Colors.black54)),
+                      label: Text("Username"),
+                      errorText:
+                          isError ? "Incorrect username or password" : null,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -76,25 +67,10 @@ class _LoginPageState extends State<LoginPage> {
                     },
                     controller: password,
                     decoration: InputDecoration(
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.grey),
-                            borderRadius: BorderRadius.all(Radius.circular(5))),
-                        errorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        focusedErrorBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.redAccent),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                        label: Text("Password"),
-                        errorText:
-                            isError ? "Incorrect username or password" : null,
-                        labelStyle: TextStyle(color: Colors.black54)),
+                      label: Text("Password"),
+                      errorText:
+                          isError ? "Incorrect username or password" : null,
+                    ),
                     obscureText: true,
                   ),
                 ),
@@ -119,10 +95,9 @@ class _LoginPageState extends State<LoginPage> {
                     });
                   },
                   style: ButtonStyle(
-                      minimumSize: MaterialStatePropertyAll(Size(400, 50)),
-                      foregroundColor: MaterialStatePropertyAll(Colors.white),
-                      backgroundColor:
-                          MaterialStatePropertyAll(Colors.redAccent)),
+                    minimumSize: MaterialStatePropertyAll(Size(400, 50)),
+                    foregroundColor: MaterialStatePropertyAll(Colors.white),
+                  ),
                   child: Text("Login"),
                 ),
                 SizedBox(
@@ -166,7 +141,11 @@ class _LoginPageState extends State<LoginPage> {
                       },
                       child: Text(
                         "Sign up",
-                        style: TextStyle(color: Colors.redAccent),
+                        style: TextStyle(
+                            color: context.watch<DarkModeProvider>().theme ==
+                                    ThemeSelection.light
+                                ? Colors.redAccent
+                                : Colors.purpleAccent),
                       ),
                     )
                   ],

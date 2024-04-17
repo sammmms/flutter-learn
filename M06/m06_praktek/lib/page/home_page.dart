@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:m02_praktek/page/add_post_page.dart';
 import 'package:m02_praktek/page/profile_page.dart';
 import 'package:m02_praktek/providers/provider.dart';
+import 'package:m02_praktek/utils/theme_utils.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
@@ -9,6 +10,7 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ThemeSelection currentTheme = context.watch<DarkModeProvider>().theme;
     return Scaffold(
         appBar: AppBar(
           title: const Text("Humble Dog Sam's Application"),
@@ -23,22 +25,25 @@ class Home extends StatelessWidget {
                 },
                 child: CircleAvatar(
                   foregroundImage: AssetImage(
-                      "assets/${Provider.of<CurrentUser>(context).profile!.pictureLink}"),
+                      "assets/${Provider.of<CurrentUser>(context).profile?.pictureLink ?? ""}"),
                 ),
               ),
             )
           ],
-          backgroundColor: Colors.white,
         ),
-        backgroundColor: const Color.fromARGB(255, 236, 236, 236),
+        backgroundColor: currentTheme == ThemeSelection.light
+            ? const Color.fromARGB(255, 236, 236, 236)
+            : const Color.fromARGB(136, 26, 26, 26),
         body: SingleChildScrollView(
           child: Center(
               child: Padding(
             padding: const EdgeInsets.all(20),
             child: Container(
-                decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                    color: Colors.white),
+                decoration: BoxDecoration(
+                    borderRadius: const BorderRadius.all(Radius.circular(20)),
+                    color: currentTheme == ThemeSelection.light
+                        ? Colors.white
+                        : const Color.fromARGB(189, 24, 24, 24)),
                 child: Padding(
                     padding: const EdgeInsets.all(30),
                     child: SizedBox(

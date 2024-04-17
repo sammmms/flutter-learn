@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:m02_praktek/page/home_page.dart';
 import 'package:m02_praktek/page/login_page.dart';
+import 'package:m02_praktek/providers/provider.dart';
+import 'package:m02_praktek/utils/theme_utils.dart';
+import 'package:provider/provider.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -20,120 +23,111 @@ class _RegisterPageState extends State<RegisterPage> {
     return Scaffold(
         body: ListView(padding: const EdgeInsets.all(50), children: [
       Image.asset(
-        'logo.png',
+        'assets/logo.png',
         width: 200,
         height: 200,
       ),
       const SizedBox(
         height: 30,
       ),
-      SizedBox(
-        width: 400,
-        child: TextField(
-          onTapOutside: (a) {
-            setState(() {
-              if (nama.text == "") {
-                isErrorv2 = true;
-              } else {
-                isErrorv2 = false;
-              }
-            });
-          },
-          controller: nama,
-          decoration: InputDecoration(
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.redAccent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              focusedErrorBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              label: const Text("Username"),
-              errorText: isErrorv2 ? "Username shouldn't be empty." : null,
-              labelStyle: const TextStyle(color: Colors.black54)),
-        ),
+      TextField(
+        onTapOutside: (a) {
+          setState(() {
+            if (nama.text == "") {
+              isErrorv2 = true;
+            } else {
+              isErrorv2 = false;
+            }
+          });
+        },
+        controller: nama,
+        decoration: InputDecoration(
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.redAccent),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            label: const Text("Username"),
+            errorText: isErrorv2 ? "Username shouldn't be empty." : null,
+            labelStyle: const TextStyle(color: Colors.black54)),
       ),
       const SizedBox(
         height: 20,
       ),
-      SizedBox(
-        width: 400,
-        child: TextField(
-          controller: password,
-          onTapOutside: (a) {
-            setState(() {
-              if (password.text != confirmPassword.text) {
-                isError = true;
-              } else {
-                isError = false;
-              }
-            });
-          },
-          decoration: InputDecoration(
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.redAccent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              focusedErrorBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              label: const Text("Password"),
-              errorText: isError
-                  ? "Password and Confirm Password is not the same."
-                  : null,
-              labelStyle: const TextStyle(color: Colors.black54)),
-          obscureText: true,
-        ),
+      TextField(
+        controller: password,
+        onTapOutside: (a) {
+          setState(() {
+            if (password.text != confirmPassword.text) {
+              isError = true;
+            } else {
+              isError = false;
+            }
+          });
+        },
+        decoration: InputDecoration(
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.redAccent),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            label: const Text("Password"),
+            errorText: isError
+                ? "Password and Confirm Password is not the same."
+                : null,
+            labelStyle: const TextStyle(color: Colors.black54)),
+        obscureText: true,
       ),
       const SizedBox(
         height: 20,
       ),
-      SizedBox(
-        width: 400,
-        child: TextField(
-          onTapOutside: (a) {
-            setState(() {
-              if (password.text != confirmPassword.text) {
-                isError = true;
-              } else {
-                isError = false;
-              }
-            });
-          },
-          controller: confirmPassword,
-          decoration: InputDecoration(
-              focusedBorder: const OutlineInputBorder(
-                borderSide: BorderSide(color: Colors.redAccent),
-                borderRadius: BorderRadius.all(Radius.circular(5)),
-              ),
-              enabledBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.grey),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              focusedErrorBorder: const OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.red),
-                  borderRadius: BorderRadius.all(Radius.circular(5))),
-              label: const Text("Confirm Password"),
-              errorText: isError
-                  ? "Password and Confirm Password is not the same."
-                  : null,
-              labelStyle: const TextStyle(color: Colors.black54)),
-          obscureText: true,
-        ),
+      TextField(
+        onTapOutside: (a) {
+          setState(() {
+            if (password.text != confirmPassword.text) {
+              isError = true;
+            } else {
+              isError = false;
+            }
+          });
+        },
+        controller: confirmPassword,
+        decoration: InputDecoration(
+            focusedBorder: const OutlineInputBorder(
+              borderSide: BorderSide(color: Colors.redAccent),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
+            ),
+            enabledBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.grey),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            errorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            focusedErrorBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: Colors.red),
+                borderRadius: BorderRadius.all(Radius.circular(5))),
+            label: const Text("Confirm Password"),
+            errorText: isError
+                ? "Password and Confirm Password is not the same."
+                : null,
+            labelStyle: const TextStyle(color: Colors.black54)),
+        obscureText: true,
       ),
       const SizedBox(
         height: 30,
@@ -179,7 +173,7 @@ class _RegisterPageState extends State<RegisterPage> {
             CircleAvatar(
                 backgroundColor: Colors.transparent,
                 radius: 10,
-                child: Image.asset("google.png")),
+                child: Image.asset("assets/google.png")),
             const SizedBox(
               width: 20,
             ),
@@ -197,9 +191,13 @@ class _RegisterPageState extends State<RegisterPage> {
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => const LoginPage()));
             },
-            child: const Text(
+            child: Text(
               "Sign in",
-              style: TextStyle(color: Colors.redAccent),
+              style: TextStyle(
+                  color: context.watch<DarkModeProvider>().theme ==
+                          ThemeSelection.light
+                      ? Colors.redAccent
+                      : Colors.purpleAccent),
             ),
           )
         ],
