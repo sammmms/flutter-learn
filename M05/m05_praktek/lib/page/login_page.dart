@@ -1,21 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:m02_praktek/home.dart';
-import 'package:m02_praktek/provider.dart';
-import 'package:m02_praktek/register.dart';
+import 'package:m02_praktek/page/home_page.dart';
+import 'package:m02_praktek/providers/provider.dart';
+import 'package:m02_praktek/page/register_page.dart';
 import 'package:provider/provider.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginState extends State<Login> {
-  TextEditingController nama = TextEditingController();
-  TextEditingController password = TextEditingController();
+class _LoginPageState extends State<LoginPage> {
+  TextEditingController nama = TextEditingController(text: "namesam_");
+  TextEditingController password = TextEditingController(text: "123");
   var isError = false;
   @override
   Widget build(BuildContext context) {
@@ -26,7 +26,7 @@ class _LoginState extends State<Login> {
               padding: EdgeInsets.all(20),
               child: Column(children: [
                 Image.asset(
-                  'logo.png',
+                  'assets/logo.png',
                   width: 200,
                 ),
                 SizedBox(
@@ -146,7 +146,7 @@ class _LoginState extends State<Login> {
                           CircleAvatar(
                               backgroundColor: Colors.transparent,
                               radius: 10,
-                              child: Image.asset("google.png")),
+                              child: Image.asset("assets/google.png")),
                           SizedBox(
                             width: 20,
                           ),
@@ -162,7 +162,7 @@ class _LoginState extends State<Login> {
                     InkWell(
                       onTap: () {
                         Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => Register()));
+                            builder: (context) => RegisterPage()));
                       },
                       child: Text(
                         "Sign up",

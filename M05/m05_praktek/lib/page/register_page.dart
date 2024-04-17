@@ -1,17 +1,15 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-import 'package:m02_praktek/home.dart';
-import 'package:m02_praktek/login.dart';
+import 'package:m02_praktek/page/home_page.dart';
+import 'package:m02_praktek/page/login_page.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<RegisterPage> createState() => _RegisterPageState();
 }
 
-class _RegisterState extends State<Register> {
+class _RegisterPageState extends State<RegisterPage> {
   TextEditingController nama = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController confirmPassword = TextEditingController();
@@ -20,13 +18,13 @@ class _RegisterState extends State<Register> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: ListView(padding: EdgeInsets.all(50), children: [
+        body: ListView(padding: const EdgeInsets.all(50), children: [
       Image.asset(
         'logo.png',
         width: 200,
         height: 200,
       ),
-      SizedBox(
+      const SizedBox(
         height: 30,
       ),
       SizedBox(
@@ -43,25 +41,25 @@ class _RegisterState extends State<Register> {
           },
           controller: nama,
           decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.redAccent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorBorder: OutlineInputBorder(
+              errorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              focusedErrorBorder: OutlineInputBorder(
+              focusedErrorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              label: Text("Username"),
+              label: const Text("Username"),
               errorText: isErrorv2 ? "Username shouldn't be empty." : null,
-              labelStyle: TextStyle(color: Colors.black54)),
+              labelStyle: const TextStyle(color: Colors.black54)),
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20,
       ),
       SizedBox(
@@ -78,28 +76,28 @@ class _RegisterState extends State<Register> {
             });
           },
           decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.redAccent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorBorder: OutlineInputBorder(
+              errorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              focusedErrorBorder: OutlineInputBorder(
+              focusedErrorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              label: Text("Password"),
+              label: const Text("Password"),
               errorText: isError
                   ? "Password and Confirm Password is not the same."
                   : null,
-              labelStyle: TextStyle(color: Colors.black54)),
+              labelStyle: const TextStyle(color: Colors.black54)),
           obscureText: true,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 20,
       ),
       SizedBox(
@@ -116,28 +114,28 @@ class _RegisterState extends State<Register> {
           },
           controller: confirmPassword,
           decoration: InputDecoration(
-              focusedBorder: OutlineInputBorder(
+              focusedBorder: const OutlineInputBorder(
                 borderSide: BorderSide(color: Colors.redAccent),
                 borderRadius: BorderRadius.all(Radius.circular(5)),
               ),
-              enabledBorder: OutlineInputBorder(
+              enabledBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.grey),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              errorBorder: OutlineInputBorder(
+              errorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              focusedErrorBorder: OutlineInputBorder(
+              focusedErrorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(color: Colors.red),
                   borderRadius: BorderRadius.all(Radius.circular(5))),
-              label: Text("Confirm Password"),
+              label: const Text("Confirm Password"),
               errorText: isError
                   ? "Password and Confirm Password is not the same."
                   : null,
-              labelStyle: TextStyle(color: Colors.black54)),
+              labelStyle: const TextStyle(color: Colors.black54)),
           obscureText: true,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 30,
       ),
       ElevatedButton(
@@ -149,28 +147,28 @@ class _RegisterState extends State<Register> {
               isErrorv2 = true;
             } else {
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Home()));
+                  MaterialPageRoute(builder: (context) => const Home()));
             }
           });
         },
-        style: ButtonStyle(
+        style: const ButtonStyle(
             minimumSize: MaterialStatePropertyAll(Size(400, 50)),
             foregroundColor: MaterialStatePropertyAll(Colors.white),
             backgroundColor: MaterialStatePropertyAll(Colors.redAccent)),
-        child: Text("Register"),
+        child: const Text("Register"),
       ),
-      SizedBox(
+      const SizedBox(
         height: 30,
       ),
-      Text(
+      const Text(
         "OR",
         textAlign: TextAlign.center,
       ),
-      SizedBox(
+      const SizedBox(
         height: 30,
       ),
       ElevatedButton(
-          style: ButtonStyle(
+          style: const ButtonStyle(
               foregroundColor: MaterialStatePropertyAll(Colors.black54),
               backgroundColor: MaterialStatePropertyAll(Colors.white),
               maximumSize: MaterialStatePropertyAll(Size(400, 50))),
@@ -182,24 +180,24 @@ class _RegisterState extends State<Register> {
                 backgroundColor: Colors.transparent,
                 radius: 10,
                 child: Image.asset("google.png")),
-            SizedBox(
+            const SizedBox(
               width: 20,
             ),
-            Text("Register with Google")
+            const Text("Register with Google")
           ]))),
-      SizedBox(
+      const SizedBox(
         height: 40,
       ),
       Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text("Already have an account? "),
+          const Text("Already have an account? "),
           InkWell(
             onTap: () {
               Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => Login()));
+                  MaterialPageRoute(builder: (context) => const LoginPage()));
             },
-            child: Text(
+            child: const Text(
               "Sign in",
               style: TextStyle(color: Colors.redAccent),
             ),

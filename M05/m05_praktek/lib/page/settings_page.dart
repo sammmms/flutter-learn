@@ -1,24 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:m02_praktek/login.dart';
-import 'package:m02_praktek/provider.dart';
+import 'package:m02_praktek/data/data_dummy.dart';
+import 'package:m02_praktek/page/login_page.dart';
+import 'package:m02_praktek/providers/provider.dart';
 import 'package:provider/provider.dart';
 
-class Settings extends StatefulWidget {
-  const Settings({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
 
   @override
-  State<Settings> createState() => _SettingsState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _SettingsState extends State<Settings> {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
-    var currentPrivacy = Provider.of<CurrentUser>(context, listen: false)
-        .profile
-        .userSetting["privacy"];
-    var currentNotification = Provider.of<CurrentUser>(context, listen: false)
-        .profile
-        .userSetting["notifications"];
+    var currentPrivacy =
+        context.read<CurrentUser>().profile!.userSetting["privacy"];
+    var currentNotification =
+        context.read<CurrentUser>().profile!.userSetting["notifications"];
     return Scaffold(
         appBar: AppBar(),
         body: Padding(
@@ -126,8 +125,8 @@ class _SettingsState extends State<Settings> {
                   onPressed: () {
                     Provider.of<CurrentUser>(context, listen: false)
                         .logoutUser();
-                    Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(builder: (context) => const Login()));
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) => const LoginPage()));
                   },
                   child: const Text(
                     "Logout",

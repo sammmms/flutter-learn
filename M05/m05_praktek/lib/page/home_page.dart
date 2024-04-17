@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:m02_praktek/addPost.dart';
-import 'package:m02_praktek/profile_detail.dart';
-import 'package:m02_praktek/provider.dart';
+import 'package:m02_praktek/page/add_post_page.dart';
+import 'package:m02_praktek/page/profile_page.dart';
+import 'package:m02_praktek/providers/provider.dart';
 import 'package:provider/provider.dart';
 
 class Home extends StatelessWidget {
@@ -11,19 +11,19 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Humble Dog Sam's Application"),
+          title: const Text("Humble Dog Sam's Application"),
           centerTitle: true,
           actions: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               child: InkWell(
                 onTap: () {
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context) => ProfileDetail()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ProfileDetail()));
                 },
                 child: CircleAvatar(
                   foregroundImage: AssetImage(
-                      Provider.of<CurrentUser>(context).profile.pictureLink),
+                      "assets/${Provider.of<CurrentUser>(context).profile!.pictureLink}"),
                 ),
               ),
             )
@@ -47,7 +47,7 @@ class Home extends StatelessWidget {
                           ClipRRect(
                               borderRadius:
                                   const BorderRadius.all(Radius.circular(20)),
-                              child: Image.asset("Post.jpeg")),
+                              child: Image.asset("assets/Post.jpeg")),
                           const SizedBox(
                             height: 20,
                           ),
@@ -65,10 +65,12 @@ class Home extends StatelessWidget {
                               InkWell(
                                 onTap: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                      builder: (context) => ProfileDetail()));
+                                      builder: (context) =>
+                                          const ProfileDetail()));
                                 },
                                 child: const CircleAvatar(
-                                  foregroundImage: AssetImage("Profile.jpeg"),
+                                  foregroundImage:
+                                      AssetImage("assets/Profile.jpeg"),
                                 ),
                               ),
                               Expanded(
@@ -82,7 +84,7 @@ class Home extends StatelessWidget {
                                     children: [
                                       Text(
                                         Provider.of<CurrentUser>(context)
-                                            .profile
+                                            .profile!
                                             .username,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
@@ -119,33 +121,8 @@ class Home extends StatelessWidget {
             shape: const CircleBorder(),
             onPressed: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const AddPost()));
+                  MaterialPageRoute(builder: (context) => const AddPostPage()));
             },
             child: const Icon(Icons.add)));
   }
 }
-
-// class Home extends StatelessWidget {
-//   const Home({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//         appBar: AppBar(
-//           title: const Text("Pengenalan Flutter"),
-//           backgroundColor: Colors.teal,
-//         ),
-//         body: const Center(
-//           child: Column(
-//             children: [
-//               SizedBox(height: 200),
-//               Text("Saya mahasiswa IF-B Sore"),
-//               Text("NIM  : 221110680"),
-//               Text("Nama : Samuel Onasis"),
-//               Text("Berhasil menginstall Flutter."),
-//             ],
-//           ),
-//         ));
-//   }
-// }
-
