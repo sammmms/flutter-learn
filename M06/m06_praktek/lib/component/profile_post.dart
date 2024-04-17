@@ -8,13 +8,14 @@ class ProfilePost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final profile = Provider.of<CurrentUser>(context).profile;
     return Flexible(
         child: GridView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.only(top: 10),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
-            itemCount: Provider.of<CurrentUser>(context).profile!.post,
+            itemCount: profile?.post ?? 0,
             itemBuilder: (BuildContext context, int i) {
               return InkWell(
                   onTap: () => {

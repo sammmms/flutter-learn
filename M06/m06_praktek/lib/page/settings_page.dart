@@ -138,12 +138,12 @@ class _SettingsPageState extends State<SettingsPage> {
                         backgroundColor:
                             MaterialStatePropertyAll(Colors.redAccent)),
                     onPressed: () {
-                      Provider.of<CurrentUser>(context, listen: false)
-                          .logoutUser();
                       Navigator.of(context).pushAndRemoveUntil(
                           MaterialPageRoute(
                               builder: (context) => const LoginPage()),
                           (route) => false);
+                      Provider.of<CurrentUser>(context, listen: false)
+                          .logoutUser();
                     },
                     child: const Text(
                       "Logout",

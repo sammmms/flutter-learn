@@ -47,7 +47,8 @@ ThemeData lightTheme = ThemeData(
   ),
   elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.redAccent))),
+          backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
+          foregroundColor: MaterialStatePropertyAll(Colors.white))),
   iconTheme: const IconThemeData(color: Colors.black),
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
   useMaterial3: true,

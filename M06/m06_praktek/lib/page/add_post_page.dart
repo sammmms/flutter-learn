@@ -23,45 +23,25 @@ class AddPostPage extends StatelessWidget {
               TextField(
                   controller: title,
                   decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      label: Text("Caption"),
-                      labelStyle: TextStyle(color: Colors.black54))),
+                    label: Text("Caption"),
+                  )),
               const SizedBox(
                 height: 20,
               ),
               TextField(
-                  controller: description,
-                  decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      label: Text("Description"),
-                      labelStyle: TextStyle(color: Colors.black54))),
+                controller: description,
+                decoration: const InputDecoration(
+                  label: Text("Description"),
+                ),
+              ),
               const SizedBox(
                 height: 20,
               ),
               TextField(
                   controller: link,
                   decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.redAccent),
-                        borderRadius: BorderRadius.all(Radius.circular(5)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.grey),
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      label: Text("Image url"),
-                      labelStyle: TextStyle(color: Colors.black54))),
+                    label: Text("Image url"),
+                  )),
               const SizedBox(
                 height: 20,
               ),
@@ -77,10 +57,8 @@ class AddPostPage extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                   style: const ButtonStyle(
-                      minimumSize: MaterialStatePropertyAll(Size(400, 50)),
-                      foregroundColor: MaterialStatePropertyAll(Colors.white),
-                      backgroundColor:
-                          MaterialStatePropertyAll(Colors.redAccent)),
+                    minimumSize: MaterialStatePropertyAll(Size(400, 50)),
+                  ),
                   child: const Text("Add Post"))
             ],
           ),

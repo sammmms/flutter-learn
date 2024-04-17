@@ -89,8 +89,9 @@ class Home extends StatelessWidget {
                                     children: [
                                       Text(
                                         Provider.of<CurrentUser>(context)
-                                            .profile!
-                                            .username,
+                                                .profile
+                                                ?.username ??
+                                            "Sam",
                                         style: const TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
