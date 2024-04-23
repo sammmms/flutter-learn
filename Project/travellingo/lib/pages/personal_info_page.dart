@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:travellingo/component/snackbar_component.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
 import 'package:travellingo/pages/signin_page.dart';
+import 'package:travellingo/utils/route_push.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   const PersonalInfoPage({super.key});
@@ -23,9 +24,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     final user = context.read<UserDetailProvider>().user;
     if (user == null) {
       showMySnackBar(context, "tokenExpired".getString(context));
-      Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => const SignInPage()),
-          (route) => false);
+      handlePushRemove(context, const SignInPage());
     }
     name.text = user!.name;
     email.text = user.email;

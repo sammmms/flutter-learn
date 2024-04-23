@@ -5,11 +5,13 @@ import "package:local_auth/local_auth.dart";
 import "package:shared_preferences/shared_preferences.dart";
 import "package:travellingo/bloc/auth_bloc/auth_bloc.dart";
 import "package:travellingo/bloc/auth_bloc/auth_state.dart";
+import "package:travellingo/component/oauth_button_component.dart";
 import "package:travellingo/component/snackbar_component.dart";
 import "package:travellingo/pages/home_page.dart";
 import "package:travellingo/preferences/save_preferences.dart";
 import "package:travellingo/pages/register_page.dart";
 import "package:dio/dio.dart";
+import "package:travellingo/utils/route_push.dart";
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -443,64 +445,18 @@ class _SignInPageState extends State<SignInPage> {
                   const SizedBox(
                     height: 20,
                   ),
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            side: BorderSide(
-                                color: Colors.grey.shade200, width: 1),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        child: const Image(
-                          image: AssetImage("assets/Facebook.png"),
-                          width: 20,
-                        ),
-                      ),
-                      const SizedBox(
+                      OAuthButtonComponent(content: "Facebook.png"),
+                      SizedBox(
                         width: 30,
                       ),
-                      OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 20),
-                          side:
-                              BorderSide(color: Colors.grey.shade200, width: 1),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                        ),
-                        child: const Image(
-                          image: AssetImage("assets/Google.png"),
-                          width: 20,
-                        ),
-                      ),
-                      const SizedBox(
+                      OAuthButtonComponent(content: "Google.png"),
+                      SizedBox(
                         width: 30,
                       ),
-                      OutlinedButton(
-                        onPressed: () {},
-                        style: OutlinedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: Colors.white,
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 20),
-                            side: BorderSide(
-                                color: Colors.grey.shade200, width: 1),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10))),
-                        child: const Image(
-                          image: AssetImage("assets/Apple.png"),
-                          width: 20,
-                        ),
-                      ),
+                      OAuthButtonComponent(content: "Apple.png"),
                     ],
                   ),
                   const SizedBox(
@@ -516,9 +472,7 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     InkWell(
                         onTap: () {
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => const RegisterPage()));
+                          handlePushReplace(context, const RegisterPage());
                         },
                         child: Text(
                           "signup".getString(context),
