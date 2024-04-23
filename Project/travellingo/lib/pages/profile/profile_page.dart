@@ -5,12 +5,15 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dotted_border/dotted_border.dart';
+import 'package:travellingo/bloc/user_bloc/user_state.dart';
+import 'package:travellingo/component/snackbar_component.dart';
 import 'package:travellingo/models/user.dart';
-import 'package:travellingo/bloc/user_bloc.dart';
-import 'package:travellingo/pages/personal_info_page.dart';
+import 'package:travellingo/bloc/user_bloc/user_bloc.dart';
+import 'package:travellingo/pages/profile/personal_info_page.dart';
 import 'package:travellingo/bloc/preferences/reset_preferences.dart';
+import 'package:travellingo/pages/profile/widget/text_navigator.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
-import 'package:travellingo/pages/signin_page.dart';
+import 'package:travellingo/pages/sign_in/signin_page.dart';
 
 class ProfilePage extends StatefulWidget {
   const ProfilePage({super.key});
@@ -24,8 +27,19 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
+    //Check for user token, is token is missing, then bump user to login page
     SharedPreferences.getInstance().then((value) {
-      bloc.getUser(value.getString('token')!, context);
+      String? token = value.getString('token');
+      if (token == null) {
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          showMySnackBar(context, "tokenExpired");
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => const SignInPage()),
+              (route) => false);
+          return;
+        });
+      }
+      bloc.getUser(token!, context);
     });
     super.initState();
   }
@@ -38,16 +52,22 @@ class _ProfilePageState extends State<ProfilePage> {
           "profile".getString(context),
           style: const TextStyle(fontWeight: FontWeight.bold),
         )),
-        body: StreamBuilder<User>(
+        body: StreamBuilder<UserState>(
             stream: bloc.controller.stream,
             builder: (context, snapshot) {
-              if (!snapshot.hasData) {
+              if (!snapshot.hasData || (snapshot.data?.loading ?? false)) {
                 return SizedBox(
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     child: const Center(child: CircularProgressIndicator()));
               }
-              User data = snapshot.data!;
+              if (snapshot.data!.error) {
+                WidgetsBinding.instance.addPostFrameCallback((_) {
+                  showMySnackBar(
+                      context, snapshot.data?.errorMessage ?? "somethingWrong");
+                });
+              }
+              User data = snapshot.data!.receivedProfile!;
               return SingleChildScrollView(
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,36 +137,19 @@ class _ProfilePageState extends State<ProfilePage> {
                           textScaler: const TextScaler.linear(0.9),
                         ),
                       ),
-                      InkWell(
-                        onTap: () {
+                      TextNavigator(
+                        onTapFunction: () {
                           Provider.of<UserDetailProvider>(context,
                                   listen: false)
                               .changeUser(data);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const PersonalInfoPage()));
                         },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("personalInfo".getString(context)),
-                              const Icon(Icons.arrow_forward_ios)
-                            ],
-                          ),
-                        ),
+                        text: "personalInfo",
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("privacynsharing".getString(context)),
-                            const Icon(Icons.arrow_forward_ios)
-                          ],
-                        ),
+                      TextNavigator(
+                        onTapFunction: () {},
+                        text: "privacyNSharing",
                       ),
                       const Divider(
                         height: 1,
@@ -163,52 +166,24 @@ class _ProfilePageState extends State<ProfilePage> {
                           textScaler: const TextScaler.linear(0.9),
                         ),
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("notification".getString(context)),
-                            const Icon(Icons.arrow_forward_ios)
-                          ],
-                        ),
+                      TextNavigator(
+                        onTapFunction: () {},
+                        text: "notification",
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("purchaseHistory".getString(context)),
-                            const Icon(Icons.arrow_forward_ios)
-                          ],
-                        ),
+                      TextNavigator(
+                        onTapFunction: () {},
+                        text: "purchaseHistory",
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("appearance".getString(context)),
-                            const Icon(Icons.arrow_forward_ios)
-                          ],
-                        ),
+                      TextNavigator(
+                        onTapFunction: () {},
+                        text: "appearance",
                       ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 20, vertical: 15),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text("review".getString(context)),
-                            const Icon(Icons.arrow_forward_ios)
-                          ],
-                        ),
+                      TextNavigator(
+                        onTapFunction: () {},
+                        text: "review",
                       ),
-                      InkWell(
-                        onTap: () async {
+                      TextNavigator(
+                        onTapFunction: () {
                           context.read<UserDetailProvider>().user = null;
                           ResetPreferences.removeToken();
                           Navigator.of(context).pushAndRemoveUntil(
@@ -216,18 +191,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   builder: (context) => const SignInPage()),
                               (route) => false);
                         },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20, vertical: 15),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text("logout".getString(context),
-                                  style:
-                                      const TextStyle(color: Colors.redAccent)),
-                            ],
-                          ),
-                        ),
+                        text: "logout",
+                        style: const TextStyle(color: Colors.red),
                       ),
                     ]),
               );

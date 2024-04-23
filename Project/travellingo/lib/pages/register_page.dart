@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:travellingo/component/oauth_button_component.dart';
 import 'package:travellingo/pages/setup_page.dart';
-import 'package:travellingo/pages/signin_page.dart';
+import 'package:travellingo/pages/sign_in/signin_page.dart';
 
 Route _createRoute(String userEmail) {
   return PageRouteBuilder(
@@ -45,7 +45,9 @@ class _RegisterPageState extends State<RegisterPage> {
         TextEditingController(text: "221110058@students.mikroskil.ac.id");
     final globalKey = GlobalKey<FormState>();
     return Scaffold(
-        appBar: AppBar(
+        body: CustomScrollView(
+      slivers: [
+        SliverAppBar(
           title: Text(
             "changeLanguage".getString(context),
             style: const TextStyle(color: Colors.black26),
@@ -54,8 +56,9 @@ class _RegisterPageState extends State<RegisterPage> {
           centerTitle: true,
           actions: const [ChangeLanguageComponent()],
         ),
-        body: SingleChildScrollView(
-          child: Center(
+        SliverList(
+            delegate: SliverChildListDelegate([
+          Center(
             child: Container(
                 padding: const EdgeInsets.all(20),
                 height: MediaQuery.of(context).size.height,
@@ -214,7 +217,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             ])
                       ]),
                 )),
-          ),
-        ));
+          )
+        ]))
+      ],
+    ));
   }
 }

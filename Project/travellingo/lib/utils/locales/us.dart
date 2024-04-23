@@ -35,7 +35,7 @@ const Map<String, String> usLanguage = {
   "home": "Home",
   "account": "Account",
   "personalInfo": "Personal info",
-  "privacynsharing": "Privacy & Sharing",
+  "privacyNSharing": "Privacy & Sharing",
   "settings": "Settings",
   "notification": "Notification",
   "purchaseHistory": "Purchase History",
@@ -48,8 +48,19 @@ const Map<String, String> usLanguage = {
   "male": "Male",
   "female": "Female",
   "name": "Name",
-  "gender": "Jenis kelamin",
+  "gender": "Gender",
   "govId": "Government ID",
+
+  // Privacy & Sharing
+  "manageYourAccountData": "Manage your account data",
+  "manageYourAccountDataDetail":
+      "You can make a request to download or delete your personal data from Travellingo.",
+  "requestYourPersonalData": "Request your personal data",
+  "requestYourPersonalDataDetail":
+      "We'll create a file for you to download your personal data.",
+  "deleteYourAccount": "Delete your account",
+  "deleteYourAccountDetail":
+      "By doing this your account and data will permanently be deleted.",
 
   // Backend Stuff
   "somethingWrong": "Something is wrong.",

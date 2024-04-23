@@ -35,11 +35,6 @@ class _SetUpPageState extends State<SetUpPage> {
         appBar: AppBar(
           title: Text(
             "setupyouraccount".getString(context).toUpperCase(),
-            style: const TextStyle(
-                fontSize: 13.5,
-                letterSpacing: 1.1,
-                fontWeight: FontWeight.bold),
-            textScaler: const TextScaler.linear(1.1),
           ),
           scrolledUnderElevation: 0,
           centerTitle: true,

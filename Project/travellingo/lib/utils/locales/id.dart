@@ -35,7 +35,7 @@ const Map<String, String> idLanguage = {
   "home": "Beranda",
   "account": "Akun",
   "personalInfo": "Informasi pribadi",
-  "privacynsharing": "Privasi & Pembagian",
+  "privacyNSharing": "Privasi & Pembagian",
   "settings": "Pengaturan",
   "notification": "Notifikasi",
   "purchaseHistory": "Riwayat Pembelian",
@@ -50,6 +50,17 @@ const Map<String, String> idLanguage = {
   "name": "Nama",
   "gender": "Jenis kelamin",
   "govId": "NIK",
+
+  // Privacy & Sharing
+  "manageYourAccountData": "Kelola data akun",
+  "manageYourAccountDataDetail":
+      "Anda dapat melakukan permintaan untuk mengunduh data atau menghapus data pribadi anda dari Travellingo.",
+  "requestYourPersonalData": "Unduh data pribadi anda",
+  "requestYourPersonalDataDetail":
+      "Kami akan membuat sebuah file berisi data pribadi anda yang dapat diunduh.",
+  "deleteYourAccount": "Hapus akun anda",
+  "deleteYourAccountDetail":
+      "Dengan melakukan ini, akun serta data anda akan terhapus selamanya.",
 
   // Backend Stuff
   "somethingWrong": "Terjadi kesalahan.",
