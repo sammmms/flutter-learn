@@ -1,8 +1,10 @@
+import 'package:travellingo/component/change_language_component.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:travellingo/component/oauth_button_component.dart';
 import 'package:travellingo/pages/setup_page.dart';
-import 'package:travellingo/pages/signin_page.dart';
+import 'package:travellingo/pages/sign_in/signin_page.dart';
 
 Route _createRoute(String userEmail) {
   return PageRouteBuilder(
@@ -39,55 +41,24 @@ class _RegisterPageState extends State<RegisterPage> {
       r'x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])');
   @override
   Widget build(BuildContext context) {
-    bool isEnglish =
-        localization.currentLocale.localeIdentifier == "en" ? true : false;
     TextEditingController email =
         TextEditingController(text: "221110058@students.mikroskil.ac.id");
     final globalKey = GlobalKey<FormState>();
     return Scaffold(
-        appBar: AppBar(
+        body: CustomScrollView(
+      slivers: [
+        SliverAppBar(
           title: Text(
             "changeLanguage".getString(context),
             style: const TextStyle(color: Colors.black26),
           ),
           scrolledUnderElevation: 0,
           centerTitle: true,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 30.0),
-              child: Switch(
-                inactiveThumbImage: const AssetImage('assets/Indonesia.png'),
-                inactiveTrackColor: Colors.red[100],
-                inactiveThumbColor: Colors.red[100],
-                activeThumbImage: const ResizeImage(AssetImage('assets/US.png'),
-                    height: 16, width: 22),
-                activeTrackColor: Colors.blue[100],
-                trackOutlineColor: MaterialStateProperty.resolveWith((states) {
-                  if (states.contains(MaterialState.selected)) {
-                    return const Color.fromARGB(255, 62, 132, 168);
-                  }
-                  return Colors.red[300];
-                }),
-                overlayColor:
-                    const MaterialStatePropertyAll(Colors.transparent),
-                activeColor: Colors.blue[100],
-                value: isEnglish,
-                onChanged: (value) {
-                  setState(() {
-                    isEnglish = value;
-                    if (isEnglish) {
-                      localization.translate('en');
-                    } else {
-                      localization.translate('id');
-                    }
-                  });
-                },
-              ),
-            )
-          ],
+          actions: const [ChangeLanguageComponent()],
         ),
-        body: SingleChildScrollView(
-          child: Center(
+        SliverList(
+            delegate: SliverChildListDelegate([
+          Center(
             child: Container(
                 padding: const EdgeInsets.all(20),
                 height: MediaQuery.of(context).size.height,
@@ -207,60 +178,18 @@ class _RegisterPageState extends State<RegisterPage> {
                         const SizedBox(
                           height: 20,
                         ),
-                        Row(
+                        const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            InkWell(
-                              onTap: () {},
-                              overlayColor: const MaterialStatePropertyAll(
-                                  Colors.transparent),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: Colors.grey.shade200,
-                                          style: BorderStyle.solid)),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Image.asset("assets/Facebook.png",
-                                      width: 20)),
+                            OAuthButtonComponent(content: "Facebook"),
+                            SizedBox(
+                              width: 30,
                             ),
-                            InkWell(
-                              onTap: () {},
-                              overlayColor: const MaterialStatePropertyAll(
-                                  Colors.transparent),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: Colors.grey.shade200,
-                                          style: BorderStyle.solid)),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Image.asset("assets/Google.png",
-                                      width: 20)),
+                            OAuthButtonComponent(content: "Google"),
+                            SizedBox(
+                              width: 30,
                             ),
-                            InkWell(
-                              onTap: () {},
-                              overlayColor: const MaterialStatePropertyAll(
-                                  Colors.transparent),
-                              child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(10),
-                                      border: Border.all(
-                                          color: Colors.grey.shade200,
-                                          style: BorderStyle.solid)),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 20, vertical: 10),
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 20),
-                                  child: Image.asset("assets/Apple.png",
-                                      width: 20)),
-                            ),
+                            OAuthButtonComponent(content: "Apple")
                           ],
                         ),
                         const SizedBox(
@@ -288,7 +217,9 @@ class _RegisterPageState extends State<RegisterPage> {
                             ])
                       ]),
                 )),
-          ),
-        ));
+          )
+        ]))
+      ],
+    ));
   }
 }

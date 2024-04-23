@@ -2,10 +2,11 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
+import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:travellingo/bloc/auth_bloc/auth_state.dart';
-import 'package:travellingo/component/snackbar_component.dart';
-import 'package:travellingo/preferences/save_preferences.dart';
+import 'package:travellingo/bloc/preferences/save_preferences.dart';
 
 class AuthBloc {
   final StreamController<AuthState> controller = StreamController();
@@ -18,18 +19,23 @@ class AuthBloc {
           "https://travellingo-backend.netlify.app/api/login",
           data: {"email": email, "password": password});
       var token = response.data["token"];
+      if (context.mounted) {
+        bool rememberMeState = context.read<bool>();
+        SavePreferences.saveLoginPreferences(
+            rememberMeState, email, password, token);
+      }
       controller.add(AuthState(receivedToken: token));
-      SavePreferences.saveToken(token);
-      return true;
-    } on DioException {
-      if (!context.mounted) return;
-      showMySnackBar(
-          context, "somethingWrongWithAuthentication".getString(context));
-      controller.add(AuthState());
+    } on DioException catch (err) {
+      controller.add(AuthState(
+        error: true,
+        errorMessage: err.response?.data,
+        errorStatus: err.response?.statusCode,
+      ));
     } catch (err) {
-      if (!context.mounted) return;
-      showMySnackBar(context, "somethingWrong".getString(context));
-      controller.add(AuthState());
+      controller.add(AuthState(
+        error: true,
+        errorMessage: "somethingWrong",
+      ));
     }
   }
 
@@ -49,15 +55,29 @@ class AuthBloc {
         controller.add(AuthState());
       }
       return true;
-    } on DioException {
-      if (!context.mounted) return;
-      showMySnackBar(context, "somethingWrong".getString(context));
-      controller.add(AuthState());
+    } on DioException catch (err) {
+      controller.add(AuthState(
+        error: true,
+        errorMessage: err.response?.data,
+        errorStatus: err.response?.statusCode,
+      ));
     } catch (err) {
-      if (!context.mounted) return;
-      if (!context.mounted) return;
-      showMySnackBar(context, "somethingWrong".getString(context));
-      controller.add(AuthState());
+      controller.add(AuthState(
+        error: true,
+        errorMessage: "somethingWrong",
+      ));
     }
+  }
+
+  Future checkLogin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+    if (token != null) {
+      Map<String, dynamic> decodedToken = JwtDecoder.decode(token);
+      if (decodedToken['exp'] > DateTime.now().millisecondsSinceEpoch / 1000) {
+        return controller.add(AuthState(receivedToken: token));
+      }
+    }
+    return controller.add(AuthState());
   }
 }
