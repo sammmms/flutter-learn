@@ -5,8 +5,13 @@ class TextNavigator extends StatelessWidget {
   final Function onTapFunction;
   final String text;
   final TextStyle? style;
+  final bool? needIcon;
   const TextNavigator(
-      {super.key, required this.onTapFunction, required this.text, this.style});
+      {super.key,
+      required this.onTapFunction,
+      required this.text,
+      this.style,
+      this.needIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +28,7 @@ class TextNavigator extends StatelessWidget {
               text.getString(context),
               style: style,
             ),
-            const Icon(Icons.arrow_forward_ios)
+            if (needIcon ?? false) const Icon(Icons.arrow_forward_ios)
           ],
         ),
       ),

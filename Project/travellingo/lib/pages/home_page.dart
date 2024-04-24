@@ -31,7 +31,7 @@ class _HomePageState extends State<HomePage> {
                         : const SizedBox(),
         bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,
-            selectedItemColor: Colors.teal,
+            // selectedItemColor: Colors.teal,
             showUnselectedLabels: true,
             currentIndex: _currentPage,
             type: BottomNavigationBarType.fixed,

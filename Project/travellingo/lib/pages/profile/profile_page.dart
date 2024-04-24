@@ -11,6 +11,7 @@ import 'package:travellingo/models/user.dart';
 import 'package:travellingo/bloc/user_bloc/user_bloc.dart';
 import 'package:travellingo/pages/profile/personal_info_page.dart';
 import 'package:travellingo/bloc/preferences/reset_preferences.dart';
+import 'package:travellingo/pages/profile/privacy_sharing_page.dart';
 import 'package:travellingo/pages/profile/widget/text_navigator.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
 import 'package:travellingo/pages/sign_in/signin_page.dart';
@@ -138,6 +139,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         ),
                       ),
                       TextNavigator(
+                        needIcon: true,
                         onTapFunction: () {
                           Provider.of<UserDetailProvider>(context,
                                   listen: false)
@@ -148,9 +150,11 @@ class _ProfilePageState extends State<ProfilePage> {
                         text: "personalInfo",
                       ),
                       TextNavigator(
+                        needIcon: true,
                         onTapFunction: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const PersonalInfoPage()));
+                              builder: (context) =>
+                                  const PrivacySharingPage()));
                         },
                         text: "privacyNSharing",
                       ),
@@ -172,14 +176,16 @@ class _ProfilePageState extends State<ProfilePage> {
                       TextNavigator(
                         onTapFunction: () {},
                         text: "notification",
-                      ),
-                      TextNavigator(
-                        onTapFunction: () {},
-                        text: "purchaseHistory",
+                        needIcon: true,
                       ),
                       TextNavigator(
                         onTapFunction: () {},
                         text: "appearance",
+                        needIcon: true,
+                      ),
+                      TextNavigator(
+                        onTapFunction: () {},
+                        text: "purchaseHistory",
                       ),
                       TextNavigator(
                         onTapFunction: () {},

@@ -43,9 +43,9 @@ class _MyAppState extends State<MyApp> {
     SchedulerBinding.instance.addPostFrameCallback(
       (_) async {
         await bloc.checkLogin();
-        FlutterNativeSplash.remove();
       },
     );
+    FlutterNativeSplash.remove();
 
     super.initState();
   }

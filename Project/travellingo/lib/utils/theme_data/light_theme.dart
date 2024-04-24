@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 ThemeData lightTheme = ThemeData(
   fontFamily: "Poppins",
   appBarTheme: const AppBarTheme(
+    color: Colors.white,
     titleTextStyle: TextStyle(
         fontFamily: "Poppins",
+        color: Colors.black,
         fontSize: 18,
         letterSpacing: 1.1,
         fontWeight: FontWeight.bold),
   ),
+  scaffoldBackgroundColor: Colors.white,
   inputDecorationTheme: InputDecorationTheme(
     filled: true,
     fillColor: const Color(0xFFF6F8FB),
@@ -36,5 +39,9 @@ ThemeData lightTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFF5D161)),
   iconTheme: const IconThemeData(color: Color(0xFFF5D161)),
   primaryIconTheme: const IconThemeData(color: Color(0xFFF5D161)),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: Colors.white, selectedItemColor: Color(0xFFF5D161)),
+  textTheme: TextTheme()
+      .apply(bodyColor: Color(0xAA1B1446), displayColor: Color(0xAA1B1446)),
   useMaterial3: true,
 );
