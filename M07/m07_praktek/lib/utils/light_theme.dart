@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 ThemeData lightTheme = ThemeData(
   appBarTheme: const AppBarTheme(
       color: Colors.white,
-      titleTextStyle: TextStyle(color: Colors.black),
+      titleTextStyle: TextStyle(color: Colors.black, fontSize: 20),
       iconTheme: IconThemeData(color: Colors.black),
       scrolledUnderElevation: 0,
       actionsIconTheme: IconThemeData(color: Colors.black)),
+  scaffoldBackgroundColor: Color.fromARGB(255, 250, 250, 250),
   textTheme: const TextTheme(
     bodySmall: TextStyle(color: Colors.black),
     bodyMedium: TextStyle(color: Colors.black),
@@ -27,7 +28,6 @@ ThemeData lightTheme = ThemeData(
     bodyColor: Colors.black,
     displayColor: Colors.black,
   ),
-  scaffoldBackgroundColor: Colors.white,
   inputDecorationTheme: const InputDecorationTheme(
     focusedBorder: OutlineInputBorder(
       borderSide: BorderSide(color: Colors.redAccent),
@@ -51,6 +51,9 @@ ThemeData lightTheme = ThemeData(
           foregroundColor: MaterialStatePropertyAll(Colors.white))),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Colors.redAccent, foregroundColor: Colors.white),
+  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: Colors.white,
+      unselectedLabelStyle: TextStyle(color: Colors.black)),
   iconTheme: const IconThemeData(color: Colors.black),
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
   useMaterial3: true,

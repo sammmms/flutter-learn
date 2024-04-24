@@ -21,30 +21,24 @@ class ProfilePost extends StatelessWidget {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => const PostDetail()))
                       },
-                  child: Hero(
-                      tag: Provider.of<CurrentUser>(context)
+                  child: SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: FadeInImage(
+                      image: NetworkImage(Provider.of<CurrentUser>(context)
                           .profile!
                           .postList[i]
-                          .title,
-                      child: SizedBox(
-                        width: 100,
-                        height: 100,
-                        child: FadeInImage(
-                          image: NetworkImage(Provider.of<CurrentUser>(context)
-                              .profile!
-                              .postList[i]
-                              .link),
-                          placeholder:
-                              const AssetImage("assets/placeholder.jpg"),
-                          imageErrorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              'assets/${Provider.of<CurrentUser>(context).profile!.postList[i].link}',
-                              fit: BoxFit.cover,
-                            );
-                          },
+                          .link),
+                      placeholder: const AssetImage("assets/placeholder.jpg"),
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          'assets/${Provider.of<CurrentUser>(context).profile!.postList[i].link}',
                           fit: BoxFit.cover,
-                        ),
-                      )));
+                        );
+                      },
+                      fit: BoxFit.cover,
+                    ),
+                  ));
             }));
   }
 }

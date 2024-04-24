@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:m02_praktek/data/data_dummy.dart';
@@ -9,6 +7,7 @@ import 'package:m02_praktek/utils/dark_theme.dart';
 import 'package:m02_praktek/utils/light_theme.dart';
 import 'package:m02_praktek/utils/theme_utils.dart';
 import 'package:provider/provider.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -23,7 +22,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final themeController = StreamController();
+  final themeController =
+      BehaviorSubject<ThemeSelection>.seeded(ThemeSelection.light);
 
   @override
   void initState() {
@@ -47,14 +47,20 @@ class _MyAppState extends State<MyApp> {
         ChangeNotifierProvider(
             create: (context) => UserProvider(listProfile: [profile])),
         ChangeNotifierProvider(create: (context) => CurrentUser()),
-        ChangeNotifierProvider(create: (context) => DarkModeProvider())
+        ChangeNotifierProvider(
+          create: (context) => DarkModeProvider(controller: themeController),
+        ),
+        StreamProvider<ThemeSelection>.value(
+          value: themeController,
+          initialData: ThemeSelection.light,
+        )
       ],
       child: StreamBuilder(
           stream: themeController.stream,
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               WidgetsBinding.instance.addPostFrameCallback((_) {
-                context.read<DarkModeProvider>().selectTheme(snapshot.data);
+                context.read<DarkModeProvider>().selectTheme(snapshot.data!);
               });
             }
             return MaterialApp(

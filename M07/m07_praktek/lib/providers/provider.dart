@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:m02_praktek/models/post_model.dart';
 import 'package:m02_praktek/models/user_model.dart';
 import 'package:m02_praktek/utils/theme_utils.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProvider extends ChangeNotifier {
@@ -50,8 +51,10 @@ class CurrentUser extends ChangeNotifier {
 
 class DarkModeProvider extends ChangeNotifier {
   ThemeSelection theme;
+  final BehaviorSubject<ThemeSelection> controller;
 
-  DarkModeProvider({this.theme = ThemeSelection.light});
+  DarkModeProvider(
+      {this.theme = ThemeSelection.light, required this.controller});
 
   void changeTheme() async {
     final prefs = await SharedPreferences.getInstance();
@@ -60,12 +63,14 @@ class DarkModeProvider extends ChangeNotifier {
     } else {
       theme = ThemeSelection.dark;
     }
+    controller.add(theme);
     prefs.setString('theme', ThemeSelectionUtils().stringThemeOf(theme));
     notifyListeners();
   }
 
   void selectTheme(ThemeSelection selectedTheme) async {
     theme = selectedTheme;
+    controller.add(theme);
     notifyListeners();
   }
 }
