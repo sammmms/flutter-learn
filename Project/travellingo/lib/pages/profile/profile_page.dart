@@ -148,7 +148,10 @@ class _ProfilePageState extends State<ProfilePage> {
                         text: "personalInfo",
                       ),
                       TextNavigator(
-                        onTapFunction: () {},
+                        onTapFunction: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const PersonalInfoPage()));
+                        },
                         text: "privacyNSharing",
                       ),
                       const Divider(

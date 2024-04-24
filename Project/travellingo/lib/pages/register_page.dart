@@ -181,15 +181,15 @@ class _RegisterPageState extends State<RegisterPage> {
                         const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            OAuthButtonComponent(content: "Facebook"),
+                            OAuthButtonComponent(content: "Facebook.png"),
                             SizedBox(
                               width: 30,
                             ),
-                            OAuthButtonComponent(content: "Google"),
+                            OAuthButtonComponent(content: "Google.png"),
                             SizedBox(
                               width: 30,
                             ),
-                            OAuthButtonComponent(content: "Apple")
+                            OAuthButtonComponent(content: "Apple.png")
                           ],
                         ),
                         const SizedBox(
