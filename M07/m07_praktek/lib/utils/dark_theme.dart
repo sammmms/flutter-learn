@@ -29,7 +29,7 @@ ThemeData darkTheme = ThemeData(
   ),
   listTileTheme: const ListTileThemeData(
       selectedColor: Colors.white38, textColor: Colors.white),
-  scaffoldBackgroundColor: Color.fromARGB(255, 56, 56, 56),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 56, 56, 56),
   inputDecorationTheme: const InputDecorationTheme(
     labelStyle: TextStyle(color: Colors.white),
     focusedBorder: OutlineInputBorder(
@@ -50,14 +50,17 @@ ThemeData darkTheme = ThemeData(
   ),
   elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
-          backgroundColor: MaterialStatePropertyAll(Colors.purpleAccent))),
+          backgroundColor: MaterialStatePropertyAll(Colors.purpleAccent),
+          foregroundColor: MaterialStatePropertyAll(Colors.white))),
   iconTheme: const IconThemeData(color: Colors.white),
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.purpleAccent),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
     backgroundColor: Colors.black,
     unselectedItemColor: Colors.white,
     unselectedLabelStyle: TextStyle(color: Colors.white),
     selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold),
   ),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.purpleAccent, foregroundColor: Colors.white),
   useMaterial3: true,
 );

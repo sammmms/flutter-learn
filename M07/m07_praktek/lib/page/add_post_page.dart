@@ -3,14 +3,36 @@ import 'package:m02_praktek/models/post_model.dart';
 import 'package:m02_praktek/providers/provider.dart';
 import 'package:provider/provider.dart';
 
-class AddPostPage extends StatelessWidget {
-  const AddPostPage({super.key});
+class AddPostPage extends StatefulWidget {
+  final TextEditingController? title;
+  final TextEditingController? description;
+  final TextEditingController? link;
+  const AddPostPage({
+    super.key,
+    this.title,
+    this.description,
+    this.link,
+  });
+
+  @override
+  State<AddPostPage> createState() => _AddPostPageState();
+}
+
+class _AddPostPageState extends State<AddPostPage> {
+  late TextEditingController title;
+  late TextEditingController description;
+  late TextEditingController link;
+
+  @override
+  void initState() {
+    title = widget.title ?? TextEditingController();
+    description = widget.description ?? TextEditingController();
+    link = widget.link ?? TextEditingController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    TextEditingController link = TextEditingController();
-    TextEditingController title = TextEditingController();
-    TextEditingController description = TextEditingController();
     return Scaffold(
         appBar: AppBar(
           title: const Text("Add Post"),
@@ -54,7 +76,9 @@ class AddPostPage extends StatelessWidget {
                             link: link.text),
                         Provider.of<CurrentUser>(context, listen: false)
                             .profile!);
-                    Navigator.of(context).pop();
+                    title.text = "";
+                    description.text = "";
+                    link.text = "";
                   },
                   style: const ButtonStyle(
                     minimumSize: MaterialStatePropertyAll(Size(400, 50)),

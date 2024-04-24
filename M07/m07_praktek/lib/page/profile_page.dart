@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:m02_praktek/component/profile_post.dart';
-import 'package:m02_praktek/page/add_post_page.dart';
 import 'package:m02_praktek/providers/provider.dart';
 import 'package:m02_praktek/page/settings_page.dart';
 import 'package:provider/provider.dart';

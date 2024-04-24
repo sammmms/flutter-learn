@@ -23,8 +23,8 @@ class PostDetail extends StatelessWidget {
             itemBuilder: (builder, index) {
               Post post = posts[index];
               return Container(
-                padding: EdgeInsets.all(20),
-                margin: EdgeInsets.symmetric(vertical: 20),
+                padding: const EdgeInsets.all(20),
+                margin: const EdgeInsets.symmetric(vertical: 20),
                 decoration: BoxDecoration(
                     color: currentTheme == ThemeSelection.light
                         ? Colors.white
@@ -36,43 +36,87 @@ class PostDetail extends StatelessWidget {
                     Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(20),
-                        child: Image.asset(
-                          "assets/${post.link}",
-                          height: 300,
+                        child: FadeInImage(
+                          image: NetworkImage(posts[index].link),
+                          placeholder:
+                              AssetImage('assets/${posts[index].link}'),
+                          imageErrorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/${posts[index].link}',
+                              width: 300,
+                              height: 300,
+                              fit: BoxFit.cover,
+                            );
+                          },
                           width: 300,
+                          height: 300,
                           fit: BoxFit.cover,
                         ),
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Text(post.description),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        CircleAvatar(
-                          backgroundImage:
-                              AssetImage('assets/${profile.pictureLink}'),
-                        ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width - 250,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(post.title),
-                              Text(post.description),
-                            ],
-                          ),
-                        ),
                         Row(
                           children: [
-                            Icon(Icons.comment),
-                            Text(post.currentComment),
+                            CircleAvatar(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: FadeInImage(
+                                  image: NetworkImage(
+                                    profile.pictureLink,
+                                  ),
+                                  placeholder: const AssetImage(
+                                      "assets/placeholder.jpg"),
+                                  imageErrorBuilder:
+                                      (context, error, stackTrace) {
+                                    return Image.asset(
+                                      'assets/${profile.pictureLink}',
+                                      width: 100,
+                                      height: 100,
+                                      fit: BoxFit.cover,
+                                    );
+                                  },
+                                  width: 100,
+                                  height: 100,
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Column(
+                              children: [Text(profile.username)],
+                            ),
                           ],
                         ),
                         Row(
                           children: [
-                            Icon(Icons.favorite, color: Colors.red),
-                            Text(post.currentLike),
+                            Row(
+                              children: [
+                                const Icon(Icons.comment),
+                                Text(post.currentComment),
+                              ],
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Row(
+                              children: [
+                                const Icon(Icons.favorite, color: Colors.red),
+                                Text(post.currentLike),
+                              ],
+                            ),
                           ],
-                        ),
+                        )
                       ],
                     ),
                   ],
@@ -81,8 +125,6 @@ class PostDetail extends StatelessWidget {
             }),
       ),
       floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.redAccent,
-          foregroundColor: Colors.white,
           shape: const CircleBorder(),
           onPressed: () {
             Navigator.of(context).push(

@@ -8,14 +8,13 @@ class ProfilePost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final profile = Provider.of<CurrentUser>(context).profile;
     return Flexible(
         child: GridView.builder(
             shrinkWrap: true,
             padding: const EdgeInsets.only(top: 10),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
-            itemCount: profile?.post ?? 0,
+            itemCount: context.read<CurrentUser>().profile?.post ?? 0,
             itemBuilder: (BuildContext context, int i) {
               return InkWell(
                   onTap: () => {
@@ -27,15 +26,24 @@ class ProfilePost extends StatelessWidget {
                           .profile!
                           .postList[i]
                           .title,
-                      child: Container(
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image: AssetImage(
-                                  "assets/${Provider.of<CurrentUser>(context).profile!.postList[i].link}"),
-                              fit: BoxFit.cover),
-                        ),
+                      child: SizedBox(
                         width: 100,
                         height: 100,
+                        child: FadeInImage(
+                          image: NetworkImage(Provider.of<CurrentUser>(context)
+                              .profile!
+                              .postList[i]
+                              .link),
+                          placeholder:
+                              const AssetImage("assets/placeholder.jpg"),
+                          imageErrorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/${Provider.of<CurrentUser>(context).profile!.postList[i].link}',
+                              fit: BoxFit.cover,
+                            );
+                          },
+                          fit: BoxFit.cover,
+                        ),
                       )));
             }));
   }

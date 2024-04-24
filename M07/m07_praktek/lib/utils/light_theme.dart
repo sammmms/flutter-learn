@@ -49,6 +49,8 @@ ThemeData lightTheme = ThemeData(
       style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(Colors.redAccent),
           foregroundColor: MaterialStatePropertyAll(Colors.white))),
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+      backgroundColor: Colors.redAccent, foregroundColor: Colors.white),
   iconTheme: const IconThemeData(color: Colors.black),
   colorScheme: ColorScheme.fromSeed(seedColor: Colors.redAccent),
   useMaterial3: true,
