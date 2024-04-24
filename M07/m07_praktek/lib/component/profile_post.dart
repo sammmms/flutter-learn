@@ -26,13 +26,14 @@ class ProfilePost extends StatelessWidget {
                     height: 100,
                     child: FadeInImage(
                       image: NetworkImage(Provider.of<CurrentUser>(context)
-                          .profile!
-                          .postList[i]
-                          .link),
+                              .profile
+                              ?.postList[i]
+                              .link ??
+                          ""),
                       placeholder: const AssetImage("assets/placeholder.jpg"),
                       imageErrorBuilder: (context, error, stackTrace) {
                         return Image.asset(
-                          'assets/${Provider.of<CurrentUser>(context).profile!.postList[i].link}',
+                          'assets/${Provider.of<CurrentUser>(context).profile?.postList[i].link}',
                           fit: BoxFit.cover,
                         );
                       },
