@@ -11,7 +11,7 @@ import 'package:travellingo/component/check_component.dart';
 import 'package:travellingo/component/oauth_button_component.dart';
 import 'package:travellingo/component/snackbar_component.dart';
 import 'package:travellingo/pages/home_page.dart';
-import 'package:travellingo/pages/register_page.dart';
+import 'package:travellingo/pages/sign_up/signup_page.dart';
 import 'package:travellingo/pages/sign_in/widget/authentication_button.dart';
 
 class SignInForm extends StatefulWidget {
@@ -363,7 +363,7 @@ class _SignInFormState extends State<SignInForm> {
                         onTap: () {
                           Navigator.of(context).pushReplacement(
                             MaterialPageRoute(
-                                builder: (context) => const RegisterPage()),
+                                builder: (context) => const SignUpPage()),
                           );
                         },
                         child: Text(

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:travellingo/component/oauth_button_component.dart';
-import 'package:travellingo/pages/setup_page.dart';
+import 'package:travellingo/pages/sign_up/setup_page.dart';
 import 'package:travellingo/pages/sign_in/signin_page.dart';
 
 Route _createRoute(String userEmail) {
@@ -22,14 +22,14 @@ Route _createRoute(String userEmail) {
   );
 }
 
-class RegisterPage extends StatefulWidget {
-  const RegisterPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<RegisterPage> createState() => _RegisterPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _RegisterPageState extends State<RegisterPage> {
+class _SignUpPageState extends State<SignUpPage> {
   final FlutterLocalization localization = FlutterLocalization.instance;
   var isError = false;
   final emailregex = RegExp(r"(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'"
