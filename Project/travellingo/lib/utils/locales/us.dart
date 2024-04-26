@@ -52,6 +52,7 @@ const Map<String, String> usLanguage = {
   "edit": "Edit",
   "male": "Male",
   "female": "Female",
+  "notSet": "Not Set",
   "name": "Name",
   "gender": "Gender",
   "govId": "Government ID",

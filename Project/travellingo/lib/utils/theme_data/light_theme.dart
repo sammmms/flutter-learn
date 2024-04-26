@@ -41,7 +41,7 @@ ThemeData lightTheme = ThemeData(
   primaryIconTheme: const IconThemeData(color: Color(0xFFF5D161)),
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white, selectedItemColor: Color(0xFFF5D161)),
-  textTheme: TextTheme()
-      .apply(bodyColor: Color(0xAA1B1446), displayColor: Color(0xAA1B1446)),
+  textTheme: const TextTheme().apply(
+      bodyColor: const Color(0xAA1B1446), displayColor: Color(0xAA1B1446)),
   useMaterial3: true,
 );

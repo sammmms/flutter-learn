@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:travellingo/utils/dummy_data.dart';
-import './transaction_card.dart';
+import 'transaction_card.dart';
 
 class TransactionPage extends StatefulWidget {
   const TransactionPage({super.key});

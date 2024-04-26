@@ -52,6 +52,7 @@ const Map<String, String> idLanguage = {
   "edit": "Ubah",
   "male": "Laki-laki",
   "female": "Perempuan",
+  "notSet": "Belum terpilih",
   "name": "Nama",
   "gender": "Jenis kelamin",
   "govId": "NIK",

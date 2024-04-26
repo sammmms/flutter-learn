@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import './basket_card.dart'; // Make sure this is pointing to your BasketCard file
+import 'basket_card.dart'; // Make sure this is pointing to your BasketCard file
 
 class BasketPage extends StatefulWidget {
   const BasketPage({super.key});
