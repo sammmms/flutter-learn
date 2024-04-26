@@ -4,6 +4,7 @@ class AuthState {
   bool error;
   String? errorMessage;
   int? errorStatus;
+  String? successMessage;
 
   AuthState({
     this.receivedToken,
@@ -11,5 +12,6 @@ class AuthState {
     this.errorStatus,
     this.isSubmitting = false,
     this.error = false,
+    this.successMessage,
   });
 }

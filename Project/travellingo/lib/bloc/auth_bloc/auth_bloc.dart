@@ -51,9 +51,7 @@ class AuthBloc {
         "birthday": birthday,
         "phoneNumber": phoneNumber
       });
-      if (response.statusCode == 201) {
-        controller.add(AuthState());
-      }
+      controller.add(AuthState(successMessage: response.data));
       return true;
     } on DioException catch (err) {
       controller.add(AuthState(

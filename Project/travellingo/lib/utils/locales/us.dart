@@ -12,6 +12,7 @@ const Map<String, String> usLanguage = {
   "authenticateToLogin": "Authenticate to login.",
   "somethingWrongWithAuthentication":
       "Something wrong with authentication, please log-in using email & password.",
+
   // Setup stuff
   "firstName": "First name",
   "lastName": "Last name",
@@ -20,6 +21,8 @@ const Map<String, String> usLanguage = {
   "birthday": "Birthday",
   "continue": "Continue",
   "travellingoterms": "I agree to Travellingo's Terms of Service",
+  "pleaseWait": "Please wait",
+
   // Error setup
   "fieldmustbefilled": "This field must be filled.",
   "emailformatwrong": "Email is in the wrong format.",
@@ -27,7 +30,9 @@ const Map<String, String> usLanguage = {
   "passwordformatwrong": "Password must consist of 8 letters",
   "emailisdifferent": "Email and confirm email aren't the same.",
   "termsagree": "You must agree to our terms and condition to proceed.",
+  "textFieldNotValid": "Your textfield is not in a valid format.",
 
+  //Interface
   "changeLanguage": "Change language",
   "profile": "Profile",
   "favorite": "Favorite",

@@ -12,6 +12,7 @@ const Map<String, String> idLanguage = {
   "authenticateToLogin": "Autentikasi untuk login.",
   "somethingWrongWithAuthentication":
       "Terjadi kesalahan, harap login menggunakan email & password.",
+
   //Setup stuff
   "firstName": "Nama depan",
   "lastName": "Nama belakang",
@@ -20,6 +21,8 @@ const Map<String, String> idLanguage = {
   "birthday": "Tanggal lahir",
   "continue": "Lanjut",
   "travellingoterms": "Saya menyetujui syarat dan ketentuan Travellingo's",
+  "pleaseWait": "Mohon tunggu",
+
   //Error setup
   "fieldmustbefilled": "Field ini harus diisi.",
   "emailformatwrong": "Format email tidak sesuai.",
@@ -27,7 +30,9 @@ const Map<String, String> idLanguage = {
   "passwordformatwrong": "Password harus terdiri dari 8 huruf",
   "emailisdifferent": "Email dan konfirmasi email tidak sama.",
   "termsagree": "Kamu harus menyetujui syarat dan ketentuan untuk lanjut.",
+  "textFieldNotValid": "Text field kamu tidak dalam format yang valid..",
 
+  //Interface
   "changeLanguage": "Ganti bahasa",
   "profile": "Profil",
   "favorite": "Favorit",
