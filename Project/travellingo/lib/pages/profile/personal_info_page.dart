@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:travellingo/component/snackbar_component.dart';
+import 'package:travellingo/models/user.dart';
 import 'package:travellingo/pages/profile/widget/gender_radio.dart';
+import 'package:travellingo/pages/profile/widget/text_field_personal_info.dart';
 import 'package:travellingo/pages/sign_in/signin_page.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
 
@@ -38,6 +41,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     super.initState();
   }
 
+  bool isEditing = false;
+  final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,12 +56,33 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
           actions: [
             Padding(
               padding: const EdgeInsets.only(right: 20.0),
-              child: InkWell(
+              child: GestureDetector(
+                  onTap: () {
+                    if (isEditing) {
+                      context.read<UserDetailProvider>().updateUser(User(
+                          email: email.text,
+                          name: name.text,
+                          gender: gender,
+                          id: govId.text,
+                          phone: phone.text,
+                          objectId:
+                              context.read<UserDetailProvider>().user!.objectId,
+                          birthday: context
+                              .read<UserDetailProvider>()
+                              .user!
+                              .birthday));
+                      print("Hi");
+                    }
+                    isEditing = !isEditing;
+                    setState(() {});
+                  },
                   child: Text(
-                "edit".getString(context),
-                style: const TextStyle(
-                    color: Color(0xFFF5D161), fontWeight: FontWeight.bold),
-              )),
+                    isEditing
+                        ? "save".getString(context)
+                        : "edit".getString(context),
+                    style: const TextStyle(
+                        color: Color(0xFFF5D161), fontWeight: FontWeight.bold),
+                  )),
             )
           ],
         ),
@@ -68,56 +95,64 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextFormField(
-                        controller: name,
-                        decoration: InputDecoration(
-                            filled: false,
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: const BorderSide(
-                                    color: Color(0xFFF6F8FB), width: 2),
-                                borderRadius: BorderRadius.circular(20)),
-                            labelText: "name".getString(context).toUpperCase()),
-                      ),
+                      TextFieldPersonalInfo(
+                          content: "name",
+                          controller: name,
+                          validator: (value) {
+                            if (value == "") {
+                              return "fieldmustbefilled".getString(context);
+                            }
+                            return null;
+                          },
+                          isEnabled: isEditing),
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
+                      TextFieldPersonalInfo(
+                          content: "email",
                           controller: email,
-                          decoration: InputDecoration(
-                              filled: false,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Color(0xFFF6F8FB), width: 2),
-                                  borderRadius: BorderRadius.circular(20)),
-                              labelText:
-                                  "email".getString(context).toUpperCase())),
+                          validator: (value) {
+                            if (value == "") {
+                              return "fieldmustbefilled".getString(context);
+                            }
+                            if (!emailRegex.hasMatch(value!)) {
+                              return "emailformatwrong".getString(context);
+                            }
+                            return null;
+                          },
+                          isEnabled: isEditing),
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
+                      TextFieldPersonalInfo(
+                          content: "phoneNumber",
                           controller: phone,
-                          decoration: InputDecoration(
-                              filled: false,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Color(0xFFF6F8FB), width: 2),
-                                  borderRadius: BorderRadius.circular(20)),
-                              labelText: "phoneNumber"
-                                  .getString(context)
-                                  .toUpperCase())),
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                          validator: (value) {
+                            if (value == "") {
+                              return "fieldmustbefilled".getString(context);
+                            }
+                            if (!RegExp(r'\d{5,}').hasMatch(value!)) {
+                              return "phoneformatwrong".getString(context);
+                            }
+                            return null;
+                          },
+                          isEnabled: isEditing),
                       const SizedBox(
                         height: 10,
                       ),
-                      TextFormField(
+                      TextFieldPersonalInfo(
+                          content: "govId",
                           controller: govId,
-                          decoration: InputDecoration(
-                              filled: false,
-                              enabledBorder: OutlineInputBorder(
-                                  borderSide: const BorderSide(
-                                      color: Color(0xFFF6F8FB), width: 2),
-                                  borderRadius: BorderRadius.circular(20)),
-                              labelText:
-                                  "govId".getString(context).toUpperCase())),
+                          validator: (value) {
+                            if (value == "") {
+                              return "fieldmustbefilled".getString(context);
+                            }
+                            return null;
+                          },
+                          isEnabled: isEditing),
                       const SizedBox(
                         height: 10,
                       ),
@@ -130,6 +165,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       ),
                       GenderRadio(
                         gender: gender,
+                        isEditing: isEditing,
                       )
                     ],
                   ),

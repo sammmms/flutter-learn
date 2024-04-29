@@ -12,6 +12,8 @@ const Map<String, String> usLanguage = {
   "authenticateToLogin": "Authenticate to login.",
   "somethingWrongWithAuthentication":
       "Something wrong with authentication, please log-in using email & password.",
+  "yes": "Yes",
+  "no": "No",
 
   // Setup stuff
   "firstName": "First name",
@@ -49,7 +51,10 @@ const Map<String, String> usLanguage = {
   "logout": "Logout",
 
   // Personal info
+  "save": "Save",
   "edit": "Edit",
+  "quitConfirmation": "Are you sure you want to quit?",
+  "quitConfirmation2": "Any changes will be reverted.",
   "male": "Male",
   "female": "Female",
   "notSet": "Not Set",

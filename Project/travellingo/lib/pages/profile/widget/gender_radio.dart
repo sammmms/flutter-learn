@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
-import 'package:travellingo/utils/locales/gender_util.dart';
+import 'package:travellingo/utils/gender_util.dart';
 
 class GenderRadio extends StatefulWidget {
   final String gender;
-  const GenderRadio({super.key, required this.gender});
+  final bool isEditing;
+  const GenderRadio({super.key, required this.gender, required this.isEditing});
 
   @override
   State<GenderRadio> createState() => _GenderRadioState();
@@ -29,10 +30,7 @@ class _GenderRadioState extends State<GenderRadio> {
             Radio(
                 value: "male",
                 groupValue: gender,
-                onChanged: (value) {
-                  gender = value!;
-                  setState(() {});
-                }),
+                onChanged: widget.isEditing ? onChangeFunction : null),
             Text("male".getString(context)),
           ],
         ),
@@ -41,10 +39,7 @@ class _GenderRadioState extends State<GenderRadio> {
             Radio(
                 value: "female",
                 groupValue: gender,
-                onChanged: (value) {
-                  gender = value!;
-                  setState(() {});
-                }),
+                onChanged: widget.isEditing ? onChangeFunction : null),
             Text("female".getString(context)),
           ],
         ),
@@ -53,14 +48,16 @@ class _GenderRadioState extends State<GenderRadio> {
             Radio(
                 value: "",
                 groupValue: gender,
-                onChanged: (value) {
-                  gender = value!;
-                  setState(() {});
-                }),
+                onChanged: widget.isEditing ? onChangeFunction : null),
             Text("notSet".getString(context)),
           ],
         ),
       ],
     );
+  }
+
+  void onChangeFunction(String? value) {
+    gender = value!;
+    setState(() {});
   }
 }

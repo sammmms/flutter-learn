@@ -6,7 +6,7 @@ class UserDetailProvider extends ChangeNotifier {
 
   UserDetailProvider({this.user});
 
-  void changeUser(User newUser) {
+  void updateUser(User newUser) {
     user = newUser;
     notifyListeners();
   }

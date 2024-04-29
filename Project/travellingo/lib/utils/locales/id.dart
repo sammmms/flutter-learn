@@ -12,6 +12,8 @@ const Map<String, String> idLanguage = {
   "authenticateToLogin": "Autentikasi untuk login.",
   "somethingWrongWithAuthentication":
       "Terjadi kesalahan, harap login menggunakan email & password.",
+  "yes": "Ya",
+  "no": "Tidak",
 
   //Setup stuff
   "firstName": "Nama depan",
@@ -49,7 +51,10 @@ const Map<String, String> idLanguage = {
   "logout": "Keluar",
 
   // Personal info
+  "save": "Simpan",
   "edit": "Ubah",
+  "quitConfirmation": "Apakah kamu yakin ingin kembali?",
+  "quitConfirmation2": "Semua perubahan akan dibatalkan.",
   "male": "Laki-laki",
   "female": "Perempuan",
   "notSet": "Belum terpilih",

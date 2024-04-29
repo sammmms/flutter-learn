@@ -41,6 +41,7 @@ class _ProfilePageState extends State<ProfilePage> {
         });
       }
       bloc.getUser(token!, context);
+      print("Hi");
     });
     super.initState();
   }
@@ -49,10 +50,12 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text(
-          "profile".getString(context),
-          style: const TextStyle(fontWeight: FontWeight.bold),
-        )),
+          title: Text(
+            "profile".getString(context),
+            style: const TextStyle(fontWeight: FontWeight.bold),
+          ),
+          scrolledUnderElevation: 0,
+        ),
         body: StreamBuilder<UserState>(
             stream: bloc.controller.stream,
             builder: (context, snapshot) {
@@ -69,141 +72,146 @@ class _ProfilePageState extends State<ProfilePage> {
                 });
               }
               User data = snapshot.data!.receivedProfile!;
+              WidgetsBinding.instance.addPostFrameCallback((_) {
+                Provider.of<UserDetailProvider>(context, listen: false)
+                    .updateUser(data);
+              });
               return SingleChildScrollView(
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Center(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(90),
-                                child: Badge(
-                                    alignment: Alignment.bottomRight,
-                                    smallSize: 34,
-                                    backgroundColor: Colors.yellow,
-                                    label: const Icon(
-                                      Icons.edit,
-                                      color: Colors.white,
-                                    ),
-                                    largeSize: 30,
-                                    child: DottedBorder(
-                                      strokeWidth: 3,
-                                      color: const Color(0xFFF6F8FB),
-                                      dashPattern: const [9, 7],
-                                      borderType: BorderType.Circle,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(4.0),
-                                        child: CircleAvatar(
-                                          radius: 50,
-                                          backgroundColor:
-                                              const Color(0xFFF6F8FB),
-                                          child: data.pictureLink != ""
-                                              ? Image.memory(base64Decode(
-                                                  data.pictureLink!))
-                                              : null,
-                                        ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Center(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: InkWell(
+                                  borderRadius: BorderRadius.circular(90),
+                                  child: Badge(
+                                      alignment: Alignment.bottomRight,
+                                      smallSize: 34,
+                                      backgroundColor: Colors.yellow,
+                                      label: const Icon(
+                                        Icons.edit,
+                                        color: Colors.white,
                                       ),
-                                    )),
+                                      largeSize: 30,
+                                      child: DottedBorder(
+                                        strokeWidth: 3,
+                                        color: const Color(0xFFF6F8FB),
+                                        dashPattern: const [9, 7],
+                                        borderType: BorderType.Circle,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: CircleAvatar(
+                                            radius: 50,
+                                            backgroundColor:
+                                                const Color(0xFFF6F8FB),
+                                            child: data.pictureLink != ""
+                                                ? Image.memory(base64Decode(
+                                                    data.pictureLink!))
+                                                : null,
+                                          ),
+                                        ),
+                                      )),
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              data.name,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                              textScaler: const TextScaler.linear(1.1),
-                            ),
-                            const SizedBox(
-                              height: 5,
-                            ),
-                            Text(data.email)
-                          ],
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(
+                                data.name,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.bold),
+                                textScaler: const TextScaler.linear(1.1),
+                              ),
+                              const SizedBox(
+                                height: 5,
+                              ),
+                              Text(data.email)
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          "account".getString(context).toUpperCase(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, letterSpacing: 1),
-                          textScaler: const TextScaler.linear(0.9),
+                        const SizedBox(
+                          height: 20,
                         ),
-                      ),
-                      TextNavigator(
-                        needIcon: true,
-                        onTapFunction: () {
-                          Provider.of<UserDetailProvider>(context,
-                                  listen: false)
-                              .changeUser(data);
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const PersonalInfoPage()));
-                        },
-                        text: "personalInfo",
-                      ),
-                      TextNavigator(
-                        needIcon: true,
-                        onTapFunction: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const PrivacySharingPage()));
-                        },
-                        text: "privacyNSharing",
-                      ),
-                      const Divider(
-                        height: 1,
-                        color: Color(0xFFF6F8FB),
-                        indent: 20,
-                        endIndent: 20,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Text(
-                          "settings".getString(context).toUpperCase(),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.bold, letterSpacing: 1),
-                          textScaler: const TextScaler.linear(0.9),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            "account".getString(context).toUpperCase(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, letterSpacing: 1),
+                            textScaler: const TextScaler.linear(0.9),
+                          ),
                         ),
-                      ),
-                      TextNavigator(
-                        onTapFunction: () {},
-                        text: "notification",
-                        needIcon: true,
-                      ),
-                      TextNavigator(
-                        onTapFunction: () {},
-                        text: "appearance",
-                        needIcon: true,
-                      ),
-                      TextNavigator(
-                        onTapFunction: () {},
-                        text: "purchaseHistory",
-                      ),
-                      TextNavigator(
-                        onTapFunction: () {},
-                        text: "review",
-                      ),
-                      TextNavigator(
-                        onTapFunction: () {
-                          context.read<UserDetailProvider>().user = null;
-                          ResetPreferences.removeToken();
-                          Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(
-                                  builder: (context) => const SignInPage()),
-                              (route) => false);
-                        },
-                        text: "logout",
-                        style: const TextStyle(color: Colors.red),
-                      ),
-                    ]),
+                        TextNavigator(
+                          needIcon: true,
+                          onTapFunction: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const PersonalInfoPage()));
+                          },
+                          text: "personalInfo",
+                        ),
+                        TextNavigator(
+                          needIcon: true,
+                          onTapFunction: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const PrivacySharingPage()));
+                          },
+                          text: "privacyNSharing",
+                        ),
+                        const Divider(
+                          height: 1,
+                          color: Color(0xFFF6F8FB),
+                          indent: 20,
+                          endIndent: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Text(
+                            "settings".getString(context).toUpperCase(),
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold, letterSpacing: 1),
+                            textScaler: const TextScaler.linear(0.9),
+                          ),
+                        ),
+                        TextNavigator(
+                          onTapFunction: () {},
+                          text: "notification",
+                          needIcon: true,
+                        ),
+                        TextNavigator(
+                          onTapFunction: () {},
+                          text: "appearance",
+                          needIcon: true,
+                        ),
+                        TextNavigator(
+                          onTapFunction: () {},
+                          text: "purchaseHistory",
+                        ),
+                        TextNavigator(
+                          onTapFunction: () {},
+                          text: "review",
+                        ),
+                        TextNavigator(
+                          onTapFunction: () {
+                            context.read<UserDetailProvider>().user = null;
+                            ResetPreferences.removeToken();
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const SignInPage()),
+                                (route) => false);
+                          },
+                          text: "logout",
+                          style: const TextStyle(color: Colors.red),
+                        ),
+                      ]),
+                ),
               );
             }));
   }
