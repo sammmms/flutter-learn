@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:travellingo/pages/profile/privacy_sharing/request_personal_page.dart';
 import 'package:travellingo/pages/profile/widget/privacy_button.dart';
 
 class PrivacySharingPage extends StatelessWidget {
@@ -32,13 +33,21 @@ class PrivacySharingPage extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const PrivacyButton(
+              PrivacyButton(
+                  onClickFunction: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const RequestPersonalPage()));
+                  },
                   title: "requestYourPersonalData",
                   description: "requestYourPersonalDataDetail"),
               const SizedBox(
                 height: 10,
               ),
-              const PrivacyButton(
+              PrivacyButton(
+                  onClickFunction: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const RequestPersonalPage()));
+                  },
                   title: "deleteYourAccount",
                   description: "deleteYourAccountDetail"),
             ],

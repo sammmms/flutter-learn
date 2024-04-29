@@ -66,6 +66,8 @@ class _SignInFormState extends State<SignInForm> {
         _biometricType = BiometricType.fingerprint;
         setState(() {});
       }
+    }).catchError((error) {
+      debugPrint(error.toString());
     });
 
     super.initState();

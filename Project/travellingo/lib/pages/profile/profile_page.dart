@@ -1,17 +1,13 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:travellingo/bloc/user_bloc/user_state.dart';
 import 'package:travellingo/component/snackbar_component.dart';
 import 'package:travellingo/models/user.dart';
 import 'package:travellingo/bloc/user_bloc/user_bloc.dart';
 import 'package:travellingo/pages/profile/personal_info_page.dart';
 import 'package:travellingo/bloc/preferences/reset_preferences.dart';
-import 'package:travellingo/pages/profile/privacy_sharing_page.dart';
+import 'package:travellingo/pages/profile/privacy_sharing/privacy_sharing_page.dart';
 import 'package:travellingo/pages/profile/widget/avatar.dart';
 import 'package:travellingo/pages/profile/widget/text_navigator.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';

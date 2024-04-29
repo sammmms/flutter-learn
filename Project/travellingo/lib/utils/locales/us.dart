@@ -73,6 +73,13 @@ const Map<String, String> usLanguage = {
   "deleteYourAccountDetail":
       "By doing this your account and data will permanently be deleted.",
 
+  // Request personal data
+  "requestPersonalData": "Request personal data",
+  "requestPersonalDataDetail":
+      "Before we make you a copy of your personal data, please answer a few questions.",
+  "whereDoYouLive": "Where do you live?",
+  "whyAreYouRequestYourData": "Why are you requesting your data?",
+
   // Backend Stuff
   "somethingWrong": "Something is wrong.",
   "accountIsInvalid": "Email or password is wrong.",
