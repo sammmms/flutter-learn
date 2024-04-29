@@ -12,6 +12,7 @@ import 'package:travellingo/bloc/user_bloc/user_bloc.dart';
 import 'package:travellingo/pages/profile/personal_info_page.dart';
 import 'package:travellingo/bloc/preferences/reset_preferences.dart';
 import 'package:travellingo/pages/profile/privacy_sharing_page.dart';
+import 'package:travellingo/pages/profile/widget/avatar.dart';
 import 'package:travellingo/pages/profile/widget/text_navigator.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
 import 'package:travellingo/pages/sign_in/signin_page.dart';
@@ -29,20 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   void initState() {
     //Check for user token, is token is missing, then bump user to login page
-    SharedPreferences.getInstance().then((value) {
-      String? token = value.getString('token');
-      if (token == null) {
-        WidgetsBinding.instance.addPostFrameCallback((_) {
-          showMySnackBar(context, "tokenExpired");
-          Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => const SignInPage()),
-              (route) => false);
-          return;
-        });
-      }
-      bloc.getUser(token!, context);
-      print("Hi");
-    });
+    bloc.getUser();
     super.initState();
   }
 
@@ -86,39 +74,7 @@ class _ProfilePageState extends State<ProfilePage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(3.0),
-                                child: InkWell(
-                                  borderRadius: BorderRadius.circular(90),
-                                  child: Badge(
-                                      alignment: Alignment.bottomRight,
-                                      smallSize: 34,
-                                      backgroundColor: Colors.yellow,
-                                      label: const Icon(
-                                        Icons.edit,
-                                        color: Colors.white,
-                                      ),
-                                      largeSize: 30,
-                                      child: DottedBorder(
-                                        strokeWidth: 3,
-                                        color: const Color(0xFFF6F8FB),
-                                        dashPattern: const [9, 7],
-                                        borderType: BorderType.Circle,
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(4.0),
-                                          child: CircleAvatar(
-                                            radius: 50,
-                                            backgroundColor:
-                                                const Color(0xFFF6F8FB),
-                                            child: data.pictureLink != ""
-                                                ? Image.memory(base64Decode(
-                                                    data.pictureLink!))
-                                                : null,
-                                          ),
-                                        ),
-                                      )),
-                                ),
-                              ),
+                              BorderedAvatar(content: data.pictureLink),
                               const SizedBox(
                                 height: 5,
                               ),
@@ -151,8 +107,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           needIcon: true,
                           onTapFunction: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const PersonalInfoPage()));
+                                builder: (context) => Provider<UserBloc>.value(
+                                    value: bloc,
+                                    child: const PersonalInfoPage())));
                           },
                           text: "personalInfo",
                         ),

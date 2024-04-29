@@ -77,6 +77,8 @@ const Map<String, String> usLanguage = {
   "somethingWrong": "Something is wrong.",
   "accountIsInvalid": "Email or password is wrong.",
   "userRegistered": "Email is registered.",
-  "succesfullyRegistered": "Succesfully registered.",
-  "tokenExpired": "Token has expired, please sign-in again."
+  "successfullyRegistered": "Successfully registered.",
+  "tokenExpired": "Token has expired, please sign-in again.",
+  "successfullyDeleted": "Successfully deleted your account.",
+  "successfullyUpdated": "Successfully updated."
 };

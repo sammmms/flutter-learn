@@ -6,12 +6,13 @@ class UserState {
   final bool loading;
   final String? errorMessage;
   final int? errorStatus;
+  final String? receivedMessage;
 
-  UserState({
-    this.error = false,
-    this.loading = false,
-    this.errorMessage,
-    this.errorStatus,
-    this.receivedProfile,
-  });
+  UserState(
+      {this.error = false,
+      this.loading = false,
+      this.errorMessage,
+      this.errorStatus,
+      this.receivedProfile,
+      this.receivedMessage});
 }

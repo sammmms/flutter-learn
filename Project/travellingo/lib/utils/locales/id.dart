@@ -78,5 +78,7 @@ const Map<String, String> idLanguage = {
   "accountIsInvalid": "Email atau password salah.",
   "userRegistered": "Email sudah terdaftar.",
   "succesfullyRegistered": "Email berhasil didaftarkan.",
-  "tokenExpired": "Token sudah berakhir, harap login kembali."
+  "tokenExpired": "Token sudah berakhir, harap login kembali.",
+  "successfullyDeleted": "Berhasil menghapus akun.",
+  "successfullyUpdated": "Berhasil mengubah."
 };
