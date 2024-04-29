@@ -1,10 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:dotted_border/dotted_border.dart';
 import 'package:travellingo/bloc/user_bloc/user_state.dart';
 import 'package:travellingo/component/snackbar_component.dart';
 import 'package:travellingo/models/user.dart';
@@ -29,7 +25,6 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
-    //Check for user token, is token is missing, then bump user to login page
     bloc.getUser();
     super.initState();
   }
@@ -107,9 +102,8 @@ class _ProfilePageState extends State<ProfilePage> {
                           needIcon: true,
                           onTapFunction: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => Provider<UserBloc>.value(
-                                    value: bloc,
-                                    child: const PersonalInfoPage())));
+                                builder: (context) =>
+                                    const PersonalInfoPage()));
                           },
                           text: "personalInfo",
                         ),

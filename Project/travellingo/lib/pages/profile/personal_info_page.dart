@@ -41,7 +41,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     gender = user.gender.toString();
     phone.text = user.phone;
     govId.text = user.id ?? "";
-    bloc = context.read<UserBloc>();
+    bloc = UserBloc();
     super.initState();
   }
 
@@ -53,15 +53,11 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     return StreamBuilder<UserState>(
         stream: bloc.controller.stream,
         builder: (context, snapshot) {
-          if (!snapshot.hasData || (snapshot.data?.loading ?? false)) {
-            showMySnackBar(context, "somethingWrong");
-            Navigator.pop(context);
-          }
-          if (snapshot.data!.error) {
+          if (snapshot.data?.error ?? false) {
             showMySnackBar(
                 context, snapshot.data?.errorMessage ?? "somethingWrong");
           }
-          if (snapshot.data!.receivedMessage != null) {
+          if (snapshot.data?.receivedMessage != null) {
             showMySnackBar(context, snapshot.data!.receivedMessage!);
           }
           return Scaffold(
@@ -71,11 +67,13 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 iconTheme: const IconThemeData(),
+                //TODO: Update by passing a function
+                //TODO: Gender is not being passed, need to pass gender
                 actions: [
                   Padding(
                     padding: const EdgeInsets.only(right: 20.0),
                     child: GestureDetector(
-                        onTap: snapshot.data!.loading
+                        onTap: snapshot.data?.loading ?? false
                             ? null
                             : () async {
                                 if (isEditing) {

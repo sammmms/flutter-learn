@@ -46,7 +46,7 @@ class UserBloc {
         "id": user.id
       });
       var data = response.data;
-      controller.add(UserState(receivedProfile: data));
+      controller.add(UserState(receivedMessage: data));
     } on DioException catch (err) {
       controller.add(UserState(
         error: true,
