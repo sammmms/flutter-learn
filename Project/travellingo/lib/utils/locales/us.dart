@@ -80,5 +80,6 @@ const Map<String, String> usLanguage = {
   "successfullyRegistered": "Successfully registered.",
   "tokenExpired": "Token has expired, please sign-in again.",
   "successfullyDeleted": "Successfully deleted your account.",
-  "successfullyUpdated": "Successfully updated."
+  "successfullyUpdated": "Successfully updated.",
+  "dataIncomplete": "Data is incomplete."
 };

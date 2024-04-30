@@ -18,13 +18,12 @@ class SetUpPage extends StatefulWidget {
 }
 
 class _SetUpPageState extends State<SetUpPage> {
-  final firstName = TextEditingController(text: "Aswin");
-  final lastName = TextEditingController(text: "Angkasa");
-  final confirmEmail =
-      TextEditingController(text: "221113724@students.mikroskil.ac.id");
-  final currentNumber = TextEditingController(text: "87879345955");
-  final password = TextEditingController(text: "221113724");
-  final birthday = TextEditingController(text: "2004-10-04");
+  final firstName = TextEditingController();
+  final lastName = TextEditingController();
+  final confirmEmail = TextEditingController();
+  final currentNumber = TextEditingController();
+  final password = TextEditingController();
+  final birthday = TextEditingController(text: "2000-01-01");
   final authBloc = AuthBloc();
   String currentCountry = "62";
   bool isObstructed = true;
@@ -456,27 +455,32 @@ class _SetUpPageState extends State<SetUpPage> {
                                         isAgreeing = !isAgreeing;
                                       });
                                     },
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "travellingoterms".getString(context),
-                                          style: const TextStyle(
-                                              fontSize: 11,
-                                              fontWeight: FontWeight.bold,
-                                              color: Color(0xFF1B1446)),
-                                          textScaler:
-                                              const TextScaler.linear(1.1),
-                                        ),
-                                        !isAgreeing
-                                            ? Text(
-                                                "termsagree".getString(context),
-                                                style: const TextStyle(
-                                                    color: Colors.redAccent,
-                                                    fontSize: 10))
-                                            : const SizedBox(),
-                                      ],
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.75,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            "travellingoterms"
+                                                .getString(context),
+                                            style: const TextStyle(
+                                                fontSize: 11,
+                                                fontWeight: FontWeight.bold,
+                                                color: Color(0xFF1B1446)),
+                                            textScaler:
+                                                const TextScaler.linear(1.1),
+                                          ),
+                                          if (!isAgreeing)
+                                            Text(
+                                              "termsagree".getString(context),
+                                              style: const TextStyle(
+                                                  color: Colors.redAccent,
+                                                  fontSize: 10),
+                                            )
+                                        ],
+                                      ),
                                     ),
                                   )
                                 ]),

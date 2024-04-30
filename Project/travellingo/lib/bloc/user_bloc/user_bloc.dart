@@ -42,8 +42,8 @@ class UserBloc {
         "name": user.name,
         "email": user.email,
         "phoneNumber": user.phone,
-        "gender": user.gender,
-        "id": user.id
+        "gender": user.gender ?? "",
+        "id": user.id ?? ""
       });
       var data = response.data;
       controller.add(UserState(receivedMessage: data));
@@ -54,6 +54,7 @@ class UserBloc {
         errorStatus: err.response?.statusCode,
       ));
     } catch (err) {
+      print(err);
       controller.add(UserState(
         error: true,
         errorMessage: "somethingWrong",

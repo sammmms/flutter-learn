@@ -34,8 +34,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   final FlutterLocalization localization = FlutterLocalization.instance;
   final globalKey = GlobalKey<FormState>();
-  final email =
-      TextEditingController(text: "221113724@students.mikroskil.ac.id");
+  final email = TextEditingController();
   var isError = false;
   final emailregex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
 
