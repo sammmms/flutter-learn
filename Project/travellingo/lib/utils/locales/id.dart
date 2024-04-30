@@ -73,6 +73,13 @@ const Map<String, String> idLanguage = {
   "deleteYourAccountDetail":
       "Dengan melakukan ini, akun serta data anda akan terhapus selamanya.",
 
+  // Request personal data
+  "requestPersonalData": "Permintaan data pribadi",
+  "requestPersonalDataDetail":
+      "Sebelum kami memberikan salinan data pribadi anda, harap menjawab beberapa pertanyaan kami.",
+  "whereDoYouLive": "Dimana anda berdomisili?",
+  "whyAreYouRequestYourData": "Alasan anda meminta data pribadi?",
+
   // Backend Stuff
   "somethingWrong": "Terjadi kesalahan.",
   "accountIsInvalid": "Email atau password salah.",
