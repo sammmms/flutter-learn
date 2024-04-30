@@ -1,26 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
+import 'package:travellingo/provider/change_gender_provider.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
 import 'package:travellingo/utils/gender_util.dart';
 
 class GenderRadio extends StatefulWidget {
-  final String gender;
+  final Function(String) onChangeFunction;
   final bool isEditing;
-  const GenderRadio({super.key, required this.gender, required this.isEditing});
+  const GenderRadio(
+      {super.key, required this.onChangeFunction, required this.isEditing});
 
   @override
   State<GenderRadio> createState() => _GenderRadioState();
 }
 
 class _GenderRadioState extends State<GenderRadio> {
-  late String gender;
-  @override
-  void initState() {
-    gender = widget.gender;
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,8 +24,8 @@ class _GenderRadioState extends State<GenderRadio> {
           children: [
             Radio(
                 value: "male",
-                groupValue: gender,
-                onChanged: widget.isEditing ? onChangeFunction : null),
+                groupValue: context.watch<ChangeGenderProvider>().currentGender,
+                onChanged: widget.isEditing ? onCall : null),
             Text("male".getString(context)),
           ],
         ),
@@ -38,8 +33,8 @@ class _GenderRadioState extends State<GenderRadio> {
           children: [
             Radio(
                 value: "female",
-                groupValue: gender,
-                onChanged: widget.isEditing ? onChangeFunction : null),
+                groupValue: context.watch<ChangeGenderProvider>().currentGender,
+                onChanged: widget.isEditing ? onCall : null),
             Text("female".getString(context)),
           ],
         ),
@@ -47,8 +42,8 @@ class _GenderRadioState extends State<GenderRadio> {
           children: [
             Radio(
                 value: "",
-                groupValue: gender,
-                onChanged: widget.isEditing ? onChangeFunction : null),
+                groupValue: context.watch<ChangeGenderProvider>().currentGender,
+                onChanged: widget.isEditing ? onCall : null),
             Text("notSet".getString(context)),
           ],
         ),
@@ -56,8 +51,8 @@ class _GenderRadioState extends State<GenderRadio> {
     );
   }
 
-  void onChangeFunction(String? value) {
-    gender = value!;
-    setState(() {});
+  void onCall(String? value) {
+    widget.onChangeFunction(value!);
+    context.read<ChangeGenderProvider>().changeGender(value);
   }
 }

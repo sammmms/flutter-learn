@@ -9,6 +9,7 @@ import 'package:travellingo/models/user.dart';
 import 'package:travellingo/pages/profile/widget/gender_radio.dart';
 import 'package:travellingo/pages/profile/widget/text_field_personal_info.dart';
 import 'package:travellingo/pages/sign_in/signin_page.dart';
+import 'package:travellingo/provider/change_gender_provider.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
 
 class PersonalInfoPage extends StatefulWidget {
@@ -41,7 +42,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     gender = user.gender.toString();
     phone.text = user.phone;
     govId.text = user.id ?? "";
-    bloc = UserBloc();
+    bloc = context.read<UserBloc>();
     super.initState();
   }
 
@@ -95,18 +96,22 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                       .read<UserDetailProvider>()
                                       .updateUser(newUpdatedProfile);
                                   await bloc.updateUser(newUpdatedProfile);
+                                  print("hi");
+                                  await bloc.getUser();
                                 }
                                 isEditing = !isEditing;
                                 setState(() {});
                               },
-                        child: Text(
-                          isEditing
-                              ? "save".getString(context)
-                              : "edit".getString(context),
-                          style: const TextStyle(
-                              color: Color(0xFFF5D161),
-                              fontWeight: FontWeight.bold),
-                        )),
+                        child: snapshot.data?.loading ?? false
+                            ? CircularProgressIndicator()
+                            : Text(
+                                isEditing
+                                    ? "save".getString(context)
+                                    : "edit".getString(context),
+                                style: const TextStyle(
+                                    color: Color(0xFFF5D161),
+                                    fontWeight: FontWeight.bold),
+                              )),
                   )
                 ],
               ),
@@ -193,9 +198,13 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                 style: const TextStyle(fontSize: 12),
                               ),
                             ),
-                            GenderRadio(
-                              gender: gender,
-                              isEditing: isEditing,
+                            ChangeNotifierProvider<ChangeGenderProvider>(
+                              create: (context) =>
+                                  ChangeGenderProvider(currentGender: gender),
+                              child: GenderRadio(
+                                onChangeFunction: changeGender,
+                                isEditing: isEditing,
+                              ),
                             )
                           ],
                         ),
@@ -203,5 +212,10 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                     );
                   }));
         });
+  }
+
+  void changeGender(String newGender) {
+    gender = newGender;
+    setState(() {});
   }
 }

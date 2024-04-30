@@ -54,6 +54,13 @@ class _ProfilePageState extends State<ProfilePage> {
                       context, snapshot.data?.errorMessage ?? "somethingWrong");
                 });
               }
+
+              if (snapshot.data?.receivedProfile == null) {
+                return SizedBox(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: const Center(child: CircularProgressIndicator()));
+              }
               User data = snapshot.data!.receivedProfile!;
               WidgetsBinding.instance.addPostFrameCallback((_) {
                 Provider.of<UserDetailProvider>(context, listen: false)
@@ -102,8 +109,9 @@ class _ProfilePageState extends State<ProfilePage> {
                           needIcon: true,
                           onTapFunction: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const PersonalInfoPage()));
+                                builder: (context) => Provider<UserBloc>.value(
+                                    value: bloc,
+                                    child: const PersonalInfoPage())));
                           },
                           text: "personalInfo",
                         ),
