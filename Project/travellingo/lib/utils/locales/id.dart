@@ -78,7 +78,7 @@ const Map<String, String> idLanguage = {
   "requestPersonalDataDetail":
       "Sebelum kami memberikan salinan data pribadi anda, harap menjawab beberapa pertanyaan kami.",
   "whereDoYouLive": "Dimana anda berdomisili?",
-  "whyAreYouRequestYourData": "Alasan anda meminta data pribadi?",
+  "whyAreYouRequestingYourData": "Alasan anda meminta data pribadi?",
 
   // Backend Stuff
   "somethingWrong": "Terjadi kesalahan.",
