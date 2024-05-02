@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:provider/provider.dart';
 import 'package:travellingo/provider/change_gender_provider.dart';
-import 'package:travellingo/provider/user_detail_provider.dart';
-import 'package:travellingo/utils/gender_util.dart';
 
 class GenderRadio extends StatefulWidget {
   final Function(String) onChangeFunction;

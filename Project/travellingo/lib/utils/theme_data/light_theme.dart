@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 ThemeData lightTheme = ThemeData(
   fontFamily: "Poppins",
   indicatorColor: Colors.yellow,
-  progressIndicatorTheme: ProgressIndicatorThemeData(color: Colors.yellow),
+  progressIndicatorTheme:
+      const ProgressIndicatorThemeData(color: Colors.yellow),
   appBarTheme: const AppBarTheme(
     iconTheme: IconThemeData(
-      color: const Color(0xFFF5D161),
+      color: Color(0xFFF5D161),
     ),
     color: Colors.white,
     titleTextStyle: TextStyle(

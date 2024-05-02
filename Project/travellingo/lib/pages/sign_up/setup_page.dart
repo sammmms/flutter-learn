@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:travellingo/bloc/auth_bloc/auth_bloc.dart';
 import 'package:travellingo/bloc/auth_bloc/auth_state.dart';

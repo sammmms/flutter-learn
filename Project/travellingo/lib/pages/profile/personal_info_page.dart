@@ -68,8 +68,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 iconTheme: const IconThemeData(),
-                //TODO: Update by passing a function
-                //TODO: Gender is not being passed, need to pass gender
                 actions: [
                   Padding(
                     padding: const EdgeInsets.only(right: 20.0),
@@ -96,14 +94,13 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                       .read<UserDetailProvider>()
                                       .updateUser(newUpdatedProfile);
                                   await bloc.updateUser(newUpdatedProfile);
-                                  print("hi");
                                   await bloc.getUser();
                                 }
                                 isEditing = !isEditing;
                                 setState(() {});
                               },
                         child: snapshot.data?.loading ?? false
-                            ? CircularProgressIndicator()
+                            ? const CircularProgressIndicator()
                             : Text(
                                 isEditing
                                     ? "save".getString(context)

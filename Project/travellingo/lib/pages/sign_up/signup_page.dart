@@ -75,7 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       const SizedBox(
                         height: 40,
                       ),
-                      TextLabel(content: "email"),
+                      const TextLabel(content: "email"),
                       const SizedBox(
                         height: 5,
                       ),

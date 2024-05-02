@@ -10,7 +10,7 @@ class CheckoutPage extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: const Color(0xFFF5D161)),
+            icon: const Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Text(

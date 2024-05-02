@@ -54,7 +54,6 @@ class UserBloc {
         errorStatus: err.response?.statusCode,
       ));
     } catch (err) {
-      print(err);
       controller.add(UserState(
         error: true,
         errorMessage: "somethingWrong",
