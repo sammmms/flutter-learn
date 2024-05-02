@@ -79,6 +79,13 @@ const Map<String, String> idLanguage = {
       "Sebelum kami memberikan salinan data pribadi anda, harap menjawab beberapa pertanyaan kami.",
   "whereDoYouLive": "Dimana anda berdomisili?",
   "whyAreYouRequestingYourData": "Alasan anda meminta data pribadi?",
+  "requestData": "Buat permintaan",
+
+  // Delete your account
+  "deleteAccountDetail":
+      "To confirm you're the true owner of this account, we may contact you",
+  "whyAreYouDeletingYourAccount": "Why are you deleting this account?",
+  "deleteAccount": "Hapus Akun",
 
   // Backend Stuff
   "somethingWrong": "Terjadi kesalahan.",

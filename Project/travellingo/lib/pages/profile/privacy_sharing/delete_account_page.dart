@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:travellingo/utils/country_code_list.dart';
 
-class RequestPersonalPage extends StatefulWidget {
-  const RequestPersonalPage({super.key});
+class DeleteAccountPage extends StatefulWidget {
+  const DeleteAccountPage({super.key});
 
   @override
-  State<RequestPersonalPage> createState() => _RequestPersonalPageState();
+  State<DeleteAccountPage> createState() => _DeleteAccountPageState();
 }
 
-class _RequestPersonalPageState extends State<RequestPersonalPage> {
+class _DeleteAccountPageState extends State<DeleteAccountPage> {
   String? livingLocation;
   final reason = TextEditingController();
   @override
@@ -27,7 +27,7 @@ class _RequestPersonalPageState extends State<RequestPersonalPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "requestPersonalDataDetail".getString(context),
+                  "deleteAccountDetail".getString(context),
                   style: const TextStyle(
                       color: Color.fromARGB(255, 128, 128, 128),
                       fontWeight: FontWeight.bold),
@@ -92,7 +92,7 @@ class _RequestPersonalPageState extends State<RequestPersonalPage> {
                   height: 20,
                 ),
                 Text(
-                  "whyAreYouRequestingYourData".getString(context),
+                  "whyAreYouDeletingYourAccount".getString(context),
                   style: const TextStyle(
                       color: Color.fromARGB(255, 27, 20, 70),
                       fontWeight: FontWeight.bold),
@@ -149,7 +149,29 @@ class _RequestPersonalPageState extends State<RequestPersonalPage> {
                     width: double.infinity,
                     height: 48,
                     child: OutlinedButton(
-                        onPressed: () {}, child: const Text("Request data")))
+                        style: ButtonStyle(
+                            backgroundColor:
+                                const MaterialStatePropertyAll(Colors.white),
+                            shape: MaterialStatePropertyAll(
+                              RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16)),
+                            ),
+                            side: const MaterialStatePropertyAll(BorderSide(
+                                color: Color.fromRGBO(7, 104, 253, 0.1)))),
+                        onPressed: () {},
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            const Icon(
+                              Icons.delete,
+                              color: Colors.redAccent,
+                            ),
+                            Text(
+                              "deleteAccount".getString(context),
+                              style: const TextStyle(color: Colors.redAccent),
+                            )
+                          ],
+                        )))
               ],
             ),
           ),

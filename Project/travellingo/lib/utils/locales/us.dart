@@ -79,6 +79,13 @@ const Map<String, String> usLanguage = {
       "Before we make you a copy of your personal data, please answer a few questions.",
   "whereDoYouLive": "Where do you live?",
   "whyAreYouRequestingYourData": "Why are you requesting your data?",
+  "requestData": "Request Data",
+
+  // Delete your account
+  "deleteAccountDetail":
+      "To confirm you're the true owner of this account, we may contact you",
+  "whyAreYouDeletingYourAccount": "Why are you deleting this account?",
+  "deleteAccount": "Delete Account",
 
   // Backend Stuff
   "somethingWrong": "Something is wrong.",
