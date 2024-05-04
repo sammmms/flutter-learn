@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:travellingo/basket.dart';
+import 'package:travellingo/pages/flight_page.dart';
 import 'package:travellingo/pages/profile/profile_page.dart';
+import 'package:travellingo/transaction.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,9 +24,9 @@ class _HomePageState extends State<HomePage> {
     };
     return Scaffold(
         body: _currentPage == 0
-            ? const Text("Home")
+            ? FlightPage()
             : _currentPage == 1
-                ? const Text("Transaction")
+                ? BasketPage()
                 : _currentPage == 2
                     ? const Text("Favorite")
                     : _currentPage == 3
