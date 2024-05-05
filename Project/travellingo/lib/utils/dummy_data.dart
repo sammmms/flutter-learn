@@ -58,3 +58,37 @@ final List<Map<String, dynamic>> transactions = [
     "image": "https://example.com/images/himeji.jpg"
   },
 ];
+
+List<Map<String, dynamic>> japanCities = [
+  {"country": "Japan", "city": "Tokyo"},
+  {"country": "Japan", "city": "Osaka"},
+  {"country": "Japan", "city": "Kyoto"},
+  {"country": "Japan", "city": "Yokohama"},
+  {"country": "Japan", "city": "Nagoya"},
+  {"country": "Japan", "city": "Sapporo"},
+  {"country": "Japan", "city": "Fukuoka"},
+  {"country": "Japan", "city": "Kobe"},
+  {"country": "Japan", "city": "Sendai"},
+  {"country": "Japan", "city": "Hiroshima"},
+  {"country": "Japan", "city": "Nara"},
+  {"country": "Japan", "city": "Kanazawa"},
+  {"country": "Japan", "city": "Nagasaki"},
+  {"country": "Japan", "city": "Okinawa"},
+  {"country": "Japan", "city": "Miyazaki"},
+  {"country": "Japan", "city": "Kagoshima"},
+  {"country": "Japan", "city": "Naha"},
+  {"country": "Japan", "city": "Kumamoto"},
+  {"country": "Japan", "city": "Niigata"},
+  {"country": "Japan", "city": "Matsuyama"},
+  {"country": "Japan", "city": "Kochi"},
+  {"country": "Japan", "city": "Toyama"},
+  {"country": "Japan", "city": "Akita"},
+  {"country": "Japan", "city": "Shizuoka"},
+  {"country": "Japan", "city": "Iwaki"},
+  {"country": "Japan", "city": "Utsunomiya"},
+  {"country": "Japan", "city": "Himeji"},
+  {"country": "Japan", "city": "Kawasaki"},
+  {"country": "Japan", "city": "Yokosuka"},
+  {"country": "Japan", "city": "Nagano"}
+  // Add more cities here if needed
+];

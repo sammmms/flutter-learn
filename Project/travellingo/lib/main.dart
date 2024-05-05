@@ -4,7 +4,7 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:provider/provider.dart';
 import 'package:travellingo/bloc/auth_bloc/auth_bloc.dart';
 import 'package:travellingo/bloc/auth_bloc/auth_state.dart';
-import 'package:travellingo/pages/home_page.dart';
+import 'package:travellingo/pages/main_page.dart';
 import 'package:travellingo/utils/locales/locale.dart';
 import 'package:travellingo/pages/sign_in/signin_page.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> {
               stream: bloc.controller.stream,
               builder: (context, snapshot) {
                 if (snapshot.data?.receivedToken != null) {
-                  return const HomePage();
+                  return const MainPage();
                 }
                 return const SignInPage();
               },
