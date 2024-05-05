@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import './select_seat.dart';
+import 'select_seat.dart';
 
 class TiketDetailPage extends StatefulWidget {
   final Map<String, dynamic>? data; // Data can be null

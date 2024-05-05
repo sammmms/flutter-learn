@@ -1,22 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'payment.dart';
 
 class CheckoutPage extends StatelessWidget {
-  const CheckoutPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            icon: const Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
+            icon: Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
             onPressed: () => Navigator.of(context).pop(),
           ),
           title: Text(
             'Checkout',
             style: GoogleFonts.dmSans(
-              textStyle: const TextStyle(
+              textStyle: TextStyle(
                 color: Color(0xFF292F2E),
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
@@ -28,15 +27,14 @@ class CheckoutPage extends StatelessWidget {
           child: Column(
             children: [
               // ... Progress bar code from previous snippets
-              const SizedBox(height: 24), // Adds space below the progress bar
+              SizedBox(height: 24), // Adds space below the progress bar
               Container(
-                margin: const EdgeInsets.symmetric(horizontal: 24)
+                margin: EdgeInsets.symmetric(horizontal: 24)
                     .copyWith(bottom: 24), // Horizontal and bottom margin of 24
-                padding:
-                    const EdgeInsets.all(16), // Padding inside the container
-                color: const Color(
+                padding: EdgeInsets.all(16), // Padding inside the container
+                color: Color(
                     0xFFFDE6EB), // Change this to your desired danger color
-                child: const Row(
+                child: Row(
                   children: <Widget>[
                     Icon(Icons.access_time,
                         color: Color(0xFFEE3D60)), // Icon with danger color
@@ -63,8 +61,8 @@ class CheckoutPage extends StatelessWidget {
 
               Container(
                 height: 194, // Set the card height
-                margin: const EdgeInsets.all(24),
-                padding: const EdgeInsets.all(12),
+                margin: EdgeInsets.all(24),
+                padding: EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
@@ -73,7 +71,7 @@ class CheckoutPage extends StatelessWidget {
                       color: Colors.grey.withOpacity(0.2),
                       spreadRadius: 1,
                       blurRadius: 6,
-                      offset: const Offset(0, 3),
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),
@@ -87,10 +85,10 @@ class CheckoutPage extends StatelessWidget {
                         Container(
                           height: 32,
                           width: 52,
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             image: DecorationImage(
                               image: NetworkImage(
-                                  'https://example.com/airline-logo.png'),
+                                  'https://placehold.jp/150x150.png'),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -98,7 +96,7 @@ class CheckoutPage extends StatelessWidget {
                         Text(
                           'View Details',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF3E84A8),
+                            color: Color(0xFF3E84A8),
                             fontSize: 14,
                           ),
                         ),
@@ -110,14 +108,14 @@ class CheckoutPage extends StatelessWidget {
                         Text(
                           'Kobe',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF8C8D89),
+                            color: Color(0xFF8C8D89),
                             fontSize: 14,
                           ),
                         ),
                         Text(
                           'Himeji Castle',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF8C8D89),
+                            color: Color(0xFF8C8D89),
                             fontSize: 14,
                           ),
                         ),
@@ -129,11 +127,11 @@ class CheckoutPage extends StatelessWidget {
                         Text(
                           '19.00 PM',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF141511),
+                            color: Color(0xFF141511),
                             fontSize: 16,
                           ),
                         ),
-                        const Row(
+                        Row(
                           mainAxisSize: MainAxisSize
                               .min, // Use the minimum amount of space
                           children: [
@@ -159,7 +157,7 @@ class CheckoutPage extends StatelessWidget {
                         Text(
                           '19.10 PM',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF141511),
+                            color: Color(0xFF141511),
                             fontSize: 16,
                           ),
                         ),
@@ -171,21 +169,21 @@ class CheckoutPage extends StatelessWidget {
                         Text(
                           '01 April 2024',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF8C8D89),
+                            color: Color(0xFF8C8D89),
                             fontSize: 12,
                           ),
                         ),
                         Text(
                           'Duration 10m',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF8C8D89),
+                            color: Color(0xFF8C8D89),
                             fontSize: 12,
                           ),
                         ),
                         Text(
                           '01 April 2024',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF8C8D89),
+                            color: Color(0xFF8C8D89),
                             fontSize: 12,
                           ),
                         ),
@@ -194,70 +192,75 @@ class CheckoutPage extends StatelessWidget {
                   ],
                 ),
               ),
+
               Text(
                 'Passanger List',
                 style: GoogleFonts.inter(
                   fontSize: 16,
                   fontWeight: FontWeight.w500,
-                  color: const Color(0xFF141511), // Set text color
+                  color: Color(0xFF141511), // Set text color
                 ),
               ),
               Card(
-                margin: const EdgeInsets.all(24), // Set the card margin
+                margin: EdgeInsets.all(24), // Set the card margin
                 child: Padding(
-                  padding: const EdgeInsets.all(
-                      12), // Set the padding inside the card
-                  child: SizedBox(
+                  padding:
+                      EdgeInsets.all(12), // Set the padding inside the card
+                  child: Container(
                     height: 78,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         // Left container
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              'Luaman Guaamin',
-                              style: GoogleFonts.inter(
-                                fontSize: 12,
-                                fontWeight: FontWeight.w500,
-                                color: const Color(
-                                    0xFF141511), // Set text color for name
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text(
+                                'Luaman Guaamin',
+                                style: GoogleFonts.inter(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(
+                                      0xFF141511), // Set text color for name
+                                ),
                               ),
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Text(
-                                  'Economy',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: const Color(
-                                        0xFF8C8D89), // Set text color for 'Economy'
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    'Economy',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(
+                                          0xFF8C8D89), // Set text color for 'Economy'
+                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                    width: 4), // Spacing between text and icon
-                                const Icon(
-                                  Icons.lens,
-                                  size: 5,
-                                  color: Color(0xFF8C8D89),
-                                ),
-                                const SizedBox(
-                                    width: 4), // Spacing between icon and text
-                                Text(
-                                  '8D',
-                                  style: GoogleFonts.inter(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w500,
-                                    color: const Color(
-                                        0xFF8C8D89), // Set text color for '8D'
+                                  SizedBox(
+                                      width:
+                                          4), // Spacing between text and icon
+                                  Icon(
+                                    Icons.lens,
+                                    size: 5,
+                                    color: Color(0xFF8C8D89),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                  SizedBox(
+                                      width:
+                                          4), // Spacing between icon and text
+                                  Text(
+                                    '8D',
+                                    style: GoogleFonts.inter(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w500,
+                                      color: Color(
+                                          0xFF8C8D89), // Set text color for '8D'
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                         // Right container
                         Container(
@@ -267,7 +270,7 @@ class CheckoutPage extends StatelessWidget {
                             style: GoogleFonts.inter(
                               fontSize: 12,
                               fontWeight: FontWeight.w500,
-                              color: const Color(
+                              color: Color(
                                   0xFF3E84A8), // Set text color for 'Change Seat'
                             ),
                           ),
@@ -278,7 +281,7 @@ class CheckoutPage extends StatelessWidget {
                 ),
               ),
               Container(
-                padding: const EdgeInsets.symmetric(
+                padding: EdgeInsets.symmetric(
                     horizontal:
                         24), // horizontal padding to match the card's margin
                 child: Row(
@@ -289,7 +292,7 @@ class CheckoutPage extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 16,
                         fontWeight: FontWeight.normal,
-                        color: const Color(0xFF141511), // Set text color
+                        color: Color(0xFF141511), // Set text color
                       ),
                     ),
                     Text(
@@ -297,7 +300,7 @@ class CheckoutPage extends StatelessWidget {
                       style: GoogleFonts.inter(
                         fontSize: 12,
                         fontWeight: FontWeight.normal,
-                        color: const Color(0xFF3E84A8), // Set text color
+                        color: Color(0xFF3E84A8), // Set text color
                       ),
                     ),
                   ],
@@ -305,27 +308,26 @@ class CheckoutPage extends StatelessWidget {
               ),
 
               // Spacing between the text row and the card
-              const SizedBox(height: 16),
+              SizedBox(height: 16),
 
               // Card for 'Extra Protection'
               Card(
-                margin: const EdgeInsets.all(24),
-                child: SizedBox(
+                margin: EdgeInsets.all(24),
+                child: Container(
                   height: 145, // Fixed height for the card
                   child: Padding(
-                    padding: const EdgeInsets.all(12),
+                    padding: EdgeInsets.all(12),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment
                           .start, // Aligns children at the start of the row's cross axis
                       children: <Widget>[
-                        const Icon(
+                        Icon(
                           Icons
                               .shield, // Replace with your actual protection icon
                           color: Color(0xFFFF7A1A),
                           size: 24,
                         ),
-                        const SizedBox(
-                            width: 12), // Spacing between icon and title
+                        SizedBox(width: 12), // Spacing between icon and title
                         Expanded(
                           child: Column(
                             mainAxisSize: MainAxisSize
@@ -337,7 +339,7 @@ class CheckoutPage extends StatelessWidget {
                                 style: GoogleFonts.inter(
                                   fontSize: 14,
                                   fontWeight: FontWeight.w500,
-                                  color: const Color(
+                                  color: Color(
                                       0xFF141511), // Set text color for title
                                 ),
                               ),
@@ -346,7 +348,7 @@ class CheckoutPage extends StatelessWidget {
                                 style: GoogleFonts.inter(
                                   fontSize: 12,
                                   fontWeight: FontWeight.normal,
-                                  color: const Color(
+                                  color: Color(
                                       0xFF141511), // Set text color for description
                                 ),
                               ), // Spacing between the description and 'More info'
@@ -359,7 +361,7 @@ class CheckoutPage extends StatelessWidget {
                                   child: Text(
                                     'More info',
                                     style: GoogleFonts.inter(
-                                      color: const Color(
+                                      color: Color(
                                           0xFF3E84A8), // Set text color for 'More info'
                                     ),
                                   ),
@@ -375,7 +377,7 @@ class CheckoutPage extends StatelessWidget {
               ),
 
               Container(
-                margin: const EdgeInsets.all(24),
+                margin: EdgeInsets.all(24),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -385,14 +387,14 @@ class CheckoutPage extends StatelessWidget {
                         Text(
                           'Subtotal',
                           style: GoogleFonts.dmSans(
-                            color: const Color(0xFF6B7B78),
+                            color: Color(0xFF6B7B78),
                             fontSize: 10,
                           ),
                         ),
                         Text(
                           '\$475.22',
                           style: GoogleFonts.inter(
-                            color: const Color(0xFF292F2E),
+                            color: Color(0xFF292F2E),
                             fontSize: 20,
                             fontWeight: FontWeight
                                 .w600, // Inter doesn't have a 'semi-bold', w600 is 'semi-bold' equivalent
@@ -403,9 +405,9 @@ class CheckoutPage extends StatelessWidget {
                     ElevatedButton(
                       style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color(0xFFF5D161)), // Button background color
+                            Color(0xFFF5D161)), // Button background color
                         foregroundColor: MaterialStateProperty.all<Color>(
-                            const Color(0xFFFFFFFF)), // Text color
+                            Color(0xFFFFFFFF)), // Text color
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(
@@ -413,10 +415,15 @@ class CheckoutPage extends StatelessWidget {
                           ),
                         ),
                         minimumSize: MaterialStateProperty.all<Size>(
-                            const Size(95, 48)), // Set the button's size
+                            Size(95, 48)), // Set the button's size
                       ),
                       onPressed: () {
-                        // Handle the button tap
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                PaymentPage(), // Asumsi ada constructor yang menerima data
+                          ),
+                        );
                       },
                       child: Text(
                         'Pay Now',

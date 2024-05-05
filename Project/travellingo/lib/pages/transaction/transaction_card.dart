@@ -25,8 +25,7 @@ class TransactionCard extends StatelessWidget {
               children: [
                 Text(
                   "ORDER DATE : ${data['date']}",
-                  style:
-                      const TextStyle(color: Color(0xFFBFBFBF), fontSize: 12),
+                  style: const TextStyle(color: Color(0xFFBFBFBF), fontSize: 12),
                 ),
                 const Icon(Icons.more_vert, color: Color(0xFFBFBFBF)),
               ],
@@ -86,9 +85,8 @@ class TransactionCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: data['status']
-                        ? const Color(0xFF4CAF50)
-                        : const Color(0xFFD68917),
+                    color:
+                        data['status'] ? const Color(0xFF4CAF50) : const Color(0xFFD68917),
                   ),
                 ),
                 Text(

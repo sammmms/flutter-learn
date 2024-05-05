@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'basket_card.dart'; // Make sure this is pointing to your BasketCard file
+import 'checkout.dart';
 
 class BasketPage extends StatefulWidget {
   const BasketPage({super.key});
@@ -57,13 +58,13 @@ class _BasketPageState extends State<BasketPage> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
+          icon: Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
           onPressed: () => Navigator.of(context).pop(),
         ),
         title: Text(
           'Basket',
           style: GoogleFonts.dmSans(
-            textStyle: const TextStyle(
+            textStyle: TextStyle(
               color: Color(0xFF292F2E),
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -83,7 +84,7 @@ class _BasketPageState extends State<BasketPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.all(24),
+            margin: EdgeInsets.all(24),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -93,14 +94,14 @@ class _BasketPageState extends State<BasketPage> {
                     Text(
                       'Subtotal',
                       style: GoogleFonts.dmSans(
-                        color: const Color(0xFF6B7B78),
+                        color: Color(0xFF6B7B78),
                         fontSize: 10,
                       ),
                     ),
                     Text(
                       '\$475.22',
                       style: GoogleFonts.inter(
-                        color: const Color(0xFF292F2E),
+                        color: Color(0xFF292F2E),
                         fontSize: 20,
                         fontWeight: FontWeight.w600,
                       ),
@@ -110,22 +111,27 @@ class _BasketPageState extends State<BasketPage> {
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFF5D161)), // Button background color
+                        Color(0xFFF5D161)), // Button background color
                     foregroundColor: MaterialStateProperty.all<Color>(
-                        const Color(0xFFFFFFFF)), // Text color
+                        Color(0xFFFFFFFF)), // Text color
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                       RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12),
                       ),
                     ),
                     minimumSize: MaterialStateProperty.all<Size>(
-                        const Size(171, 48)), // Set the button's size
+                        Size(171, 48)), // Set the button's size
                   ),
                   onPressed: () {
-                    // Handle the button tap
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            CheckoutPage(), // Asumsi ada constructor yang menerima data
+                      ),
+                    );
                   },
                   child: Text(
-                    'Proceed to Payment',
+                    'Checkout',
                     style: GoogleFonts.inter(
                       fontWeight: FontWeight.bold,
                     ),

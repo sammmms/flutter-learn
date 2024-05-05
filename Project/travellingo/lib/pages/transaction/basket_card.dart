@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class BasketCard extends StatefulWidget {
   final Map<String, dynamic> basketData;
 
-  const BasketCard({super.key, required this.basketData});
+  BasketCard({Key? key, required this.basketData}) : super(key: key);
 
   @override
   State<BasketCard> createState() => _BasketCardState();
@@ -32,7 +32,7 @@ class _BasketCardState extends State<BasketCard> {
                   isChecked = value ?? false;
                 });
               },
-              activeColor: const Color(0xFF28527A),
+              activeColor: Color(0xFF28527A),
             ),
             Expanded(
               // Content on the right side of the checkbox
@@ -45,7 +45,7 @@ class _BasketCardState extends State<BasketCard> {
                     children: [
                       Text(
                         widget.basketData['castleName'],
-                        style: const TextStyle(
+                        style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: Colors.black,
@@ -56,16 +56,16 @@ class _BasketCardState extends State<BasketCard> {
                         children: [
                           Text(
                             "\$${widget.basketData['price'].toStringAsFixed(2)}",
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             ),
                           ),
-                          const SizedBox(height: 4),
+                          SizedBox(height: 4),
                           Text(
                             "${widget.basketData['ticketsLeft']} tickets remaining",
-                            style: const TextStyle(
+                            style: TextStyle(
                               color: Colors.red,
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -75,13 +75,13 @@ class _BasketCardState extends State<BasketCard> {
                       ),
                     ],
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Departure, arrival, and departure time
                   Row(
                     children: [
                       Text(
                         widget.basketData['departure'],
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Expanded(
@@ -96,7 +96,7 @@ class _BasketCardState extends State<BasketCard> {
                                     MainAxisAlignment.spaceBetween,
                                 children: List.generate(
                                   (constraints.constrainWidth() / 10).floor(),
-                                  (index) => const SizedBox(
+                                  (index) => SizedBox(
                                     width: 5,
                                     height: 1,
                                     child: DecoratedBox(
@@ -112,49 +112,48 @@ class _BasketCardState extends State<BasketCard> {
                       ),
                       Text(
                         widget.basketData['arrival'],
-                        style: const TextStyle(
+                        style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  SizedBox(height: 4),
                   Text(
                     "${widget.basketData['departureTime']} PM - ${widget.basketData['arrivalTime']} PM",
-                    style: const TextStyle(
+                    style: TextStyle(
                       color: Colors.grey,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  const SizedBox(height: 16),
+                  SizedBox(height: 16),
                   // Flight icon, duration, and passenger count
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 8, vertical: 2),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                         decoration: BoxDecoration(
-                          color: const Color(0xFF28527A),
+                          color: Color(0xFF28527A),
                           borderRadius: BorderRadius.circular(4),
                         ),
                         child: Text(
                           "${widget.basketData['transport']}",
-                          style: const TextStyle(
-                              color: Colors.white, fontSize: 12),
+                          style: TextStyle(color: Colors.white, fontSize: 12),
                         ),
                       ),
-                      const SizedBox(width: 8),
+                      SizedBox(width: 8),
                       Text(
                         "Duration ${widget.basketData['duration']}",
-                        style: const TextStyle(
-                            fontSize: 10, color: Color(0xFF88879C)),
+                        style:
+                            TextStyle(fontSize: 10, color: Color(0xFF88879C)),
                       ),
-                      const Spacer(),
-                      const Icon(Icons.person, color: Color(0xFF8AC4D0)),
-                      const SizedBox(width: 4),
+                      Spacer(),
+                      Icon(Icons.person, color: Color(0xFF8AC4D0)),
+                      SizedBox(width: 4),
                       Text(
                         "Passenger ${widget.basketData['passengerCount']}",
-                        style: const TextStyle(
-                            fontSize: 14, color: Color(0xFF8AC4D0)),
+                        style:
+                            TextStyle(fontSize: 14, color: Color(0xFF8AC4D0)),
                       ),
                     ],
                   ),

@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:travellingo/basket.dart';
-import 'package:travellingo/pages/flight_page.dart';
+import 'package:travellingo/pages/transaction/basket.dart';
+import 'package:travellingo/pages/transaction/flight_page.dart';
 import 'package:travellingo/pages/profile/profile_page.dart';
-import 'package:travellingo/transaction.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -14,6 +13,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _currentPage = 0;
+  final List<Widget> pages = [
+    const FlightPage(),
+    const BasketPage(),
+    const Text("Favorite Page"),
+    const ProfilePage()
+  ];
+
   @override
   Widget build(BuildContext context) {
     final Map<String, Widget> navigationItem = {
@@ -22,19 +28,11 @@ class _HomePageState extends State<HomePage> {
       "Favorite": const Icon(Icons.bookmark_added_outlined),
       "Profile": const Icon(Icons.person_outline)
     };
+
     return Scaffold(
-        body: _currentPage == 0
-            ? FlightPage()
-            : _currentPage == 1
-                ? BasketPage()
-                : _currentPage == 2
-                    ? const Text("Favorite")
-                    : _currentPage == 3
-                        ? const ProfilePage()
-                        : const SizedBox(),
+        body: pages[_currentPage],
         bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,
-            // selectedItemColor: Colors.teal,
             showUnselectedLabels: true,
             currentIndex: _currentPage,
             type: BottomNavigationBarType.fixed,
