@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'tiketlist_card.dart'; // Pastikan sudah membuat dan mengimpor file ini dengan benar
+import 'ticket_list_card.dart'; // Pastikan sudah membuat dan mengimpor file ini dengan benar
 import 'package:google_fonts/google_fonts.dart';
 
 class TicketListPage extends StatefulWidget {

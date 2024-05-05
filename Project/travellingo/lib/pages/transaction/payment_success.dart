@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travellingo/pages/transaction/tiket_detail.dart';
+import 'package:travellingo/pages/transaction/ticket_detail.dart';
 
 class PaymentDetailPage extends StatelessWidget {
   const PaymentDetailPage({super.key});
@@ -107,7 +107,7 @@ class PaymentDetailPage extends StatelessWidget {
                     Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (context) =>
-                            const TiketDetailPage(), // Asumsi ada constructor yang menerima data
+                            const TicketDetailPage(), // Asumsi ada constructor yang menerima data
                       ),
                     );
                   },

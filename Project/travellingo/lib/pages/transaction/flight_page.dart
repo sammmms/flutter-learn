@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travellingo/pages/transaction/tiketlist.dart';
+import 'package:travellingo/pages/transaction/tiket_list/ticket_list.dart';
 
 class FlightPage extends StatelessWidget {
   const FlightPage({super.key});
