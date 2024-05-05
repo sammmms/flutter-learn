@@ -20,7 +20,8 @@ class _TicketListPageState extends State<TicketListPage> {
       "duration": "10m",
       "price": 25.00,
       "status": false,
-      "image": "https://placehold.jp/150x150.png",
+      "image":
+          "https://i.pinimg.com/originals/2f/88/4b/2f884b66c1a53b93a9e4826e5f4c459d.png",
       "available": "5 left"
     },
     {
@@ -32,7 +33,8 @@ class _TicketListPageState extends State<TicketListPage> {
       "duration": "30m",
       "price": 15.00,
       "status": true,
-      "image": "https://placehold.jp/150x150.png",
+      "image":
+          "https://download.logo.wine/logo/Lion_Air/Lion_Air-Logo.wine.png",
       "available": "Available"
     },
     {
@@ -44,7 +46,7 @@ class _TicketListPageState extends State<TicketListPage> {
       "duration": "45m",
       "price": 30.00,
       "status": false,
-      "image": "https://placehold.jp/150x150.png",
+      "image": "https://airhex.com/images/airline-logos/citilink.png",
       "available": "5 left"
     },
   ];
@@ -54,150 +56,143 @@ class _TicketListPageState extends State<TicketListPage> {
     "Tue, 02 Apr",
     "Wed, 03 Apr",
     "Thu, 04 Apr",
-    "Thu, 04 Apr",
-    "Thu, 04 Apr",
-    "Thu, 04 Apr",
+    "Fri, 05 Apr",
+    "Sat, 06 Apr",
+    "Sun, 07 Apr",
   ];
 
   int selectedDateIndex = -1;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        title: Text(
-          'Ticket List',
-          style: GoogleFonts.dmSans(
-            textStyle: TextStyle(
-              color: Color(0xFF292F2E),
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
+    return DefaultTabController(
+      length: dates.length,
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
+            onPressed: () => Navigator.of(context).pop(),
+          ),
+          title: Text(
+            'Ticket List',
+            style: GoogleFonts.inter(
+              textStyle: const TextStyle(
+                color: Color(0xFF292F2E),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
         ),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Kobe',
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: Color(0xFF141511),
-                  ),
-                ),
-                SizedBox(
-                    width:
-                        8), // Tambahkan jarak sesuai dengan desain yang diinginkan
-                Icon(
-                  Icons.arrow_forward_ios,
-                  size: 16,
-                  color: Color(0xFF141511),
-                ),
-                SizedBox(
-                    width:
-                        8), // Tambahkan jarak sesuai dengan desain yang diinginkan
-                Text(
-                  'Himeji Castle',
-                  style: GoogleFonts.inter(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    color: Color(0xFF141511),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  '1 Passenger',
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    color: Color(0xFF8C8D89),
-                  ),
-                ),
-                SizedBox(
-                    width:
-                        8), // Tambahkan jarak sesuai dengan desain yang diinginkan
-                Container(
-                  height: 5,
-                  width: 5,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xFF8C8D89),
-                  ),
-                ),
-                SizedBox(
-                    width:
-                        8), // Tambahkan jarak sesuai dengan desain yang diinginkan
-                Text(
-                  'Economy',
-                  style: GoogleFonts.inter(
-                    fontSize: 14,
-                    color: Color(0xFF8C8D89),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 35,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: dates.length,
-              itemBuilder: (context, index) {
-                bool isSelected = index ==
-                    selectedDateIndex; // Apakah tanggal ini yang dipilih?
-                return InkWell(
-                  onTap: () {
-                    setState(() {
-                      selectedDateIndex =
-                          index; // Menandai tanggal sebagai dipilih
-                    });
-                  },
-                  child: Container(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
-                    alignment: Alignment.center,
-                    child: Text(
-                      dates[index],
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        fontWeight:
-                            isSelected ? FontWeight.bold : FontWeight.normal,
-                        color:
-                            isSelected ? Color(0xFF3E84A8) : Color(0xFF8C8D89),
-                      ),
+        body: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Kobe',
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: const Color(0xFF141511),
                     ),
                   ),
-                );
-              },
+                  const SizedBox(
+                      width:
+                          8), // Tambahkan jarak sesuai dengan desain yang diinginkan
+                  const Icon(
+                    Icons.arrow_forward,
+                    size: 16,
+                    color: Color(0xFF141511),
+                  ),
+                  const SizedBox(
+                      width:
+                          8), // Tambahkan jarak sesuai dengan desain yang diinginkan
+                  Text(
+                    'Himeji Castle',
+                    style: GoogleFonts.inter(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      color: const Color(0xFF141511),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: tickets.length,
-              itemBuilder: (BuildContext context, int index) {
-                return TicketListCard(data: tickets[index]);
-              },
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    '1 Passenger',
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      color: const Color(0xFF8C8D89),
+                    ),
+                  ),
+                  const SizedBox(
+                      width:
+                          8), // Tambahkan jarak sesuai dengan desain yang diinginkan
+                  Container(
+                    height: 5,
+                    width: 5,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Color(0xFF8C8D89),
+                    ),
+                  ),
+                  const SizedBox(
+                      width:
+                          8), // Tambahkan jarak sesuai dengan desain yang diinginkan
+                  Text(
+                    'Economy',
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      color: const Color(0xFF8C8D89),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            const Divider(),
+            SizedBox(
+              height: 50,
+              child: TabBar(
+                unselectedLabelColor: const Color(0xFF8C8D89),
+                indicatorColor: const Color(0xFF3E84A8),
+                labelColor: const Color(0xFF3E84A8),
+                isScrollable: true,
+                tabs: List.generate(
+                    dates.length,
+                    (index) => SizedBox(
+                          width: 100,
+                          child: Tab(
+                            text: dates[index],
+                          ),
+                        )),
+              ),
+            ),
+            Expanded(
+              child: TabBarView(
+                children: List.generate(
+                  dates.length,
+                  (index) => ListView.builder(
+                    itemCount: tickets.length,
+                    itemBuilder: (BuildContext context, int idx) {
+                      return TicketListCard(data: tickets[idx]);
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

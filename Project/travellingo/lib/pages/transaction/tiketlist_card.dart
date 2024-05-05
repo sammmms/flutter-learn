@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travellingo/pages/transaction/components/airplance_animation.dart';
+import 'package:travellingo/pages/transaction/components/dotted_divider.dart';
 import 'tiket_detail.dart';
 
 class TicketListCard extends StatelessWidget {
@@ -78,6 +80,7 @@ class TicketListCard extends StatelessWidget {
                   ),
                 ],
               ),
+              DottedDivider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -103,25 +106,24 @@ class TicketListCard extends StatelessWidget {
                   Text(
                     data['departureTime'],
                     style: GoogleFonts.inter(
-                      color: Color(0xFF141511),
+                      color: const Color(0xFF141511),
                       fontSize: 16,
                     ),
                   ),
-                  Row(
+                  const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Icon(Icons.circle, color: Color(0xFF3E84A8), size: 8),
                       SizedBox(width: 8),
-                      Icon(Icons.airplanemode_active,
-                          color: Color(0xFF3E84A8), size: 16),
+                      AirplaneAnimation(),
                       SizedBox(width: 8),
-                      Icon(Icons.lens, color: Color(0xFF3E84A8), size: 8),
+                      Icon(Icons.circle, color: Color(0xFF3E84A8), size: 8),
                     ],
                   ),
                   Text(
                     data['arrivalTime'],
                     style: GoogleFonts.inter(
-                      color: Color(0xFF141511),
+                      color: const Color(0xFF141511),
                       fontSize: 16,
                     ),
                   ),
