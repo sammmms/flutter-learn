@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travellingo/pages/transaction/ticket_detail.dart';
 
 class PaymentDetailPage extends StatelessWidget {
   const PaymentDetailPage({super.key});
@@ -103,7 +104,12 @@ class PaymentDetailPage extends StatelessWidget {
                         MaterialStateProperty.all(const Color(0xFFF5D161)),
                   ),
                   onPressed: () {
-                    // Navigate to homepage
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            const TicketDetailPage(), // Asumsi ada constructor yang menerima data
+                      ),
+                    );
                   },
                   child: Text(
                     'Return to Homepage',

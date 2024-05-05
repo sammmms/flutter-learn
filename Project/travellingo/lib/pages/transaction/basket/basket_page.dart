@@ -60,6 +60,10 @@ class _BasketPageState extends State<BasketPage> {
         //   icon: const Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
         //   onPressed: () => Navigator.of(context).pop(),
         // ),
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
         title: Text(
           'Basket',
           style: GoogleFonts.dmSans(
@@ -83,7 +87,7 @@ class _BasketPageState extends State<BasketPage> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.all(24),
+            margin: EdgeInsets.all(24),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -122,7 +126,12 @@ class _BasketPageState extends State<BasketPage> {
                         const Size(171, 48)), // Set the button's size
                   ),
                   onPressed: () {
-                    // Handle the button tap
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            CheckoutPage(), // Asumsi ada constructor yang menerima data
+                      ),
+                    );
                   },
                   child: Text(
                     'Proceed to Payment',

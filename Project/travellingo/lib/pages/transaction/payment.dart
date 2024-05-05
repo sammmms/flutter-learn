@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'payment_success.dart';
 
 class PaymentPage extends StatelessWidget {
   const PaymentPage({super.key});
@@ -90,7 +91,7 @@ class PaymentPage extends StatelessWidget {
                           decoration: const BoxDecoration(
                             image: DecorationImage(
                               image: NetworkImage(
-                                  'https://example.com/airline-logo.png'),
+                                  'https://placehold.jp/150x150.png'),
                               fit: BoxFit.cover,
                             ),
                           ),
@@ -318,7 +319,12 @@ class PaymentPage extends StatelessWidget {
                             const Size(95, 48)), // Set the button's size
                       ),
                       onPressed: () {
-                        // Handle the button tap
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                const PaymentDetailPage(), // Asumsi ada constructor yang menerima data
+                          ),
+                        );
                       },
                       child: Text(
                         'Pay Now',
