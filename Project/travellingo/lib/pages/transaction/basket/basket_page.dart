@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:travellingo/pages/transaction/checkout.dart';
 import 'widget/basket_card.dart'; // Make sure this is pointing to your BasketCard file
 
 class BasketPage extends StatefulWidget {

@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:travellingo/pages/home/choices/All/home_all_recommendation.dart';
+import 'package:travellingo/pages/home/choices/home_all_nearby.dart';
 import 'package:travellingo/pages/home/widget/home_filter_chip.dart';
 import 'package:travellingo/pages/home/widget/home_search_bar.dart';
 import 'package:travellingo/pages/home/widget/label_heading.dart';
@@ -32,6 +35,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        scrollDirection: Axis.vertical,
         slivers: [
           SliverAppBar(
             expandedHeight: 100,
@@ -135,8 +139,8 @@ class _HomePageState extends State<HomePage> {
                       TransportButton(icon: "assets/Bus.png", label: "bus"),
                       TransportButton(icon: "assets/Car.png", label: "car"),
                       TransportButton(icon: "assets/Train.png", label: "train"),
-                      TransportButton(
-                          icon: "assets/Airplane.png", label: "airplane"),
+                      TransportButton(icon: "assets/Airplane.png", label: "airplane"),
+                      SizedBox(width: 30,),
                     ],
                   ),
                   const SizedBox(
@@ -170,9 +174,26 @@ class _HomePageState extends State<HomePage> {
                           icon: Icon(Icons.star_border,
                               color: Color.fromRGBO(255, 145, 65, 1)),
                           content: "recommendation"),
-                      SeeAllButton()
+                      SeeAllButton(),
                     ],
                   ),
+                  Container(
+                    child: HomeAllRecommendation(),
+                  ),
+                  SizedBox(height: 15,),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      LabelHeading(
+                          icon: Icon(Icons.near_me_outlined,
+                              color: Color.fromRGBO(255, 145, 65, 1)),
+                          content: "nearby"),
+                      SeeAllButton(),
+                    ],
+                  ),
+                  Container(
+                    child: HomeAllNearby(),
+                  )
                 ],
               ),
             ),

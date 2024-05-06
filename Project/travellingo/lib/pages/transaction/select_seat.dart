@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'basket.dart';
+import 'package:travellingo/pages/transaction/basket/basket_page.dart';
 
 class SelectSeatPage extends StatelessWidget {
   final String selectedSeat = '8D'; // Contoh kursi terpilih
