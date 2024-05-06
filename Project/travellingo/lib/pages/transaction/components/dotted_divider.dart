@@ -7,7 +7,8 @@ class DottedDivider extends StatelessWidget {
   final double dashLength;
   final double dashGap;
 
-  DottedDivider({
+  const DottedDivider({
+    super.key,
     this.color = Colors.grey,
     this.height = 1.0,
     this.thickness = 1.0,
@@ -21,7 +22,8 @@ class DottedDivider extends StatelessWidget {
       height: height,
       child: CustomPaint(
         size: Size(double.infinity, height),
-        painter: DottedPainter(color.withOpacity(0.4), thickness, dashLength, dashGap),
+        painter: DottedPainter(
+            color.withOpacity(0.4), thickness, dashLength, dashGap),
       ),
     );
   }

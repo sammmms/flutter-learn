@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travellingo/pages/transaction/components/airplance_animation.dart';
 import 'select_seat.dart';
@@ -422,7 +421,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
                   Navigator.of(context).push(
                     MaterialPageRoute(
                       builder: (context) =>
-                          SelectSeatPage(), // Asumsi ada constructor yang menerima data
+                          const SelectSeatPage(), // Asumsi ada constructor yang menerima data
                     ),
                   );
                 },

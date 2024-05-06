@@ -12,21 +12,19 @@ class HomeAllRecommendation extends StatefulWidget {
 class _HomeAllState extends State<HomeAllRecommendation> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        children: [
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: [
-                HomeRecommendation(),
-                HomeRecommendation(),
-                HomeRecommendation(),
-              ],
-            ),
+    return const Column(
+      children: [
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              HomeRecommendation(),
+              HomeRecommendation(),
+              HomeRecommendation(),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

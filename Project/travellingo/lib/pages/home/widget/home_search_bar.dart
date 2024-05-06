@@ -19,6 +19,9 @@ class HomeSearchBar extends StatelessWidget {
         enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(30),
             borderSide: const BorderSide(color: Color(0xFFF5D161), width: 2)),
+        focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(30),
+            borderSide: const BorderSide(color: Color(0xFFF5D161), width: 2)),
         prefixIcon: Image.asset("assets/Search.png"),
       ),
     );

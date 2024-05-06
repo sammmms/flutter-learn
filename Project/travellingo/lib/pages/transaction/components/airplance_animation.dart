@@ -19,7 +19,7 @@ class _AirplaneAnimationState extends State<AirplaneAnimation>
 
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 3), // Adjust the duration as needed
+      duration: const Duration(seconds: 3), // Adjust the duration as needed
     );
 
     _animation = Tween<double>(
@@ -52,8 +52,8 @@ class _AirplaneAnimationState extends State<AirplaneAnimation>
           height: 50, // Height of the bar
           width: 100, // Full width
           child: CustomPaint(
-                painter: DottedLinePainter(),
-              ),
+            painter: DottedLinePainter(),
+          ),
         ),
         // Airplane
         AnimatedBuilder(
@@ -86,12 +86,13 @@ class DottedLinePainter extends CustomPainter {
       ..strokeCap = StrokeCap.round
       ..strokeWidth = 2;
 
-    final double dashWidth = 5;
-    final double dashSpace = 5;
+    const double dashWidth = 5;
+    const double dashSpace = 5;
     double startX = 0;
 
     while (startX < size.width) {
-      canvas.drawLine(Offset(startX, size.height / 2), Offset(startX + dashWidth, size.height / 2), paint);
+      canvas.drawLine(Offset(startX, size.height / 2),
+          Offset(startX + dashWidth, size.height / 2), paint);
       startX += dashWidth + dashSpace;
     }
   }

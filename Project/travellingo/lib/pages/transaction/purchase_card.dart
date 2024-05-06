@@ -10,23 +10,23 @@ class PurchaseCard extends StatelessWidget {
   final String imageUrl;
 
   const PurchaseCard({
-    Key? key,
+    super.key,
     required this.status,
     required this.type,
     required this.date,
     required this.price,
     required this.invoice,
     required this.imageUrl,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 1,
-      margin: EdgeInsets.all(14.0),
+      margin: const EdgeInsets.all(14.0),
       child: Container(
         height: 160.0,
-        padding: EdgeInsets.all(14.0),
+        padding: const EdgeInsets.all(14.0),
         child: Column(
           children: <Widget>[
             Row(
@@ -35,7 +35,7 @@ class PurchaseCard extends StatelessWidget {
                 Text(
                   status,
                   style: GoogleFonts.inter(
-                    color: Color(0xFF28527A),
+                    color: const Color(0xFF28527A),
                     fontSize: 11,
                     fontWeight: FontWeight.w400,
                   ),
@@ -43,14 +43,14 @@ class PurchaseCard extends StatelessWidget {
                 Text(
                   date,
                   style: GoogleFonts.inter(
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                     fontSize: 8,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
@@ -60,7 +60,7 @@ class PurchaseCard extends StatelessWidget {
                     Text(
                       type,
                       style: GoogleFonts.inter(
-                        color: Color(0xFF000000),
+                        color: const Color(0xFF000000),
                         fontSize: 13,
                         fontWeight: FontWeight.w400,
                       ),
@@ -68,7 +68,7 @@ class PurchaseCard extends StatelessWidget {
                     Text(
                       '\$$price', // Ensure the price is formatted correctly
                       style: GoogleFonts.inter(
-                        color: Color(0xFFE25A0D),
+                        color: const Color(0xFFE25A0D),
                         fontSize: 18,
                         fontWeight: FontWeight.w400,
                       ),
@@ -86,12 +86,12 @@ class PurchaseCard extends StatelessWidget {
                       Text(
                         'Details',
                         style: GoogleFonts.poppins(
-                          color: Color(0xFF57A3BB),
+                          color: const Color(0xFF57A3BB),
                           fontSize: 13,
                           fontWeight: FontWeight.w400,
                         ),
                       ),
-                      Icon(
+                      const Icon(
                         Icons
                             .arrow_forward_ios, // Use the appropriate arrow icon
                         size: 13.0, // Adjust the size to match your design
@@ -102,7 +102,7 @@ class PurchaseCard extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
             Row(
               children: <Widget>[
                 Padding(
@@ -121,20 +121,20 @@ class PurchaseCard extends StatelessWidget {
                 Text(
                   'Garuda Indonesia', // This could also be passed in if different per card
                   style: GoogleFonts.inter(
-                    color: Color(0xFF000000),
+                    color: const Color(0xFF000000),
                     fontSize: 13,
                     fontWeight: FontWeight.w400,
                   ),
                 ),
               ],
             ),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 invoice,
                 style: GoogleFonts.inter(
-                  color: Color(0xFF7C7C7C),
+                  color: const Color(0xFF7C7C7C),
                   fontSize: 10,
                   fontWeight: FontWeight.w400,
                 ),

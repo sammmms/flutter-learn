@@ -20,7 +20,7 @@ class TransportButton extends StatelessWidget {
           padding: const EdgeInsets.all(8),
           child: Image.asset(icon),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         ),
         Text(

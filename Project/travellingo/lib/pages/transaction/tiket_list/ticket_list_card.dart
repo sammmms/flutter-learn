@@ -80,7 +80,7 @@ class TicketListCard extends StatelessWidget {
                   ),
                 ],
               ),
-              DottedDivider(),
+              const DottedDivider(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
