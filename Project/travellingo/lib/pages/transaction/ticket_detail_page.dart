@@ -1,7 +1,10 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travellingo/pages/transaction/components/airplance_animation.dart';
-import 'select_seat.dart';
+import 'package:travellingo/component/airplane_animation_component.dart';
+import 'package:travellingo/component/route_animator_component.dart';
+import 'select_seat_page.dart';
 
 class TicketDetailPage extends StatefulWidget {
   final Map<String, dynamic>? data; // Data can be null
@@ -54,7 +57,7 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
         ),
         title: Text(
           'Tiket Details',
-          style: GoogleFonts.inter(
+          style: GoogleFonts.dmSans(
             textStyle: const TextStyle(
               color: Color(0xFF292F2E),
               fontSize: 20,
@@ -185,8 +188,11 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
                             ),
                             child: Row(
                               children: [
-                                const Icon(Icons.airplanemode_active,
-                                    color: Colors.white, size: 16),
+                                Transform.rotate(
+                                  angle: pi / 4,
+                                  child: const Icon(Icons.airplanemode_active,
+                                      color: Colors.white, size: 16),
+                                ),
                                 const SizedBox(width: 4),
                                 Text(
                                   "${ticketData['transport'] ?? 'Unknown'}",
@@ -418,10 +424,10 @@ class _TicketDetailPageState extends State<TicketDetailPage> {
                       const Size(171, 48)), // Set the button's size
                 ),
                 onPressed: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          const SelectSeatPage(), // Asumsi ada constructor yang menerima data
+                  Navigator.push(
+                    context,
+                    createRouteFromBottom(
+                      const SelectSeatPage(),
                     ),
                   );
                 },

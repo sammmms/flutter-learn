@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:travellingo/component/route_animator_component.dart';
 import 'package:travellingo/pages/home/choices/all/home_all_recommendation.dart';
 import 'package:travellingo/pages/home/choices/all/home_all_nearby.dart';
 import 'package:travellingo/pages/home/widget/home_filter_chip.dart';
@@ -8,6 +9,7 @@ import 'package:travellingo/pages/home/widget/home_search_bar.dart';
 import 'package:travellingo/pages/home/widget/label_heading.dart';
 import 'package:travellingo/pages/home/widget/see_all.dart';
 import 'package:travellingo/pages/home/widget/transport_button.dart';
+import 'package:travellingo/pages/transaction/flight_page.dart';
 import 'package:travellingo/utils/dummy_data.dart';
 
 class HomePage extends StatefulWidget {
@@ -132,15 +134,23 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20,
                     ),
-                    const Row(
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        TransportButton(icon: "assets/Bus.png", label: "bus"),
-                        TransportButton(icon: "assets/Car.png", label: "car"),
-                        TransportButton(
+                        const TransportButton(
+                            icon: "assets/Bus.png", label: "bus"),
+                        const TransportButton(
+                            icon: "assets/Car.png", label: "car"),
+                        const TransportButton(
                             icon: "assets/Train.png", label: "train"),
                         TransportButton(
-                            icon: "assets/Airplane.png", label: "airplane"),
+                          icon: "assets/Airplane.png",
+                          label: "airplane",
+                          onTap: () {
+                            Navigator.push(context,
+                                createRouteFromBottom(const FlightPage()));
+                          },
+                        ),
                         SizedBox(
                           width: 30,
                         ),

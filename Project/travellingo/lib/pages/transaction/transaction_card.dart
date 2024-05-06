@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'payment_success.dart';
+import 'payment_success_page.dart';
 
 class TransactionCard extends StatelessWidget {
   final Map<String, dynamic> data;
@@ -25,7 +25,8 @@ class TransactionCard extends StatelessWidget {
               children: [
                 Text(
                   "ORDER DATE : ${data['date']}",
-                  style: const TextStyle(color: Color(0xFFBFBFBF), fontSize: 12),
+                  style:
+                      const TextStyle(color: Color(0xFFBFBFBF), fontSize: 12),
                 ),
                 const Icon(Icons.more_vert, color: Color(0xFFBFBFBF)),
               ],
@@ -85,8 +86,9 @@ class TransactionCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color:
-                        data['status'] ? const Color(0xFF4CAF50) : const Color(0xFFD68917),
+                    color: data['status']
+                        ? const Color(0xFF4CAF50)
+                        : const Color(0xFFD68917),
                   ),
                 ),
                 Text(
@@ -108,7 +110,7 @@ class TransactionCard extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const PaymentDetailPage()),
+                          builder: (context) => const PaymentSuccessPage()),
                     );
                   } else {
                     // If status is true, maybe do something else or nothing

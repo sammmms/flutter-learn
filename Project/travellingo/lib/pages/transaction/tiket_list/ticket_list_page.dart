@@ -76,7 +76,7 @@ class _TicketListPageState extends State<TicketListPage> {
           ),
           title: Text(
             'Ticket List',
-            style: GoogleFonts.inter(
+            style: GoogleFonts.dmSans(
               textStyle: const TextStyle(
                 color: Color(0xFF292F2E),
                 fontSize: 20,

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travellingo/pages/transaction/components/airplance_animation.dart';
-import 'package:travellingo/pages/transaction/components/dotted_divider.dart';
-import '../ticket_detail.dart';
+import 'package:travellingo/component/airplane_animation_component.dart';
+import 'package:travellingo/component/dotted_divider_component.dart';
+import 'package:travellingo/component/route_animator_component.dart';
+import '../ticket_detail_page.dart';
 
 class TicketListCard extends StatelessWidget {
   final Map<String, dynamic> data;
@@ -17,11 +18,9 @@ class TicketListCard extends StatelessWidget {
 
     return InkWell(
         onTap: () {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => const TicketDetailPage(
-                  data: null), // Asumsi ada constructor yang menerima data
-            ),
+          Navigator.push(
+            context,
+            createRouteFromRight(TicketDetailPage(data: data)),
           );
         },
         child: Container(

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travellingo/pages/transaction/checkout.dart';
-import 'widget/basket_card.dart'; // Make sure this is pointing to your BasketCard file
+import 'package:travellingo/component/route_animator_component.dart';
+import 'package:travellingo/pages/transaction/basket/widget/basket_card.dart';
+import '../checkout_page.dart';
 
 class BasketPage extends StatefulWidget {
   const BasketPage({super.key});
@@ -11,8 +12,10 @@ class BasketPage extends StatefulWidget {
 }
 
 class _BasketPageState extends State<BasketPage> {
+  double total = 0;
+
   // Sample basket data
-  final List<Map<String, dynamic>> baskets = [
+  List<Map<String, dynamic>> baskets = [
     {
       "castleName": "Himeji Castle",
       "departure": "KOBE",
@@ -52,19 +55,13 @@ class _BasketPageState extends State<BasketPage> {
     // Add more basket items here
   ];
 
+  List<bool> isChecked = List<bool>.filled(3, false);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
-        // leading: IconButton(
-        //   icon: const Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
-        //   onPressed: () => Navigator.of(context).pop(),
-        // ),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Color(0xFFF5D161)),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
         title: Text(
           'Basket',
           style: GoogleFonts.dmSans(
@@ -80,11 +77,42 @@ class _BasketPageState extends State<BasketPage> {
         children: <Widget>[
           Flexible(
             // Your scrollable content goes here
-            child: ListView.builder(
-              itemCount: baskets.length, // Just an example item count
-              itemBuilder: (BuildContext context, int index) {
-                return BasketCard(basketData: baskets[index]);
-              },
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: ListView.builder(
+                itemCount: baskets.length, // Just an example item count
+                itemBuilder: (BuildContext context, int index) {
+                  // return BasketCard(basketData: baskets[index]);
+                  return Row(
+                    children: [
+                      // Checkbox on the left side
+                      Expanded(
+                          flex: 1,
+                          child: Checkbox(
+                            value: isChecked[index],
+                            onChanged: (bool? value) {
+                              setState(() {
+                                isChecked[index] = value!;
+
+                                // Calculate total
+                                total = 0;
+                                for (int i = 0; i < isChecked.length; i++) {
+                                  if (isChecked[i]) {
+                                    total += baskets[i]['price'];
+                                  }
+                                }
+                              });
+                            },
+                            activeColor: Colors.orange,
+                          )),
+                      Expanded(
+                        flex: 15,
+                        child: BasketCard(basketData: baskets[index]),
+                      )
+                    ],
+                  );
+                },
+              ),
             ),
           ),
           Container(
@@ -103,7 +131,7 @@ class _BasketPageState extends State<BasketPage> {
                       ),
                     ),
                     Text(
-                      '\$475.22',
+                      '\$${total.toStringAsFixed(2)}',
                       style: GoogleFonts.inter(
                         color: const Color(0xFF292F2E),
                         fontSize: 20,
@@ -126,18 +154,16 @@ class _BasketPageState extends State<BasketPage> {
                     minimumSize: MaterialStateProperty.all<Size>(
                         const Size(171, 48)), // Set the button's size
                   ),
-                  onPressed: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            const CheckoutPage(), // Asumsi ada constructor yang menerima data
-                      ),
-                    );
-                  },
+                  onPressed: total == 0
+                      ? null
+                      : () {
+                          Navigator.push(context,
+                              createRouteFromBottom(const CheckoutPage()));
+                        },
                   child: Text(
-                    'Proceed to Payment',
+                    'Checkout',
                     style: GoogleFonts.inter(
-                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
                     ),
                   ),
                 ),

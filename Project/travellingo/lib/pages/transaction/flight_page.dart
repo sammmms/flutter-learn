@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:travellingo/pages/transaction/tiket_list/ticket_list.dart';
+import 'package:travellingo/component/route_animator_component.dart';
+import 'package:travellingo/pages/transaction/tiket_list/ticket_list_page.dart';
 
 class FlightPage extends StatelessWidget {
   const FlightPage({super.key});
@@ -35,12 +36,13 @@ class FlightPage extends StatelessWidget {
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                   const SizedBox(width: 8),
-                  const Text('Flight',
+                  Text('Flight',
                       textAlign: TextAlign.start,
-                      style: TextStyle(
-                          color: Color.fromARGB(255, 255, 255, 255),
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold)),
+                      style: GoogleFonts.dmSans(
+                          textStyle: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold)))
                 ],
               ),
             ),
@@ -51,8 +53,19 @@ class FlightPage extends StatelessWidget {
           padding: const EdgeInsets.only(top: 120),
           child: Column(
             children: [
-              Card(
-                surfaceTintColor: Colors.white,
+              Container(
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.grey.withOpacity(0.2),
+                      spreadRadius: 1,
+                      blurRadius: 6,
+                      offset: const Offset(0, 3),
+                    ),
+                  ],
+                ),
                 margin: const EdgeInsets.symmetric(horizontal: 48),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -76,7 +89,8 @@ class FlightPage extends StatelessWidget {
                                         onChanged: (String? newValue) {},
                                         items: const [
                                           DropdownMenuItem(
-                                              value: 'Kobe', child: Text('Kobe')),
+                                              value: 'Kobe',
+                                              child: Text('Kobe')),
                                           DropdownMenuItem(
                                               value: 'Osaka',
                                               child: Text('Osaka'))
@@ -114,8 +128,8 @@ class FlightPage extends StatelessWidget {
                           const SizedBox(width: 16),
                           IconButton(
                             style: ButtonStyle(
-                                backgroundColor:
-                                    MaterialStateProperty.all(const Color(0xFF28527A)),
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color(0xFF28527A)),
                                 shape: MaterialStateProperty.all<
                                         RoundedRectangleBorder>(
                                     RoundedRectangleBorder(
@@ -134,9 +148,8 @@ class FlightPage extends StatelessWidget {
                         style: ButtonStyle(
                             surfaceTintColor:
                                 MaterialStateProperty.all(Colors.white),
-                            shape:
-                                MaterialStateProperty.all<RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6.0),
                             ))),
                         onPressed: () {},
@@ -231,21 +244,20 @@ class FlightPage extends StatelessWidget {
                         width: double.infinity,
                         child: ElevatedButton(
                           style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all(
-                                  const Color(0xFFF5D161)),
-                              foregroundColor:
-                                  MaterialStateProperty.all(Colors.white),
-                              shape: MaterialStateProperty.all<
-                                  RoundedRectangleBorder>(RoundedRectangleBorder(
+                            backgroundColor: MaterialStateProperty.all(
+                                const Color(0xFFF5D161)),
+                            foregroundColor:
+                                MaterialStateProperty.all(Colors.white),
+                            shape: MaterialStateProperty.all<
+                                RoundedRectangleBorder>(
+                              RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(18.0),
-                              ))),
+                              ),
+                            ),
+                          ),
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      const TicketListPage()), // Ganti dengan nama halaman yang sesuai
-                            );
+                            Navigator.push(context,
+                                createRouteFromBottom(const TicketListPage()));
                           },
                           child: const Padding(
                             padding: EdgeInsets.all(18),
@@ -269,7 +281,8 @@ class FlightPage extends StatelessWidget {
                     const SizedBox(width: 8),
                     const Text(
                       'Your Last Search',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     const Spacer(),
                     TextButton(
@@ -296,7 +309,8 @@ class FlightPage extends StatelessWidget {
                   children: [
                     const Text(
                       'Get Attractive Promo!',
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                     TextButton(
                       onPressed: () {
