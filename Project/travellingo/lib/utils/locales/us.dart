@@ -85,6 +85,65 @@ const Map<String, String> usLanguage = {
   "gender": "Gender",
   "govId": "Government ID",
 
+  // Flight
+  "flight": "Flight",
+  "roundTrip": "Round-trip",
+  "passenger": "Passenger",
+  "economy": "Economy",
+  "businness": "Businness",
+  "executive": "Executive",
+  "search": "Search",
+  "yourLastSearch": "Your Last Search",
+  "getAttractivePromo": "Get Attractive Promo",
+  "discount": "Discount",
+  "forNewUsers": "For new users",
+  "termsNConditionApply": "Terms and Condition apply",
+
+  // Ticket List
+  "ticketList": "Ticket Lists",
+
+  // Ticket Details
+  "ticketDetails": "Ticket Details",
+  "passengers": "Passengers",
+  "passengersDetails": "Passengers Detail",
+  "addPassenger": "Add Passengers",
+  "identityType": "Identity Type",
+  "identityNumber": "Identity Number",
+  "fullName": "Full Name",
+  "passengerWarning": //
+      "Infant passengers do not get their own seat.",
+  "passengerWarning2":
+      "Passengers under 18 years old can fill in another identification number or date of birth.",
+  "perPerson": "/person",
+  "selectSeat": "Select Seat",
+
+  // Select seat
+  "available": "Available",
+  "selected": "Selected",
+  "filled": "Filled",
+  "addToCart": "Add to Cart",
+  "successfullyAddToCart": "Successfully added to cart",
+
+  // Checkout
+  "checkout": "Checkout",
+  "yourTrip": "Your Trip",
+  "passengerList": "Passengers List",
+  "changeSeat": "Change Seat",
+  "subtotal": "Subtotal",
+  "proceedToPayment": "Proceed to Payment",
+
+  // Transaction Details
+  "transactionDetails": "Transaction Details",
+  "yourPaymentWasSuccessful": "Your payment was successful",
+  "invoiceNumber": "Invoice Number",
+  "paymentMethod": "Payment Method",
+  "date": "Date",
+  "time": "Time",
+  "amountPaid": "Amount Paid",
+  "status": "Status",
+  "successful": "Successful",
+  "returnToHomepage": "Return to Homepage",
+
   // Privacy & Sharing
   "manageYourAccountData": "Manage your account data",
   "manageYourAccountDataDetail":
@@ -109,6 +168,11 @@ const Map<String, String> usLanguage = {
       "To confirm you're the true owner of this account, we may contact you",
   "whyAreYouDeletingYourAccount": "Why are you deleting this account?",
   "deleteAccount": "Delete Account",
+
+  // Appearance
+  "applicationAppearance": "Application Appearance",
+  "theme": "Theme",
+  "language": "Language",
 
   // Backend Stuff
   "somethingWrong": "Something is wrong.",

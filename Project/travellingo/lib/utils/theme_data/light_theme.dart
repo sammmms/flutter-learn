@@ -6,6 +6,7 @@ ThemeData lightTheme = ThemeData(
   progressIndicatorTheme:
       const ProgressIndicatorThemeData(color: Colors.yellow),
   appBarTheme: const AppBarTheme(
+    scrolledUnderElevation: 0,
     iconTheme: IconThemeData(
       color: Color(0xFFF5D161),
     ),

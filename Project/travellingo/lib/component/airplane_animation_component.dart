@@ -65,7 +65,9 @@ class _AirplaneAnimationState extends State<AirplaneAnimation>
               left: _animation.value * 80,
               top: 17, // Adjust to vertically center the airplane in the bar
               child: Transform.rotate(
-                angle: _controller.status ==  AnimationStatus.forward ? pi / 2 : 3 * pi / 2,
+                angle: _controller.status == AnimationStatus.forward
+                    ? pi / 2
+                    : 3 * pi / 2,
                 child: const Icon(Icons.airplanemode_active,
                     color: Color(0xFF3E84A8), size: 16),
               ),

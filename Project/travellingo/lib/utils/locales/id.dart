@@ -85,6 +85,65 @@ const Map<String, String> idLanguage = {
   "gender": "Jenis kelamin",
   "govId": "NIK",
 
+  // Flight
+  "flight": "Penerbangan",
+  "roundTrip": "Pulang-pergi",
+  "passenger": "Penumpang",
+  "economy": "Ekonomi",
+  "businness": "Bisnis",
+  "executive": "Eksekutif",
+  "search": "Telusuri",
+  "yourLastSearch": "Pencarian terakhir kamu",
+  "getAttractivePromo": "Dapatkan promo menarik",
+  "discount": "Diskon",
+  "forNewUsers": "Untuk pengguna baru",
+  "termsNConditionApply": "Syarat dan Ketentuan berlaku",
+
+  // Ticket List
+  "ticketList": "Daftar Tiket",
+
+  // Ticket Details
+  "ticketDetails": "Detail Tiket",
+  "passengers": "Penumpang",
+  "passengersDetails": "Detail Penumpang",
+  "addPassenger": "Tambah Penumpang",
+  "identityType": "Tipe Identitas",
+  "identityNumber": "Nomor Identitas",
+  "fullName": "Nama lengkap",
+  "passengerWarning":
+      "Penumpang bayi tidak mendapatkan tempat duduk tersendiri.",
+  "passengerWarning2":
+      "Penumpang dibawah 18 tahun dapat mengisi nomor identitas lainnya, ataupun tanggal lahir.",
+  "perPerson": "/Orang",
+  "selectSeat": "Pilih Tempat Duduk",
+
+  // Select seat
+  "available": "Tersedia",
+  "selected": "Terpilih",
+  "filled": "Terisi",
+  "addToCart": "Masukkan ke Keranjang",
+  "successfullyAddToCart": "Berhasil menambahkan kedalam keranjang",
+
+  // Checkout
+  "checkout": "Pembayaran",
+  "yourTrip": "Perjalananmu",
+  "passengerList": "Daftar Penumpang",
+  "changeSeat": "Pindah Tempat Duduk",
+  "subtotal": "Subtotal",
+  "proceedToPayment": "Lanjutkan ke Pembayaran",
+
+  // Transaction Details
+  "transactionDetails": "Detail Transaksi",
+  "yourPaymentWasSuccessful": "Pembayaran kamu berhasil",
+  "invoiceNumber": "No. Invoice",
+  "paymentMethod": "Metode Pembayaran",
+  "date": "Tanggal",
+  "time": "Waktu",
+  "amountPaid": "Jumlah Pembayaran",
+  "status": "Status",
+  "successful": "Sukses",
+  "returnToHomepage": "Kembali ke Beranda",
+
   // Privacy & Sharing
   "manageYourAccountData": "Kelola data akun",
   "manageYourAccountDataDetail":
@@ -109,6 +168,11 @@ const Map<String, String> idLanguage = {
       "To confirm you're the true owner of this account, we may contact you",
   "whyAreYouDeletingYourAccount": "Why are you deleting this account?",
   "deleteAccount": "Hapus Akun",
+
+  // Appearance
+  "applicationAppearance": "Tampilan Aplikasi",
+  "theme": "Tema",
+  "language": "Bahasa",
 
   // Backend Stuff
   "somethingWrong": "Terjadi kesalahan.",

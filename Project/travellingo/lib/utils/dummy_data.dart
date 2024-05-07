@@ -155,3 +155,98 @@ List<String> eMoneyPaymentMethods = [
   'Apple Pay',
   'Amazon Pay'
 ];
+
+// Basket Data (Giovanny)
+List<Map<String, dynamic>> baskets = [
+  {
+    "castleName": "Himeji Castle",
+    "departure": "KOBE",
+    "arrival": "HCL",
+    "departureTime": "12:00",
+    "arrivalTime": "01:15",
+    "duration": "1h 15m",
+    "price": 301.24,
+    "ticketsLeft": "2",
+    "passengerCount": 1,
+    "transport": "Aircraft"
+  },
+  {
+    "castleName": "Himeji Castle",
+    "departure": "KOBE",
+    "arrival": "HCL",
+    "departureTime": "12:00",
+    "arrivalTime": "01:15",
+    "duration": "1h 15m",
+    "price": 475.22,
+    "ticketsLeft": "2",
+    "passengerCount": 1,
+    "transport": "Aircraft"
+  },
+  {
+    "castleName": "Himeji Castle",
+    "departure": "KOBE",
+    "arrival": "HCL",
+    "departureTime": "04:45",
+    "arrivalTime": "05:50",
+    "duration": "1h 15m",
+    "price": 154.24,
+    "ticketsLeft": "2",
+    "passengerCount": 1,
+    "transport": "Aircraft"
+  },
+  {
+    "castleName": "Himeji Castle",
+    "departure": "KOBE",
+    "arrival": "HCL",
+    "departureTime": "04:45",
+    "arrivalTime": "05:50",
+    "duration": "1h 15m",
+    "price": 154.24,
+    "ticketsLeft": "2",
+    "passengerCount": 1,
+    "transport": "Aircraft"
+  },
+  {
+    "castleName": "Himeji Castle",
+    "departure": "KOBE",
+    "arrival": "HCL",
+    "departureTime": "04:45",
+    "arrivalTime": "05:50",
+    "duration": "1h 15m",
+    "price": 154.24,
+    "ticketsLeft": "2",
+    "passengerCount": 1,
+    "transport": "Aircraft"
+  },
+  {
+    "castleName": "Himeji Castle",
+    "departure": "KOBE",
+    "arrival": "HCL",
+    "departureTime": "04:45",
+    "arrivalTime": "05:50",
+    "duration": "1h 15m",
+    "price": 154.24,
+    "ticketsLeft": "2",
+    "passengerCount": 1,
+    "transport": "Aircraft"
+  },
+  // Add more basket items here
+];
+
+// Seats (Giovanny)
+List<String> occupiedSeats = [
+  '8D',
+  '1C',
+  '2A',
+  '3D',
+  '3E',
+  '3F',
+  '5C',
+  '6A',
+  '6F',
+  '9A',
+  '9C',
+  '9F',
+  '4B',
+  '3B'
+];

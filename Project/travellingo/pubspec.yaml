@@ -53,7 +53,8 @@ flutter:
 
   assets:
     - assets/
-    - assets/lottie/success.json
+    - assets/lottie/
+    - assets/flight/
 
   fonts:
     - family: Poppins

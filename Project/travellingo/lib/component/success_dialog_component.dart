@@ -7,6 +7,8 @@ showSuccessDialog(BuildContext context, String text, {Function? onClose}) {
     barrierDismissible: false,
     builder: (BuildContext context) {
       return AlertDialog(
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         title: Text(
           text,
           textAlign: TextAlign.center,

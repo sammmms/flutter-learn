@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travellingo/pages/home%20(aswin)/home_page.dart';
-import 'package:travellingo/pages/profile%20(samuel)/profile_page.dart';
-import 'package:travellingo/pages/transportation%20(giovanny)/basket/basket_page.dart';
+import 'package:travellingo/pages/home/home_page.dart';
+import 'package:travellingo/pages/profile/profile_page.dart';
+import 'package:travellingo/pages/basket%20(done)/basket_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -17,22 +17,22 @@ class _MainPageState extends State<MainPage> {
   void initState() {
     navigationItem = [
       {
-        "title": "Home",
+        "title": "home",
         "icon": const Icon(Icons.home_outlined),
         "page": const HomePage()
       },
       {
-        "title": "Transaction",
+        "title": "transaction",
         "icon": const Icon(Icons.confirmation_num_outlined),
         "page": const BasketPage()
       },
       {
-        "title": "Favorite",
+        "title": "favorite",
         "icon": const Icon(Icons.bookmark_added_outlined),
         "page": const Text("Favorite")
       },
       {
-        "title": "Profile",
+        "title": "profile",
         "icon": const Icon(Icons.person_outline),
         "page": const ProfilePage()
       }
@@ -47,7 +47,8 @@ class _MainPageState extends State<MainPage> {
         bottomNavigationBar: BottomNavigationBar(
             unselectedItemColor: Colors.grey,
             // selectedItemColor: Colors.teal,
-            showUnselectedLabels: true,
+            showUnselectedLabels: false,
+            showSelectedLabels: false,
             currentIndex: _currentPage,
             type: BottomNavigationBarType.fixed,
             onTap: (value) {
@@ -55,9 +56,12 @@ class _MainPageState extends State<MainPage> {
                 _currentPage = value;
               });
             },
-            items: navigationItem
-                .map((entry) => BottomNavigationBarItem(
-                    label: entry["title"], icon: entry["icon"]))
-                .toList()));
+            items: navigationItem.map((entry) {
+              String title = entry["title"];
+              return BottomNavigationBarItem(
+                label: title,
+                icon: entry["icon"],
+              );
+            }).toList()));
   }
 }
