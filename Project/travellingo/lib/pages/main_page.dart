@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travellingo/pages/home/home_page.dart';
-import 'package:travellingo/pages/profile/profile_page.dart';
-import 'package:travellingo/pages/transaction/basket/basket_page.dart';
+import 'package:travellingo/pages/home%20(aswin)/home_page.dart';
+import 'package:travellingo/pages/profile%20(samuel)/profile_page.dart';
+import 'package:travellingo/pages/transportation%20(giovanny)/basket/basket_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});

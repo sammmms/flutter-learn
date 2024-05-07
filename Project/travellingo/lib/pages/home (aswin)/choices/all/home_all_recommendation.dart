@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:travellingo/pages/home/widget/home_recommendation.dart';
+import 'package:travellingo/pages/home%20(aswin)/widget/home_recommendation.dart';
 
 class HomeAllRecommendation extends StatefulWidget {
   const HomeAllRecommendation({super.key});

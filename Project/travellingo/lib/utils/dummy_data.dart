@@ -1,64 +1,4 @@
-final List<Map<String, dynamic>> purchases = [
-  {
-    "status": "Payment Success",
-    "type": "Flight",
-    "date": "01 April 2024",
-    "price": 475.22,
-    "invoice": "Invoice Number INV567489240UI",
-    "image":
-        "https://example.com/path-to-your-image.jpg", // Replace with your actual image URL
-  },
-  {
-    "status": "Payment Success",
-    "type": "Flight",
-    "date": "01 April 2024",
-    "price": 475.22,
-    "invoice": "Invoice Number INV567489240UI",
-    "image":
-        "https://example.com/path-to-your-image.jpg", // Replace with your actual image URL
-  },
-  {
-    "status": "Payment Success",
-    "type": "Flight",
-    "date": "01 April 2024",
-    "price": 475.22,
-    "invoice": "Invoice Number INV567489240UI",
-    "image":
-        "https://example.com/path-to-your-image.jpg", // Replace with your actual image URL
-  },
-  // Add more purchase maps if necessary
-];
-
-final List<Map<String, dynamic>> transactions = [
-  {
-    "name": "Himeji Castle",
-    "ticket": 1,
-    "date": "18 Oct 22",
-    "time": "19:00",
-    "price": 25.00,
-    "status": false,
-    "image": "https://example.com/images/himeji.jpg"
-  },
-  {
-    "name": "Cherry Blossom",
-    "ticket": 1,
-    "date": "18 Oct 22",
-    "time": "19:00",
-    "price": 25.00,
-    "status": true,
-    "image": "https://example.com/images/himeji.jpg"
-  },
-  {
-    "name": "Earthquake Museum",
-    "ticket": 1,
-    "date": "18 Oct 22",
-    "time": "19:00",
-    "price": 25.00,
-    "status": false,
-    "image": "https://example.com/images/himeji.jpg"
-  },
-];
-
+// City (Aswin)
 List<Map<String, dynamic>> japanCities = [
   {"country": "Japan", "city": "Tokyo"},
   {"country": "Japan", "city": "Osaka"},
@@ -91,4 +31,127 @@ List<Map<String, dynamic>> japanCities = [
   {"country": "Japan", "city": "Yokosuka"},
   {"country": "Japan", "city": "Nagano"}
   // Add more cities here if needed
+];
+
+// Transaction (Giovanny)
+final List<Map<String, dynamic>> transactions = [
+  {
+    "name": "Himeji Castle",
+    "ticket": 1,
+    "date": "18 Oct 22",
+    "time": "19:00",
+    "price": 25.00,
+    "status": false,
+    "image": "https://example.com/images/himeji.jpg"
+  },
+  {
+    "name": "Cherry Blossom",
+    "ticket": 1,
+    "date": "18 Oct 22",
+    "time": "19:00",
+    "price": 25.00,
+    "status": true,
+    "image": "https://example.com/images/himeji.jpg"
+  },
+  {
+    "name": "Earthquake Museum",
+    "ticket": 1,
+    "date": "18 Oct 22",
+    "time": "19:00",
+    "price": 25.00,
+    "status": false,
+    "image": "https://example.com/images/himeji.jpg"
+  },
+];
+
+// Tickets (Giovanny)
+final List<Map<String, dynamic>> tickets = [
+  {
+    "origin": "Kobe",
+    "destination": "Himeji Castle",
+    "departureTime": "19:00 PM",
+    "arrivalTime": "19:10 PM",
+    "date": "01 April 2024",
+    "duration": "10m",
+    "price": 25.00,
+    "status": false,
+    "image":
+        "https://i.pinimg.com/originals/2f/88/4b/2f884b66c1a53b93a9e4826e5f4c459d.png",
+    "available": "5 left"
+  },
+  {
+    "origin": "Osaka",
+    "destination": "Cherry Blossom Park",
+    "departureTime": "10:00 AM",
+    "arrivalTime": "10:30 AM",
+    "date": "01 April 2024",
+    "duration": "30m",
+    "price": 15.00,
+    "status": true,
+    "image": "https://download.logo.wine/logo/Lion_Air/Lion_Air-Logo.wine.png",
+    "available": "Available"
+  },
+  {
+    "origin": "Tokyo",
+    "destination": "Earthquake Museum",
+    "departureTime": "14:00 PM",
+    "arrivalTime": "14:45 PM",
+    "date": "01 April 2024",
+    "duration": "45m",
+    "price": 30.00,
+    "status": false,
+    "image": "https://airhex.com/images/airline-logos/citilink.png",
+    "available": "5 left"
+  },
+];
+
+// Dates (Giovanny)
+final List<String> dates = [
+  "Mon, 01 Apr",
+  "Tue, 02 Apr",
+  "Wed, 03 Apr",
+  "Thu, 04 Apr",
+  "Fri, 05 Apr",
+  "Sat, 06 Apr",
+  "Sun, 07 Apr",
+];
+
+// Purchases (Giovanny)
+final List<Map<String, dynamic>> purchases = [
+  {
+    "status": "Payment Success",
+    "type": "Flight",
+    "date": "01 April 2024",
+    "price": 475.22,
+    "invoice": "Invoice Number INV567489240UI",
+    "image":
+        "https://example.com/path-to-your-image.jpg", // Replace with your actual image URL
+  },
+  {
+    "status": "Payment Success",
+    "type": "Flight",
+    "date": "01 April 2024",
+    "price": 475.22,
+    "invoice": "Invoice Number INV567489240UI",
+    "image":
+        "https://example.com/path-to-your-image.jpg", // Replace with your actual image URL
+  },
+  {
+    "status": "Payment Success",
+    "type": "Flight",
+    "date": "01 April 2024",
+    "price": 475.22,
+    "invoice": "Invoice Number INV567489240UI",
+    "image":
+        "https://example.com/path-to-your-image.jpg", // Replace with your actual image URL
+  },
+  // Add more purchase maps if necessary
+];
+
+// Payment Methods (Giovanny)
+List<String> eMoneyPaymentMethods = [
+  'Paypal',
+  'Gopay',
+  'Apple Pay',
+  'Amazon Pay'
 ];

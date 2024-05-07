@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:travellingo/utils/dummy_data.dart';
 import 'ticket_list_card.dart'; // Pastikan sudah membuat dan mengimpor file ini dengan benar
 import 'package:google_fonts/google_fonts.dart';
 
@@ -10,57 +11,6 @@ class TicketListPage extends StatefulWidget {
 }
 
 class _TicketListPageState extends State<TicketListPage> {
-  final List<Map<String, dynamic>> tickets = [
-    {
-      "origin": "Kobe",
-      "destination": "Himeji Castle",
-      "departureTime": "19:00 PM",
-      "arrivalTime": "19:10 PM",
-      "date": "01 April 2024",
-      "duration": "10m",
-      "price": 25.00,
-      "status": false,
-      "image":
-          "https://i.pinimg.com/originals/2f/88/4b/2f884b66c1a53b93a9e4826e5f4c459d.png",
-      "available": "5 left"
-    },
-    {
-      "origin": "Osaka",
-      "destination": "Cherry Blossom Park",
-      "departureTime": "10:00 AM",
-      "arrivalTime": "10:30 AM",
-      "date": "01 April 2024",
-      "duration": "30m",
-      "price": 15.00,
-      "status": true,
-      "image":
-          "https://download.logo.wine/logo/Lion_Air/Lion_Air-Logo.wine.png",
-      "available": "Available"
-    },
-    {
-      "origin": "Tokyo",
-      "destination": "Earthquake Museum",
-      "departureTime": "14:00 PM",
-      "arrivalTime": "14:45 PM",
-      "date": "01 April 2024",
-      "duration": "45m",
-      "price": 30.00,
-      "status": false,
-      "image": "https://airhex.com/images/airline-logos/citilink.png",
-      "available": "5 left"
-    },
-  ];
-
-  final List<String> dates = [
-    "Mon, 01 Apr",
-    "Tue, 02 Apr",
-    "Wed, 03 Apr",
-    "Thu, 04 Apr",
-    "Fri, 05 Apr",
-    "Sat, 06 Apr",
-    "Sun, 07 Apr",
-  ];
-
   int selectedDateIndex = -1;
 
   @override

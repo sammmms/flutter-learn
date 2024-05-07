@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travellingo/component/route_animator_component.dart';
-import 'package:travellingo/pages/transaction/basket/widget/basket_card.dart';
+import 'package:travellingo/pages/transportation%20(giovanny)/basket/widget/basket_card.dart';
 import '../checkout_page.dart';
 
 class BasketPage extends StatefulWidget {

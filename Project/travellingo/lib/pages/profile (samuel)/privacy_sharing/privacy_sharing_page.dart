@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:travellingo/pages/profile/privacy_sharing/delete_account_page.dart';
-import 'package:travellingo/pages/profile/privacy_sharing/request_personal_page.dart';
-import 'package:travellingo/pages/profile/widget/privacy_button.dart';
+import 'package:travellingo/pages/profile%20(samuel)/privacy_sharing/delete_account_page.dart';
+import 'package:travellingo/pages/profile%20(samuel)/privacy_sharing/request_personal_page.dart';
+import 'package:travellingo/pages/profile%20(samuel)/widget/privacy_button.dart';
 
 Route _createRoute(StatefulWidget pages) {
   return PageRouteBuilder(

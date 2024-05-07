@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:travellingo/component/airplane_animation_component.dart';
 import 'package:travellingo/component/dotted_divider_component.dart';
 import 'package:travellingo/component/route_animator_component.dart';
+import 'package:travellingo/utils/dummy_data.dart';
 import 'payment_success_page.dart';
 
 class PaymentPage extends StatefulWidget {
@@ -14,13 +15,6 @@ class PaymentPage extends StatefulWidget {
 
 class _PaymentPageState extends State<PaymentPage> {
   List<bool> isChecked = List<bool>.filled(4, false);
-
-  List<String> eMoneyPaymentMethods = [
-    'Paypal',
-    'Gopay',
-    'Apple Pay',
-    'Amazon Pay'
-  ];
 
   @override
   Widget build(BuildContext context) {

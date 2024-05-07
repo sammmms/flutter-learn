@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:travellingo/component/route_animator_component.dart';
-import 'package:travellingo/pages/home/choices/all/home_all_recommendation.dart';
-import 'package:travellingo/pages/home/choices/all/home_all_nearby.dart';
-import 'package:travellingo/pages/home/widget/home_filter_chip.dart';
-import 'package:travellingo/pages/home/widget/home_search_bar.dart';
-import 'package:travellingo/pages/home/widget/label_heading.dart';
-import 'package:travellingo/pages/home/widget/see_all.dart';
-import 'package:travellingo/pages/home/widget/transport_button.dart';
-import 'package:travellingo/pages/transaction/flight_page.dart';
+import 'package:travellingo/pages/home%20(aswin)/choices/all/home_all_recommendation.dart';
+import 'package:travellingo/pages/home%20(aswin)/choices/all/home_all_nearby.dart';
+import 'package:travellingo/pages/home%20(aswin)/widget/home_filter_chip.dart';
+import 'package:travellingo/pages/home%20(aswin)/widget/home_search_bar.dart';
+import 'package:travellingo/pages/home%20(aswin)/widget/label_heading.dart';
+import 'package:travellingo/pages/home%20(aswin)/widget/see_all.dart';
+import 'package:travellingo/pages/home%20(aswin)/widget/transport_button.dart';
+import 'package:travellingo/pages/transportation%20(giovanny)/flight_page.dart';
 import 'package:travellingo/utils/dummy_data.dart';
 
 class HomePage extends StatefulWidget {
@@ -151,7 +151,7 @@ class _HomePageState extends State<HomePage> {
                                 createRouteFromBottom(const FlightPage()));
                           },
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 30,
                         ),
                       ],

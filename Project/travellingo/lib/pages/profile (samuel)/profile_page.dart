@@ -5,11 +5,11 @@ import 'package:travellingo/bloc/user_bloc/user_state.dart';
 import 'package:travellingo/component/snackbar_component.dart';
 import 'package:travellingo/models/user.dart';
 import 'package:travellingo/bloc/user_bloc/user_bloc.dart';
-import 'package:travellingo/pages/profile/personal_info_page.dart';
+import 'package:travellingo/pages/profile%20(samuel)/personal_info_page.dart';
 import 'package:travellingo/bloc/preferences/reset_preferences.dart';
-import 'package:travellingo/pages/profile/privacy_sharing/privacy_sharing_page.dart';
-import 'package:travellingo/pages/profile/widget/avatar.dart';
-import 'package:travellingo/pages/profile/widget/text_navigator.dart';
+import 'package:travellingo/pages/profile%20(samuel)/privacy_sharing/privacy_sharing_page.dart';
+import 'package:travellingo/pages/profile%20(samuel)/widget/avatar.dart';
+import 'package:travellingo/pages/profile%20(samuel)/widget/text_navigator.dart';
 import 'package:travellingo/provider/user_detail_provider.dart';
 import 'package:travellingo/pages/sign_in/signin_page.dart';
 

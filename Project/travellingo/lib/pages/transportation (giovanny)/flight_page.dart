@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travellingo/component/route_animator_component.dart';
-import 'package:travellingo/pages/transaction/tiket_list/ticket_list_page.dart';
+import 'package:travellingo/pages/transportation%20(giovanny)/ticket_list/ticket_list_page.dart';
 
 class FlightPage extends StatelessWidget {
   const FlightPage({super.key});

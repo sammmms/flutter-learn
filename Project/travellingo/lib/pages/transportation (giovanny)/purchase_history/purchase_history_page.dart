@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travellingo/utils/dummy_data.dart';
-import 'purchase_card.dart'; // Make sure this import points to where your PurchaseCard class is defined.
+import 'widget/purchase_card.dart'; // Make sure this import points to where your PurchaseCard class is defined.
 
 class PurchasePage extends StatelessWidget {
   const PurchasePage({super.key});
