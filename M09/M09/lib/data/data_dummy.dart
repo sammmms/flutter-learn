@@ -1,3 +1,4 @@
+import 'package:m02_praktek/models/comment_model.dart';
 import 'package:m02_praktek/models/post_model.dart';
 import 'package:m02_praktek/models/user_model.dart';
 
@@ -66,14 +67,39 @@ var p9 = Post(
 
 var listPost = [p1, p2, p3, p4, p5, p6, p7, p8, p9];
 
+var profile2 = User(
+    pictureLink: "Profile.jpeg",
+    nama: "Bukan Samuel",
+    username: "notnamesam_",
+    password: "123",
+    post: listPost.length - 4,
+    following: 10,
+    follower: 20,
+    description: "Just a humble cat",
+    postList: listPost.sublist(0, 5),
+    userSetting: {"privacy": "public", "notifications": "important"});
+
+var c1 = Comments(
+    user: profile2, content: "Dih keren", like: 14, time: DateTime.now());
+
+var p10 = Post(
+    title: "Pohon Akasia",
+    description: "Pohon akasia yang cantik",
+    link: "akasia.jpeg",
+    currentLike: "100k",
+    currentComment: "99.9k",
+    commentList: [c1]);
+
+var listPost2 = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10];
+
 var profile = User(
     pictureLink: "Profile.jpeg",
     nama: "Samuel Onasis",
     username: "namesam_",
     password: "123",
-    post: listPost.length,
+    post: listPost2.length,
     following: 32,
     follower: 50,
     description: "Just a humble dog",
-    postList: listPost,
+    postList: listPost2,
     userSetting: {"privacy": "public", "notifications": "important"});

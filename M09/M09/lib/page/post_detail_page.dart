@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:m02_praktek/component/comment.dart';
 import 'package:m02_praktek/models/post_model.dart';
 import 'package:m02_praktek/models/user_model.dart';
 import 'package:m02_praktek/page/add_post_page.dart';
@@ -98,24 +99,48 @@ class PostDetail extends StatelessWidget {
                             ),
                           ],
                         ),
-                        Row(
-                          children: [
-                            Row(
+                        GestureDetector(
+                          onTap: () {
+                            showModalBottomSheet(
+                              context: context,
+                              showDragHandle: true,
+                              enableDrag: true,
+                              isScrollControlled: true,
+                              scrollControlDisabledMaxHeightRatio: 1,
+                              backgroundColor: Colors.white,
+                              builder: (context) =>
+                                  CommentComponent(post: post),
+                            );
+                          },
+                          child: Container(
+                            color: Colors.transparent,
+                            child: Row(
                               children: [
-                                const Icon(Icons.comment),
-                                Text(post.currentComment),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.comment),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(post.currentComment),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.favorite,
+                                        color: Colors.red),
+                                    SizedBox(
+                                      width: 5,
+                                    ),
+                                    Text(post.currentLike),
+                                  ],
+                                ),
                               ],
                             ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            Row(
-                              children: [
-                                const Icon(Icons.favorite, color: Colors.red),
-                                Text(post.currentLike),
-                              ],
-                            ),
-                          ],
+                          ),
                         )
                       ],
                     ),
