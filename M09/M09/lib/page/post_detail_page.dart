@@ -119,7 +119,7 @@ class PostDetail extends StatelessWidget {
                                 Row(
                                   children: [
                                     const Icon(Icons.comment),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5,
                                     ),
                                     Text(post.currentComment),
@@ -132,7 +132,7 @@ class PostDetail extends StatelessWidget {
                                   children: [
                                     const Icon(Icons.favorite,
                                         color: Colors.red),
-                                    SizedBox(
+                                    const SizedBox(
                                       width: 5,
                                     ),
                                     Text(post.currentLike),

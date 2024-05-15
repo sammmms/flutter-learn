@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:m02_praktek/models/comment_model.dart';
 import 'package:m02_praktek/models/post_model.dart';
 import 'package:m02_praktek/models/user_model.dart';
@@ -57,7 +56,7 @@ class _CommentComponentState extends State<CommentComponent> {
                         .copyWith(fontWeight: FontWeight.bold),
                   ),
                 ),
-                Divider(
+                const Divider(
                   thickness: 0.5,
                 ),
                 Flexible(
@@ -85,7 +84,7 @@ class _CommentComponentState extends State<CommentComponent> {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(Icons.favorite_outline_rounded),
+                                const Icon(Icons.favorite_outline_rounded),
                                 Text(item.like.toString())
                               ],
                             ),
@@ -93,13 +92,13 @@ class _CommentComponentState extends State<CommentComponent> {
                         );
                       },
                       itemCount: snapshot.data!.length,
-                      separatorBuilder: (context, index) => SizedBox(
+                      separatorBuilder: (context, index) => const SizedBox(
                         height: 10,
                       ),
                     ),
                   ),
                 ),
-                Divider(
+                const Divider(
                   height: 1,
                   thickness: 1,
                 ),

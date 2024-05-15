@@ -7,7 +7,7 @@ ThemeData lightTheme = ThemeData(
       iconTheme: IconThemeData(color: Colors.black),
       scrolledUnderElevation: 0,
       actionsIconTheme: IconThemeData(color: Colors.black)),
-  scaffoldBackgroundColor: Color.fromARGB(255, 250, 250, 250),
+  scaffoldBackgroundColor: const Color.fromARGB(255, 250, 250, 250),
   textTheme: const TextTheme(
     bodySmall: TextStyle(color: Colors.black, fontSize: 10),
     bodyMedium: TextStyle(color: Colors.black, fontSize: 14),
@@ -52,7 +52,7 @@ ThemeData lightTheme = ThemeData(
           foregroundColor: MaterialStatePropertyAll(Colors.white))),
   floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: Colors.redAccent, foregroundColor: Colors.white),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: Colors.white,
       unselectedLabelStyle: TextStyle(color: Colors.black)),
   iconTheme: const IconThemeData(color: Colors.black),
