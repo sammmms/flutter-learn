@@ -45,7 +45,8 @@ class _MyAppState extends State<MyApp> {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (context) => UserProvider(listProfile: [profile])),
+            create: (context) =>
+                UserProvider(listProfile: [profile, profile2])),
         ChangeNotifierProvider(create: (context) => CurrentUser()),
         ChangeNotifierProvider(
           create: (context) => DarkModeProvider(controller: themeController),
