@@ -144,6 +144,7 @@ class _PostDetailState extends State<PostDetail> {
                                               .scaffoldBackgroundColor,
                                           builder: (context) =>
                                               CommentComponent(
+                                                  user: profile,
                                                   post: post,
                                                   controller: postController),
                                         );

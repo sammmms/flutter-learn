@@ -11,6 +11,7 @@ import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class CommentComponent extends StatefulWidget {
+  final User? user;
   final Post post;
   final BehaviorSubject<List<Post>>? controller;
   final BehaviorSubject<List<Map<User, Post>>>? postController;
@@ -20,7 +21,8 @@ class CommentComponent extends StatefulWidget {
       required this.post,
       this.controller,
       this.postController,
-      this.posts});
+      this.posts,
+      this.user});
 
   @override
   State<CommentComponent> createState() => _CommentComponentState();
@@ -189,7 +191,7 @@ class _CommentComponentState extends State<CommentComponent> {
                                             ? widget.postController!
                                                 .add(widget.posts!)
                                             : widget.controller!
-                                                .add(currentProfile.postList);
+                                                .add(widget.user!.postList);
                                         //
                                         commentController
                                             .add(widget.post.commentList!);
