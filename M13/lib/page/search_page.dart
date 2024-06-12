@@ -77,7 +77,7 @@ class _SearchPageState extends State<SearchPage> {
                                   .toLowerCase()
                                   .contains(value.toLowerCase()))
                           .toList();
-                      await Future.delayed(const Duration(seconds: 2));
+                      await Future.delayed(const Duration(seconds: 1));
                       controller.add(newList);
                     },
                   );

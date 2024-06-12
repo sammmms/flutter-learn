@@ -29,6 +29,7 @@ class _LoginPageState extends State<LoginPage> {
         body: SizedBox(
       width: MediaQuery.of(context).size.width,
       child: OuterConstraint(
+        mustCenter: true,
         child: Scrollbar(
           child: Padding(
             padding: const EdgeInsets.only(right: 10.0),

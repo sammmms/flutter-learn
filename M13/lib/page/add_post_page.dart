@@ -55,6 +55,7 @@ class _AddPostPageState extends State<AddPostPage> {
           title: const Text("Add Post"),
         ),
         body: OuterConstraint(
+          mustCenter: true,
           child: Scrollbar(
             child: Padding(
               padding: const EdgeInsets.only(right: 8.0),

@@ -112,7 +112,12 @@ class ProfileDetail extends StatelessWidget {
                     ),
                     ProfilePostGrid(user: currentProfile)
                   ] else
-                    const Expanded(child: Center(child: Text("No Post Yet")))
+                    const SizedBox(
+                      height: 500,
+                      child: Center(
+                        child: Text("No Post Yet"),
+                      ),
+                    )
                 ],
               ),
             ),
