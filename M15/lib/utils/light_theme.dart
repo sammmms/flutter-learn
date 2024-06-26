@@ -46,6 +46,11 @@ ThemeData lightTheme = ThemeData(
       borderRadius: BorderRadius.all(Radius.circular(5)),
     ),
   ),
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: Colors.grey.shade200,
+    contentTextStyle: const TextStyle(color: Colors.black),
+    actionTextColor: Colors.black,
+  ),
   elevatedButtonTheme: const ElevatedButtonThemeData(
       style: ButtonStyle(
           backgroundColor: MaterialStatePropertyAll(Colors.redAccent),

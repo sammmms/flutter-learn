@@ -142,8 +142,9 @@ class _HomePageState extends State<HomePage> {
     return ListView.builder(
         itemCount: posts.length,
         itemBuilder: (builder, index) {
+          User profile = posts[index].keys.first;
           Post post = posts[index].values.first;
-          return MyPost(post: post);
+          return MyPost(profile: profile, post: post);
         });
   }
 

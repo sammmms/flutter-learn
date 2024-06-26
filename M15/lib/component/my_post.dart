@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:m02_praktek/component/comment.dart';
 import 'package:m02_praktek/component/image_loader.dart';
-import 'package:m02_praktek/data/data_dummy.dart';
 import 'package:m02_praktek/models/post_model.dart';
+import 'package:m02_praktek/models/user_model.dart';
 import 'package:m02_praktek/providers/provider.dart';
 import 'package:m02_praktek/utils/theme_utils.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MyPost extends StatefulWidget {
+  final User profile;
   final Post post;
-  const MyPost({super.key, required this.post});
+  const MyPost({super.key, required this.post, required this.profile});
 
   @override
   State<MyPost> createState() => _MyPostState();
@@ -51,7 +52,7 @@ class _MyPostState extends State<MyPost> {
                         borderRadius: BorderRadius.circular(20),
                         child: FadeInImage(
                           image: NetworkImage(
-                            profile.pictureLink,
+                            widget.profile.pictureLink,
                           ),
                           placeholder:
                               const AssetImage("assets/placeholder.jpg"),
@@ -68,7 +69,7 @@ class _MyPostState extends State<MyPost> {
                       width: 20,
                     ),
                     Column(
-                      children: [Text(profile.username)],
+                      children: [Text(widget.profile.username)],
                     ),
                   ],
                 ),
@@ -85,7 +86,7 @@ class _MyPostState extends State<MyPost> {
                       backgroundColor:
                           Theme.of(context).scaffoldBackgroundColor,
                       builder: (context) => CommentComponent(
-                          user: profile,
+                          user: widget.profile,
                           post: widget.post,
                           controller: postController),
                     );

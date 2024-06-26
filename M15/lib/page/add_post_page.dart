@@ -39,7 +39,7 @@ class _AddPostPageState extends State<AddPostPage> {
   late TextEditingController title;
   late TextEditingController description;
   late ScaffoldMessengerState scaffoldState;
-  final _pickedImage = BehaviorSubject<PickedImage>();
+  final _pickedImage = BehaviorSubject<PickedImage?>();
   final _formKey = GlobalKey<FormState>();
   String? link;
 
@@ -81,7 +81,7 @@ class _AddPostPageState extends State<AddPostPage> {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      StreamBuilder<PickedImage>(
+                      StreamBuilder<PickedImage?>(
                           stream: _pickedImage,
                           builder: (context, snapshot) {
                             PickedImage? pickedImage = snapshot.data;
@@ -147,6 +147,7 @@ class _AddPostPageState extends State<AddPostPage> {
                               Post? newPost = _savePost();
                               if (newPost != null) {
                                 _formKey.currentState!.reset();
+                                _pickedImage.add(null);
                                 _showUndoScaffold(newPost);
                               }
                             },
@@ -197,7 +198,7 @@ class _AddPostPageState extends State<AddPostPage> {
         content: const Text("Post berhasil ditambahkan."),
         action: SnackBarAction(
             label: "Undo",
-            textColor: Theme.of(context).colorScheme.onBackground,
+            textColor: Theme.of(context).colorScheme.background,
             onPressed: () {
               Provider.of<UserProvider>(context, listen: false).undoAddPost(
                   newPost,
@@ -215,12 +216,14 @@ class _AddPostPageState extends State<AddPostPage> {
       return null;
     }
 
+    PickedImage pickedImage = _pickedImage.value!;
+
     Post post = Post(
       title: title.text,
       isScheduled: isScheduled,
-      link: isScheduled ? scheduledImage : _pickedImage.value.link,
-      imageType: _pickedImage.value.imageType,
-      image: _pickedImage.value.image,
+      link: isScheduled ? scheduledImage : pickedImage.link,
+      imageType: isScheduled ? ImageType.network : pickedImage.imageType,
+      image: isScheduled ? null : pickedImage.image,
     );
     User user = Provider.of<CurrentUser>(context, listen: false).profile!;
 
@@ -230,9 +233,9 @@ class _AddPostPageState extends State<AddPostPage> {
       Post newPost = Post(
           title: title.text,
           isScheduled: false,
-          link: _pickedImage.value.link,
-          imageType: _pickedImage.value.imageType,
-          image: _pickedImage.value.image);
+          link: pickedImage.link,
+          imageType: pickedImage.imageType,
+          image: pickedImage.image);
 
       Provider.of<UserProvider>(context, listen: false).schedulePost(user,
           post: post, newPost: newPost, duration: duration!);
@@ -276,7 +279,7 @@ class _AddPostPageState extends State<AddPostPage> {
 
     if (newPost != null) {
       _formKey.currentState?.reset();
-
+      _pickedImage.add(null);
       _showUndoScaffold(newPost);
     }
   }

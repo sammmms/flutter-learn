@@ -68,7 +68,7 @@ class _PostDetailState extends State<PostDetail> {
                   itemCount: posts.length,
                   itemBuilder: (builder, index) {
                     Post post = posts[index];
-                    return MyPost(post: post);
+                    return MyPost(profile: profile, post: post);
                   });
             }),
       ),

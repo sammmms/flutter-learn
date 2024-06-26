@@ -28,6 +28,11 @@ ThemeData darkTheme = ThemeData(
     bodyColor: Colors.white,
     displayColor: Colors.white,
   ),
+  snackBarTheme: SnackBarThemeData(
+    backgroundColor: Colors.grey.shade700,
+    contentTextStyle: const TextStyle(color: Colors.white),
+    actionTextColor: Colors.white,
+  ),
   listTileTheme: const ListTileThemeData(
       selectedColor: Colors.white38, textColor: Colors.white),
   scaffoldBackgroundColor: const Color.fromARGB(255, 56, 56, 56),
